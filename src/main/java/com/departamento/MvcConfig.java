@@ -6,13 +6,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-
 public class MvcConfig implements WebMvcConfigurer  {
 
-	@Bean 
+	@Bean
 	public BCryptPasswordEncoder passEncoder() {
 		return new BCryptPasswordEncoder();
-		
 	}
 	
 	
