@@ -18,6 +18,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	  @Autowired 
 	  private BCryptPasswordEncoder passEnconder;
 	  
+	  
 	  @Autowired
 	  public void configurerSecurityGobal(AuthenticationManagerBuilder builder)
 	  throws Exception { 
