@@ -24,6 +24,95 @@ CREATE TABLE `roles` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
+create table residente(
+idresidente int not null auto_increment primary key,
+nombre varchar(35) not null,
+apellidos varchar(45) not null,
+dni int,
+mascotas tinyint(1),
+estado varchar(15),
+fechaReg date,
+activo tinyint(1)
+);
+
+create table mascota(
+idmascota int auto_increment primary key,
+idresidente int ,
+nombre varchar(35),
+tipo varchar(40),
+fechareg date,
+activo tinyint(1),
+foreign key(idresidente)references residente(idresidente)
+);
+
+
+create table departamento(
+iddepartamento int not null auto_increment primary key,
+idresidente int ,
+numpiso int ,
+habitaciones int,
+cocinas int,
+banos int,
+fechareg date,
+estado varchar(30),
+activo tinyint(1),
+foreign key(idresidente) references residente(idresidente)
+);
+
+create table visitante(
+idvisitante int not null auto_increment primary key,
+nombre varchar(35) not null,
+apellidos varchar(45) not null,
+dni int not null,
+fechareg date,
+activo tinyint(1)
+);
+
+create table visita(
+idvisita int not null auto_increment primary key,
+idvisitante int,
+idresidente int ,
+fechareg date,
+foreign key(idresidente) references residente(idresidente),
+foreign key(idvisitante) references visitante(idvisitante)
+);
+
+create table servicio(
+idservicio int not null auto_increment primary key,
+iddepartamento int,
+nombreserv varchar(35) not null,
+precioserv double not null,
+fechareg date,
+foreign key(iddepartamento) references departamento(iddepartamento)
+
+);
+
+create table boleta(
+idpagoservicio int auto_increment primary key,
+idservicio int,
+idresidente int,
+preciototal double,
+fechareg date,
+estado tinyint(1),
+foreign key(idservicio) references servicio(idservicio),
+foreign key(idresidente) references residente(idresidente)
+);
+
+
+CREATE table insidencia(
+idincidencia int auto_increment primary key,
+iduser int,
+idresidente int,
+tipo varchar(35) not null,
+descripcion varchar(80) not null,
+estado tinyint(1) not null,
+fechareg date,
+fechaatencion date,
+foreign key(iduser) references users(id),
+foreign key(idresidente) references residente(idresidente)
+);
+
+
 insert into users(username, password, enable) values('user','$2a$10$BZDSDkLnA3/U0vH9Lkjmg.fXvypyAGU.mUAvUDeA1CsiZ9QUZLyX2',1);
 
 insert into users(username, password, enable) values('admin','$2a$10$C/kXzIeCg7CIUMpgDL5P/OjHhS3XTZsCYd5aqYdTwdjMIgfleBQoG',1);
