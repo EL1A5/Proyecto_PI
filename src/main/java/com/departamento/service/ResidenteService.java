@@ -7,7 +7,11 @@ import com.departamento.entity.Residente;
 public interface ResidenteService {
 
 	public abstract List<Residente> listaResidente();
-	public abstract Residente insertaActualizaResidente(Residente obj);
+	public abstract Residente registraResidente(Residente obj);
+	public abstract Residente registraActualizaResidente(Residente obj);
+	public abstract void eliminarPorIdResidente(int idResidente);
+
+
 
 	
 }

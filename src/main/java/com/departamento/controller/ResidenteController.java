@@ -1,35 +1,49 @@
 package com.departamento.controller;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.http.*;
+import org.springframework.util.*;
+import org.springframework.web.bind.annotation.*;
 
 import com.departamento.entity.Residente;
 import com.departamento.service.ResidenteService;
+import com.departamento.util.AppSettings;
+
 @RestController
-@RequestMapping("/rest/residente")
+@RequestMapping("/url/Residente")
+@CrossOrigin(origins = AppSettings.URL_CROSS_ORIGIN)
 public class ResidenteController {
 	@Autowired
-	private ResidenteService service;
-
+	private ResidenteService Service;
+	
 	@GetMapping
 	@ResponseBody
-	public ResponseEntity<List<Residente>> listaResidente() {
-		List<Residente> lista = service.listaResidente();
-		return ResponseEntity.ok(lista);
-	
+	public ResponseEntity<List<Residente>> listMarcas(){
+		return ResponseEntity.ok(Service.listaResidente());
 	}
+	
+	@PostMapping
+	@ResponseBody
+	public ResponseEntity<HashMap<String, Object>> registraResidente(@RequestBody Residente obj) {
+		HashMap<String, Object> salida = new HashMap<String, Object>();
+		try {
+			
+			obj.setIdResidente(0);
+			obj.setFechaReg(new Date());
+			Residente objSalida = Service.registraActualizaResidente(obj);
+			
+				if (objSalida == null) {
+					salida.put("mensaje", "Error en el registro ");
+				} else {
+					salida.put("mensaje", "Registro exitoso");   }
+		} catch (Exception e) {
+			e.printStackTrace();
+			salida.put("mensaje", "Error en el registro " + e.getMessage());
+		}
+		return ResponseEntity.ok(salida);
+	}
+	
 }
 
+	

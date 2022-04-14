@@ -21,7 +21,7 @@ import lombok.Setter;
 public class Residente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idresidente;
+	private int idResidente;
 	private String nombre;
 	private String apellidos;
 	private String dni;
