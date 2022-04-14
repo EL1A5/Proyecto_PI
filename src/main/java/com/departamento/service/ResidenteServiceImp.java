@@ -19,25 +19,7 @@ public class ResidenteServiceImp implements ResidenteService{
 	@Override
 	public Residente insertaActualizaResidente(Residente obj) {
 		return repository.save(obj);
-	}
-
-	@Override
-	public List<Residente> listaResidentePorDni(String dni) {
-		return repository.listaPorDni(dni);
-	}
-
-	@Override
-	public List<Residente> listaResidentePorDniDiferenteDelMismo(String dni, int idresidente) {
-		return repository.listaPorDniDiferenteSiMismo(dni, idresidente);
-	}
-
-	@Override
-	public Optional<Residente> listaResidentePorId(int idresidente) {
-		return repository.findById(idresidente);
-		}
-	@Override
-	public void eliminaResidentePorId(int idresidente) {
-		repository.deleteById(idresidente);
+	
 	}
 
 }
