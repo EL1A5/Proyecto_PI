@@ -6,12 +6,11 @@ import java.util.Optional;
 import com.departamento.entity.Residente;
 public interface ResidenteService {
 
-	public abstract List<Residente> listaResidente();
-	public abstract Residente registraResidente(Residente obj);
-	public abstract Residente registraActualizaResidente(Residente obj);
-	public abstract void eliminarPorIdResidente(int idResidente);
-
-
-
 	
+	public List<Residente> listarResidentes();
+	public void guardar(Residente rsdte);
+	public Residente buscarPorId(Integer id);
+	public void eliminar (Integer id);
+
 }
+
