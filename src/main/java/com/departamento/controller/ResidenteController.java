@@ -30,7 +30,7 @@ public class ResidenteController {
 		
 		Residente residente = new Residente();
 		
-		model.addAttribute("residente", residente);
+		model.addAttribute("residentes", residente);
 		
 		return "/views/residentes/registrar";
 	}
@@ -47,7 +47,7 @@ public class ResidenteController {
 		
 		Residente residente = residenteService.buscarPorId(idResidente);
 		
-		model.addAttribute("Residente", residente);
+		model.addAttribute("residentes", residente);
 		
 		return "/views/residentes/registrar";
 	}
