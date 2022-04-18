@@ -1,5 +1,8 @@
 package com.departamento.repository;
 
-public interface PropietarioRepository {
+ 
+import com.departamento.entity.*;
+
+public interface PropietarioRepository  {
 
 }
