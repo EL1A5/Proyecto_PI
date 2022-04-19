@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.departamento.entity.Residente;
 import com.departamento.service.ResidenteService;
 
+
 @RestController
 @RequestMapping("/rest/residentes")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -55,8 +56,8 @@ public class ResidenteController {
 		}
 		return ResponseEntity.ok(salida);
 	}
-	
+
 }
-   
+
 			  
     
