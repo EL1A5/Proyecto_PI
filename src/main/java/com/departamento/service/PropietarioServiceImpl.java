@@ -1,5 +1,5 @@
 package com.departamento.service;
 
-public class PropietarioServiceImpl {
+public class PropietarioServiceImpl implements  PropietarioService {
 
 }
