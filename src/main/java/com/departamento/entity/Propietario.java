@@ -29,10 +29,6 @@ public class Propietario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idpropietario;
 	private int idresidente;
-	//rivate int idresidente;
-	/*@ManyToOne
-	@JoinColumn(name = "idResidente")*/
-	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date fechaReg;
