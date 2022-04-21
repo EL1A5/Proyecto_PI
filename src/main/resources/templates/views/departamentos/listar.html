@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmls:th="http://www.thymeleaf.org">
-
+<head th:replace="plantilla/plantilla :: head">
 <head>
 	<meta>
 	<title>Listado Departamentos</title>
@@ -18,7 +18,7 @@
 </head>
 
 <body>
-
+<header th:replace="plantilla/plantilla :: header"></header>
 	<div class="container">
 		<h1 th:text="${titulo}"></h1>
 	</div>
@@ -73,7 +73,7 @@
 			</tbody>
 		</table>
 	</div>
-
+<footer th:replace="plantilla/plantilla :: footer"></footer>
 
 </body>
 
