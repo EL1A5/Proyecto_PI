@@ -8,6 +8,7 @@ public class Pid202201MiercolesGrupo05Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Pid202201MiercolesGrupo05Application.class, args);
+		System.out.println("Compilo .....");
 	}
 
 }
