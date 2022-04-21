@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,13 +19,25 @@ import org.springframework.web.bind.annotation.RestController;
 import com.departamento.entity.Propietario;
 import com.departamento.service.PropietarioService;
 
-@RestController
+@Controller
 @RequestMapping("/rest/propietario")
 public class PropietarioController {
 	
 	@Autowired
 	private PropietarioService service;
 
+	/*
+	@GetMapping("/")
+	public String listarPropietarios(Model model) {
+		List<Propietario> lista = service.listaPropietario();
+		
+		model.addAttribute("titulo", "Lista de Propietarios");
+		model.addAttribute("propietario", lista);
+	
+		return "/rest/propietario/ListarPropietario";
+	}
+	*/
+	
 	@GetMapping
 	@ResponseBody
 	public ResponseEntity<List<Propietario>> listaPropietario(){
@@ -32,7 +46,7 @@ public class PropietarioController {
 	}
 	
 	
-	
+	//@GetMapping("/CrearPropietario")
 	@PostMapping
 	@ResponseBody
 	public  ResponseEntity<Map<String, Object>> GuardarPropietario(@RequestBody Propietario obj){

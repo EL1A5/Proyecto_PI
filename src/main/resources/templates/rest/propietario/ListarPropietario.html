@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/plantilla :: head">
+</head>
+<body>
+	<header th:replace="plantilla/plantilla :: header"></header>
+	
+	<div class="container">
+		<h1 th:text="${titulo}"></h1>
+		
+	</div>
+	<div class="container">
+		<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">IDPropietario</th>
+      <th scope="col">IdResidente</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Estado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="pr:${propietario}">
+      <th scope="row" th:text=${pr.idpropietario}></th>
+      <td th:text=${pr.idresidente></td>
+      <td th:text=${pr.fechaReg></td>
+      <td th:text=${pr.activo></td>
+    </tr> 
+  </tbody>
+</table>
+		
+	</div>
+	
+	
+	<footer th:replace="plantilla/plantilla :: footer"></footer>
+	
+</body>
+</html>
