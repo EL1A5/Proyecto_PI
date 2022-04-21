@@ -208,7 +208,7 @@ CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`visitante` (
   `nombre` VARCHAR(35) NOT NULL,
   `apellidos` VARCHAR(45) NOT NULL,
   `dni` INT NOT NULL,
-  `fechareg` DATETIME NULL DEFAULT NULL,
+  `fechareg` DATE NULL DEFAULT NULL,
   `activo` TINYINT(1) NULL DEFAULT NULL,
   PRIMARY KEY (`idvisitante`))
 ENGINE = InnoDB
@@ -223,8 +223,7 @@ CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`visita` (
   `idvisita` INT NOT NULL AUTO_INCREMENT,
   `idvisitante` INT NULL DEFAULT NULL,
   `idresidente` INT NULL DEFAULT NULL,
-  `horaentrada` DATETIME NULL DEFAULT NULL,
-  `horasalida` DATETIME NULL,
+  `fechareg` DATE NULL DEFAULT NULL,
   PRIMARY KEY (`idvisita`),
   INDEX `idresidente` (`idresidente` ASC) VISIBLE,
   INDEX `idvisitante` (`idvisitante` ASC) VISIBLE,
@@ -237,7 +236,6 @@ CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`visita` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
-
 
 
 
