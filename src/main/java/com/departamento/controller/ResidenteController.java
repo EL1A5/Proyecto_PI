@@ -79,7 +79,7 @@ public class ResidenteController {
 		
 		return "/views/residente/registrar";
 	}
-	
+	//
 	@GetMapping("/delete/{id}")
 	public String eliminar(@PathVariable ("id") Integer idResidente) {
 		
