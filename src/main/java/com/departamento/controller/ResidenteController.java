@@ -35,6 +35,7 @@ public class ResidenteController {
 	@Autowired
 	private ResidenteService residenteService;
 	
+	
 	@GetMapping("/")
 	public String listarresidentes(Model model) {
 		List<Residente> lstresidentes = residenteService.listarResidentes();
@@ -43,7 +44,7 @@ public class ResidenteController {
 		model.addAttribute("residente",lstresidentes );
 		return "/views/Residente/listar";
 	}
-	
+	//ter
 	
 	@GetMapping("/registrar")
 	public String registrar(Model model) {
