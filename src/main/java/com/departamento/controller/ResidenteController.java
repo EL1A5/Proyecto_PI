@@ -30,6 +30,7 @@ public class ResidenteController {
 		List<Residente> lista = residenteService.listarResidentes();
 		return ResponseEntity.ok(lista);
 	}
+	//
     @PostMapping
 	@ResponseBody
 	public ResponseEntity<HashMap<String, Object>> registraResidente(@RequestBody Residente obj) {
