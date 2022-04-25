@@ -47,6 +47,7 @@ public class visitaController {
 
 	
 
+	
 	@GetMapping("/registrar")
 	public String RegistrarVisitantes(Model model) {
 
@@ -62,33 +63,12 @@ public class visitaController {
 
 	@PostMapping("/save")
 	public String Guardar(@ModelAttribute visita obj) {
-		DateTimeFormatter dtf4 = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-		Date fecha = new Date(dtf4.format(LocalDateTime.now()));
-
-		obj.setHoraentrada(fecha);
-		obj.setHorasalida(fecha);
+		
+		obj.setHoraentrada(new Date());
+		obj.setHorasalida(new Date());
 		service.insertaActualizaVistas(obj);
 		return "redirect:/views/visita/";
 	}
 	
-	
-	/*
-	 * @GetMapping
-	 * 
-	 * @ResponseBody public ResponseEntity<List<visita>> listaVisita(){ List<visita>
-	 * lista = service.listarVisitas(); return ResponseEntity.ok(lista); }
-	 * 
-	 * 
-	 * @PostMapping
-	 * 
-	 * @ResponseBody public ResponseEntity<Map<String, Object>>
-	 * insertaVisitante(@RequestBody visita obj){ Map<String, Object> salida = new
-	 * HashMap<>(); try { visita objSalida = service.insertaActualizaVistas(obj); if
-	 * (objSalida == null) { salida.put("mensaje",
-	 * "No se registró, consulte con el administrador."); }else {
-	 * salida.put("mensaje", "Se registró correctamente."); } } catch (Exception e)
-	 * { e.printStackTrace(); salida.put("mensaje",
-	 * "No se registró, consulte con el administrador."); } return
-	 * ResponseEntity.ok(salida); }
-	 */
+
 }

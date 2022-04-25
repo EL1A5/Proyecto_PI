@@ -25,6 +25,18 @@ public class visitanteServiceImpl implements visitanteService {
 		// TODO Auto-generated method stub
 		return repositorio.findAll();
 	}
+
+	@Override
+	public visitante buscarPorId(int id) {
+		// TODO Auto-generated method stub
+		return repositorio.findById(id).orElse(null);
+	}
+
+	@Override
+	public void eliminar(int id) {
+		 repositorio.deleteById(id);
+		
+	}
 	
 
 }
