@@ -15,8 +15,13 @@ SELECT u.username, u.password, u.enable FROM users u WHERE u.username = 'user';
 SELECT r.user_id, r.rolname FROM roles r inner join users u 
 on r.user_id=u.id where u.username='user';
 
+insert into visitante (nombre,apellidos,dni,fechareg,activo) values('ELIAS','PROVINCIA',12345678,'2020-05-05',1);
 
+SELECT*FROM visitante;
 
+insert into visita (idvisitante,idresidente,horaentrada,horasalida) values(1,1,'2020-05-05 15:07:01','2020-05-06 17:07:01');
+
+SELECT*FROM visita;
 
 insert into residente values
 (null,"Bryan Alexander","Bernuy Bravo",71434952,1,"Inquilino","2020-05-05",1);
