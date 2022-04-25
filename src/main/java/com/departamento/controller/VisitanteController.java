@@ -59,6 +59,7 @@ public class VisitanteController {
 	public String Guardar(@ModelAttribute visitante obj) {
 		
 
+		
 		obj.setActivo(1);
 		obj.setFechareg(new Date());
 		service.insertaActualizaVistante(obj);
