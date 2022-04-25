@@ -64,7 +64,6 @@ public class visitaController {
 	@PostMapping("/save")
 	public String Guardar(@ModelAttribute visita obj) {
 		
-		
 		obj.setHoraentrada(new Date());
 		obj.setHorasalida(new Date());
 		service.insertaActualizaVistas(obj);
