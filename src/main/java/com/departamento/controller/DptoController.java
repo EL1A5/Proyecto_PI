@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.departamento.entity.Departamento;
 import com.departamento.service.DepartamentoService;
 
+
+
+
 @Controller
 @RequestMapping("/views/departamentos")
 public class DptoController {
