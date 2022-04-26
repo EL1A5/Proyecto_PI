@@ -11,6 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
+
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -86,26 +90,7 @@ public class ResidenteController {
 		
 		return "redirect:/views/Residente/";
 	}
-    @PostMapping
-	@ResponseBody
-	public ResponseEntity<HashMap<String, Object>> registraResidente(@RequestBody Residente obj) {
-		HashMap<String, Object> salida = new HashMap<String, Object>();
-		try {
-			
-			obj.setIdResidente(0);
-			Residente objSalida = residenteService.insertaActualizaResidente(obj);
-			
-				if (objSalida == null) {
-					salida.put("mensaje", "Error en el registro ");
-				} else {
-					salida.put("mensaje", "Registro exitoso");   }
-		} catch (Exception e) {
-			e.printStackTrace();
-			salida.put("mensaje", "Error en el registro " + e.getMessage());
-		}
-		return ResponseEntity.ok(salida);
 
-	}
 
 }
 
