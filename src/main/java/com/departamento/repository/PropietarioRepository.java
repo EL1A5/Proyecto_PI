@@ -10,7 +10,7 @@ import com.departamento.entity.*;
 
 public interface PropietarioRepository extends JpaRepository<Propietario, Integer>  {
 	
-	@Query("Select e from  Propietario e where e.idpropietario = ?1 ")
-	public abstract List<Propietario> listaPropietarioPorId(int id);
+	/*@Query("Select e from  Propietario e where e.idpropietario = ?1 ")
+	public abstract List<Propietario> listaPropietarioPorId(int id);*/
 
 }
