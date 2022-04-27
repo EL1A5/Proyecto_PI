@@ -1,5 +1,6 @@
 package com.departamento.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.departamento.entity.Propietario;
 import com.departamento.repository.PropietarioRepository;
+
 @Service
 public class PropietarioServiceImpl implements  PropietarioService {
 	
@@ -27,13 +29,15 @@ public class PropietarioServiceImpl implements  PropietarioService {
 
 	@Override
 	public Propietario GuardarPropietario(Propietario obj) {
+		obj.setFechaReg(new Date());
+		obj.setActivo(1);
 		return repository.save(obj);
 	}
 
-	@Override
+	/*@Override
 	public List<Propietario> listaPropietarioPorId(int id) {
 		return repository.listaPropietarioPorId(id);
-	}
+	}*/
 
 	
 
