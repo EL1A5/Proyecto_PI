@@ -1,5 +1,6 @@
 package com.departamento.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -12,7 +13,9 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -21,18 +24,30 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class visitante {
+@AllArgsConstructor
+@NoArgsConstructor
+public class visitante implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idvisitante;
 	
+	
 	private String nombre ;
 	private String apellidos ;
 	private int dni; 
-	@DateTimeFormat(pattern = "yyyyMMddHHmmss")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date  fechareg  ;
 	private int activo;
+
+	
+	
+	
 	
 }

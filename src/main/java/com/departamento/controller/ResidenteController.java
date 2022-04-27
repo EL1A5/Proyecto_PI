@@ -6,11 +6,15 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
+
 import org.springframework.web.bind.annotation.CrossOrigin;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,22 +22,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.departamento.entity.Departamento;
 
 import com.departamento.entity.Residente;
-import com.departamento.service.DepartamentoService;
 import com.departamento.service.ResidenteService;
 
 
 
 @Controller
 @RequestMapping("/views/Residente/")
-/*
-@RestController
-@RequestMapping("/rest/residentes")*/
-@CrossOrigin(origins = "http://localhost:4200")
+
+
 
 public class ResidenteController {
 	@Autowired
@@ -69,6 +67,7 @@ public class ResidenteController {
 		
 		residente.setFechaReg(fecha);
 		residente.setActivo(1);
+		
 		residenteService.insertaActualizaResidente(residente);
 		System.out.println("Residente guardado Exitosamente");
 		return "redirect:/views/Residente/";
@@ -92,26 +91,7 @@ public class ResidenteController {
 		
 		return "redirect:/views/Residente/";
 	}
-    @PostMapping
-	@ResponseBody
-	public ResponseEntity<HashMap<String, Object>> registraResidente(@RequestBody Residente obj) {
-		HashMap<String, Object> salida = new HashMap<String, Object>();
-		try {
-			
-			obj.setIdResidente(0);
-			Residente objSalida = residenteService.insertaActualizaResidente(obj);
-			
-				if (objSalida == null) {
-					salida.put("mensaje", "Error en el registro ");
-				} else {
-					salida.put("mensaje", "Registro exitoso");   }
-		} catch (Exception e) {
-			e.printStackTrace();
-			salida.put("mensaje", "Error en el registro " + e.getMessage());
-		}
-		return ResponseEntity.ok(salida);
 
-	}
 
 }
 

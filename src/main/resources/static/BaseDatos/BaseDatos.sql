@@ -24,8 +24,11 @@ CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`residente` (
   `nombre` VARCHAR(35) NOT NULL,
   `apellidos` VARCHAR(45) NOT NULL,
   `dni` INT NULL DEFAULT NULL,
+  `correo` VARCHAR(45) NOT NULL,
   `mascotas` TINYINT(1) NULL DEFAULT NULL,
   `estado` VARCHAR(15) NULL DEFAULT NULL,
+  `telefono` INT NOT NULL ,
+   `fechaNac` DATE NULL DEFAULT NULL,
   `fechaReg` DATE NULL DEFAULT NULL,
   `activo` TINYINT(1) NULL DEFAULT NULL,
   PRIMARY KEY (`idresidente`))

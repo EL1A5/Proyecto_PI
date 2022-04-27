@@ -33,7 +33,7 @@
 			<tbody>
 				<tr th:each="cl:${visita}">
 					<th scope="row" th:text="${cl.idvisita}"></th>
-					<td th:text="${cl.idvisitante}"></td>
+					<td th:text="${cl.idvisitante.apellidos}" ></td>
 					<td th:text="${cl.idresidente}"></td>
 					<td th:text="${cl.horaentrada}"></td>
 					<td th:text="${cl.horasalida}"></td>
