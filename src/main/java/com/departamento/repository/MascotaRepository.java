@@ -6,3 +6,4 @@ public interface MascotaRepository extends JpaRepository<Mascota, Integer>{
 
 }
 
+
