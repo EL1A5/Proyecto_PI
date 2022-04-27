@@ -9,6 +9,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,18 +34,20 @@ public class VisitanteController {
 	
 
 	
-	
+	@Secured("ROLE_USER")
 	@GetMapping("/")
 	public String ListarVisitantes(Model model) {
 		List<visitante> lista = service.listarVisitante();
-
+		
+		
+		
 		model.addAttribute("titulo", "visitante");
 		model.addAttribute("visitante", lista);
 		return "/views/vistante/listar";
 	}
 
 	
-
+	@Secured("ROLE_USER")
 	@GetMapping("/registrar")
 	public String RegistrarVisitantes(Model model) {
 
@@ -55,6 +58,7 @@ public class VisitanteController {
 		return "/views/vistante/registrar";
 	}
 
+	@Secured("ROLE_USER")
 	@PostMapping("/save")
 	public String Guardar(@ModelAttribute visitante obj) {
 		
@@ -66,6 +70,7 @@ public class VisitanteController {
 		return "redirect:/views/vistante/";
 	}
 
+	@Secured("ROLE_GERENTE")
 	@GetMapping("/edit/{id}")
 	public String editar(@PathVariable ("id") Integer id ,Model model) {
 		
@@ -77,6 +82,7 @@ public class VisitanteController {
 		return "/views/vistante/registrar";
 	}
 	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/delete/{id}")
 	public String eliminar(@PathVariable ("id") int id) {
 		
@@ -86,23 +92,5 @@ public class VisitanteController {
 	}
 
 	
-	/*
-	 * @DeleteMapping("/{id}")
-	 * 
-	 * @ResponseBody
-	 * 
-	 * public ResponseEntity<HashMap<String, Object>> EliminaAlumno(@PathVariable
-	 * int id){ HashMap<String, Object> salida = new HashMap<String, Object>(); try
-	 * { Optional optional=service.buscarPorId(id);
-	 * 
-	 * if (optional.isPresent()) { service.eliminaPorId(id); salida.put("mensaje",
-	 * "eliminacion exitosa"); } else { salida.put("mensaje",
-	 * "No existe el ID : "+id); }
-	 * 
-	 * } catch (Exception e) { e.printStackTrace(); salida.put("mensaje",
-	 * "Error en el registro " + e.getMessage()); } return
-	 * ResponseEntity.ok(salida);
-	 * 
-	 * }
-	 */
+	
 }

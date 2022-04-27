@@ -13,6 +13,8 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,10 +43,19 @@ public class visitante implements Serializable{
 	
 	private String nombre ;
 	private String apellidos ;
+	
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechanac;
 	private int dni; 
+	private String correo;
+	private String telefono;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date  fechareg  ;
 	private int activo;
+
+	
 
 	
 	
