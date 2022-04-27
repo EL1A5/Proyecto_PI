@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/plantilla :: head">
+</head>
+<body>
+	<header th:replace="plantilla/plantilla :: header"></header>
+	<div class="container">
+		<h1>MASCOTA</h1>
+	</div>
+
+	<div class="container">
+
+		<div class="card bg-light">
+			<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<form th:action="@{/views/mascota/save}" th:object="${visitante}"
+					method="post">
+					<div class="form-group row">
+
+						<input type="hidden" th:field="*{idmascota}"> <label
+							class="col-md-2" for="nombre">Nombre:</label> <input
+							type="text" th:field="*{nombre}"
+							class="form-control form-control-sm col-md-6" id="nombre"
+							placeholder="Nombre de la mascota"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">
+						</small>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-md-2" for="tipo">Tipo:</label> <input
+							type="text" th:field="*{tipo}"
+							class="form-control form-control-sm col-md-6" id="tipo"
+							placeholder="Tipo :"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('tipo')}"
+							th:errors="*{tipo}"> </small>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-md-2" for="activo">Activo</label> <input
+							type="text" th:field="*{activo}"
+							class="form-control form-control-sm col-md-6" id="activo"
+							placeholder="Activo :"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('activo')}" th:errors="*{activo}">
+						</small>
+					</div>
+
+					<!-- <div class="form-group row">
+						<label class="col-md-2" for="fechareg">Fecha Registro:</label> <input
+							type="text" th:field="*{fechareg}"
+							class="form-control form-control-sm col-md-6" id="fechareg"
+							placeholder="fechareg del cliente"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('fechareg')}" th:errors="*{fechareg}">
+						</small>
+					</div>
+ -->
+					<!-- <div class="form-group row">
+						<label class="col-md-2" for="ciudad">Ciudad:</label> <select
+							th:field="*{ciudad}"
+							class="form-control form-control-sm col-md-6" id="ciudad">
+							<option th:each="ciudad:${ciudades}" th:value="${ciudad.id}"
+								th:text="${ciudad.ciudad}" />
+						</select>
+					</div> -->
+
+					<div class="card-footer bg-dark">
+						<input type="submit" class="btn btn-primary btn-sm"
+							value="Guardar">
+					</div>
+
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+	<footer th:replace="plantilla/plantilla :: footer"></footer>
+
+</body>
+</html>
