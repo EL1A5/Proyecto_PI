@@ -26,8 +26,8 @@
 					<th scope="col">Residente</th>
 					<th scope="col">Entrada</th>
 					<th scope="col">Salida</th>
-					<th scope="col">Editar</th>
-					<th scope="col">Eliminar</th>
+					<th scope="col" sec:authorize="hasRole('ROLE_GERENTE')">Editar</th>
+					<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -38,12 +38,12 @@
 					<td th:text="${cl.horaentrada}"></td>
 					<td th:text="${cl.horasalida}"></td>
 						
-					<td>
+					<td sec:authorize="hasRole('ROLE_GERENTE')">
 						<a class="btn btn-success btn-sm" th:href="@{/views/visita/edit/} + ${cl.idvisita}"
 							th:text="'Editar'" title="Editar Visita">
 						</a>
 					</td>	
-					<td>
+					<td sec:authorize="hasRole('ROLE_ADMIN')">
 						<a class="btn btn-danger btn-sm" th:href="@{/views/visita/delete/} + ${cl.idvisita}"
 							th:text="'Eliminar'" title="Eliminar Visita"
 							onclick="return confirm('Esta seguro de eliminar el registro?');">
