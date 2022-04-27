@@ -67,6 +67,7 @@ public class ResidenteController {
 		
 		residente.setFechaReg(fecha);
 		residente.setActivo(1);
+		
 		residenteService.insertaActualizaResidente(residente);
 		System.out.println("Residente guardado Exitosamente");
 		return "redirect:/views/Residente/";

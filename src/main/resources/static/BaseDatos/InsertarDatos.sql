@@ -24,12 +24,12 @@ insert into visita (idvisitante,idresidente,horaentrada,horasalida) values(1,1,'
 SELECT*FROM visita;
 
 insert into residente values
-(null,"Bryan Alexander","Bernuy Bravo",71434952,1,"Inquilino","2020-05-05",1);
+(null,"Bryan Alexander","Bernuy Bravo",71434952,"user1@gmail.com",1,"Inquilino",980598055,"1997-05-03","2020-05-05",1);
 insert into residente values
-(null,"Marco Alberto","Vicenzi Gianetto",09621521,1,"Propietario","2020-05-05",1);
+(null,"Marco Alberto","Vicenzi Gianetto",09621521,"user2@gmail.com",1,"Propietario",990456789,"1999-04-03","2020-05-05",1);
 insert into residente values
-(null,"Mariela Morena","Beltran Renitti",09621545,4,"Inquilino","2020-07-05",1);
+(null,"Mariela Morena","Beltran Renitti",09621545,"user3@gmail.com",4,"Inquilino",975456852,"1998-04-03","2020-07-05",1);
 insert into residente values
-(null,"Julio Miguel","Benedetti Saldaña",05555444,3,"Propietario","2022-05-05",3);
+(null,"Julio Miguel","Benedetti Saldaña",05555444,"user4@gmail.com",3,"Propietario",982632145,"1997-05-08","2022-05-05",3);
 
 select*from residente;
