@@ -125,7 +125,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `db_proyectointegradorgroup5`.`users`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`users` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL ,
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(60) NOT NULL,
   `enable` TINYINT(1) NOT NULL,
@@ -210,7 +210,10 @@ CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`visitante` (
   `idvisitante` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(35) NOT NULL,
   `apellidos` VARCHAR(45) NOT NULL,
+   `fechanac` date not NULL,
   `dni` INT NOT NULL,
+   `correo` VARCHAR(45) NOT NULL,
+    `telefono` VARCHAR(45) NOT NULL,
   `fechareg` DATETIME NULL DEFAULT NULL,
   `activo` TINYINT(1) NULL DEFAULT NULL,
   PRIMARY KEY (`idvisitante`))
