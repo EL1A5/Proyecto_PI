@@ -26,7 +26,7 @@ public class Residente {
 	private String apellidos;
 	private String dni;
 	private String correo;
-	private int mascotas;
+	private int idmascota;
 	private String estado;
 	private int telefono;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")

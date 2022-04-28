@@ -25,13 +25,15 @@ CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`residente` (
   `apellidos` VARCHAR(45) NOT NULL,
   `dni` INT NULL DEFAULT NULL,
   `correo` VARCHAR(45) NOT NULL,
-  `mascotas` TINYINT(1) NULL DEFAULT NULL,
+  `idmascota` INT NOT NULL,
   `estado` VARCHAR(15) NULL DEFAULT NULL,
   `telefono` INT NOT NULL ,
    `fechaNac` DATE NULL DEFAULT NULL,
   `fechaReg` DATE NULL DEFAULT NULL,
   `activo` TINYINT(1) NULL DEFAULT NULL,
-  PRIMARY KEY (`idresidente`))
+  PRIMARY KEY (`idresidente`),
+  FOREIGN KEY (`idmascota`)
+    REFERENCES `db_proyectointegradorgroup5`.`mascota` (`idmascota`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
