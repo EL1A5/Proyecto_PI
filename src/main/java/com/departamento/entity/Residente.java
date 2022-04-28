@@ -13,7 +13,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Getter;
 import lombok.Setter;
-
+//
 @Entity
 @Table(name = "residente")
 @Getter
@@ -28,10 +28,6 @@ public class Residente {
 	private String correo;
 	private int idmascota;
 	private String estado;
-	private int telefono;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Temporal(TemporalType.DATE)
-	private Date fechaNac;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date fechaReg;
