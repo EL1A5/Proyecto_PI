@@ -31,6 +31,10 @@ public class Residente {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date fechaReg;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+	private Date fechaNac;
+	private int telefono;
 	private int activo;
 	
 
