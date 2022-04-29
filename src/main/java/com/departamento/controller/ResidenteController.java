@@ -66,7 +66,7 @@ public class ResidenteController {
 		Date fecha = new Date(dtf4.format(LocalDateTime.now()));
 		
 		residente.setFechaReg(fecha);
-		residente.setActivo(1);
+		residente.setEstado(1);
 		
 		residenteService.insertaActualizaResidente(residente);
 		System.out.println("Residente guardado Exitosamente");

@@ -24,12 +24,13 @@
 		<table class="table">
 			<thead class="thead-dark">
 				<tr>
-				<th scope="col">ID Residente</th>
+					<th scope="col">ID Residente</th>
+					<th scope="col">ID departamento</th>
 					<th scope="col">nombre</th>
 					<th scope="col">apellidos</th>
 					<th scope="col">dni</th>
 					<th scope="col">Correo</th>
-					<th scope="col">mascotas</th>
+					<th scope="col">ID Mascota</th>
 					<th scope="col">estado</th>
 					<th scope="col">Telefono</th>
 					<th scope="col">Fecha de Nacimiento</th>
@@ -44,11 +45,12 @@
 			<tbody>
 				<tr th:each="cl:${residente}">
 					<td th:text="${cl.idResidente}"></td>
+					<td th:text="${cl.iddepartamento}"></td>
 					<td th:text="${cl.nombre}"></td>
 					<td th:text="${cl.apellidos}"></td>
 					<td th:text="${cl.dni}"></td>
 					<td th:text="${cl.correo}"></td>
-					<td th:text="${cl.mascotas}"></td>
+					<td th:text="${cl.idmascota}"></td>
 					<td th:text="${cl.estado}"></td>
 					<td th:text="${cl.telefono}"></td>
 					<td th:text="${cl.fechaNac}"></td>

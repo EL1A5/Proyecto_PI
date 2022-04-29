@@ -18,7 +18,20 @@
 					method="post">
 					<div class="form-group row">
 
-						<input type="hidden" th:field="*{idResidente}"> <label
+						<input type="hidden" th:field="*{idResidente}"> 
+						
+						<div class="form-group row">
+						<label class="col-md-2" for="iddepartamento">Id Departamento:</label> <input
+							type="text" th:field="*{iddepartamento}"
+							class="form-control form-control-sm col-md-6" id="iddepartamento"
+							placeholder="Ingrese Id departamento"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('iddepartamento')}"
+							th:errors="*{iddepartamento}"> </small>
+					</div>
+						
+						
+						<label
 							class="col-md-2" for="nombre">Nombres:</label> <input
 							type="text" th:field="*{nombre}"
 							class="form-control form-control-sm col-md-6" id="nombre"
@@ -59,12 +72,12 @@
 					</div>
 					
 					   <div class="form-group row">
-						<label class="col-md-2" for="mascotas">mascotas</label> <input
-							type="text" th:field="*{mascotas}"
-							class="form-control form-control-sm col-md-6" id="mascotas"
-							placeholder="Nro de mascotas mascotas"> <small
+						<label class="col-md-2" for="idmascota">ID Mascota</label> <input
+							type="text" th:field="*{idmascota}"
+							class="form-control form-control-sm col-md-6" id="idmascota"
+							placeholder="Ingrese el ID mascota"> <small
 							class="form-text text-danger"
-							th:if="${#fields.hasErrors('mascotas')}" th:errors="*{mascotas}">
+							th:if="${#fields.hasErrors('idmascota')}" th:errors="*{idmascota}">
 						</small>
 					</div>
 					
@@ -88,16 +101,14 @@
 						</small>
 					</div>
 					
-
-				<div class="form-group row">
-						<label class="col-md-2" for="estado">estado</label> <input
-							type="text" th:field="*{estado}"
-							class="form-control form-control-sm col-md-6" id="estado"
-							placeholder="estado del residente"> <small
-							class="form-text text-danger"
-							th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}">
-						</small>
-					</div>
+					
+					<div class="form-group col-md-4">
+					<label for="inputState" class="form-label">estado</label> <br>
+					<select id="inputState" th:field="*{estado}" class="form-select">
+						<option th:value=0>0</option>
+						<option th:value=1>1</option>
+					</select>
+				</div>
                     
 
 

@@ -22,12 +22,12 @@ public class Residente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idResidente;
+	private int iddepartamento;
 	private String nombre;
 	private String apellidos;
 	private String dni;
 	private String correo;
-	private int mascotas;
-	private String estado;
+	private int idmascota;;
 	private int telefono;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
@@ -35,7 +35,7 @@ public class Residente {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date fechaReg;
-	private int activo;
+	private int estado;
 	
 
 }
