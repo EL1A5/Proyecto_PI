@@ -9,8 +9,6 @@ import com.departamento.entity.Propietario;
 import com.departamento.entity.Residente;
 
 public interface PropietarioService  {
-
-	
 	public List<Propietario> listarPropietarios();
     public abstract Propietario insertaActualizaPropietario(Propietario obj);
 	public Propietario buscarPorIdPropietario(Integer id);

@@ -31,7 +31,6 @@ public class PropietarioController {
 	@Autowired
 	private PropietarioService propietarioService;
 	
-	
 	@GetMapping("/")
 	public String listarpropietarios(Model model) {
 		List<Propietario> lstprop = propietarioService.listarPropietarios();

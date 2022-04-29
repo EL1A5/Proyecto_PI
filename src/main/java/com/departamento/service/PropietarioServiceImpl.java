@@ -19,7 +19,6 @@ import com.departamento.repository.PropietarioRepository;
 
 @Service
 public class PropietarioServiceImpl implements  PropietarioService {
-	
 	@Autowired
 	private PropietarioRepository repository;
 

@@ -7,7 +7,6 @@ import com.departamento.entity.Residente;
 
 public interface ResidenteRepository extends JpaRepository<Residente, Integer>{
 
-
 }
 
 
