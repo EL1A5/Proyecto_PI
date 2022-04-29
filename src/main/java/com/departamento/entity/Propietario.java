@@ -24,13 +24,20 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Propietario {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idpropietario;
-	private int idresidente;
+    private int idPropietario;
+	private String nombre;
+	private String apellidos;
+	private String dni;
+	private String correo;
+	private int telefono;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+	private Date fechaNac;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date fechaReg;
-	private int activo;
+	private int estado;
+
 }

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,73 +26,65 @@ import com.departamento.service.PropietarioService;
 import com.departamento.service.ResidenteService;
 
 @Controller
-@RequestMapping("/views/propietario")
+@RequestMapping("/views/Propietario/")
 public class PropietarioController {
-	
 	@Autowired
-	private PropietarioService service;
+	private PropietarioService propietarioService;
 	
-	@Autowired
-	private ResidenteService residenteService;
-
-
-	
-	@GetMapping("/listar")
-	public String listarPropietarios(Model model) {
-		List<Propietario> lista = service.listaPropietario();
-		
-		model.addAttribute("titulo", "Lista de propietarios");
-		model.addAttribute("propietario", lista);
-	
-		return "/views/propietario/listar";
-	}
 	
 	@GetMapping("/")
-	public String RegistrarPropietario(Model model) {
-
-		Propietario propietario = new Propietario();
-		List<Residente> listaResidentes = residenteService.listarResidentes();
+	public String listarpropietarios(Model model) {
+		List<Propietario> lstprop = propietarioService.listarPropietarios();
 		
-		model.addAttribute("titulo", "Registrar Propietario");
-		model.addAttribute("propietario", propietario);
-		model.addAttribute("residentes", listaResidentes);
+		model.addAttribute("titulo","Lista de propietarios");
+		model.addAttribute("propietario",lstprop );
+		return "/views/Propietario/listar";
+	}
 
+	@GetMapping("/registrar")
+	public String registrar(Model model) {
+		
+		Propietario propietario = new Propietario();
+		model.addAttribute("propietario", propietario);
+		
+		return "/views/Propietario/registrar";
+	}
+	
+	@PostMapping("/save")
+	public String guardar(@ModelAttribute Propietario propietario) {
+		
+		
+		
+		DateTimeFormatter dtf4 = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		Date fecha = new Date(dtf4.format(LocalDateTime.now()));
+		
+		propietario.setFechaReg(fecha);
+		propietario.setEstado(1);
+		
+		propietarioService.insertaActualizaPropietario(propietario);
+		System.out.println("Propietario guardado Exitosamente");
+		return "redirect:/views/Propietario/";
+	}
+	
+	@GetMapping("/edit/{id}")
+	public String editar(@PathVariable ("id") Integer idPropietario ,Model model) {
+		
+		Propietario propietario = propietarioService.buscarPorIdPropietario(idPropietario);
+		
+		model.addAttribute("propietario", propietario);
+		
 		return "/views/propietario/registrar";
 	}
 
-	@PostMapping("/save")
-	public String Guardar(@ModelAttribute Propietario obj) {
-		obj.getIdresidente();
-		service.GuardarPropietario(obj);
-		return "redirect:/views/propietario/";
+	@GetMapping("/delete/{id}")
+	public String eliminar(@PathVariable ("id") Integer idPropietario) {
+		
+		propietarioService.eliminar(idPropietario);
+		System.out.println("Propietario eliminado exitosamente");
+		
+		return "redirect:/views/Propietario/";
 	}
-	
-	/*
-	@GetMapping
-	@ResponseBody
-	public ResponseEntity<List<Propietario>> listaPropietario(){
-		List<Propietario> lista = service.listaPropietario();
-		return ResponseEntity.ok(lista);
-	}
-	
-	//@GetMapping("/CrearPropietario")
-	@PostMapping
-	@ResponseBody
-	public  ResponseEntity<Map<String, Object>> GuardarPropietario(@RequestBody Propietario obj){
-		Map<String, Object> salida = new HashMap<>();
-		try {
-			Propietario objSalida = service.GuardarPropietario(obj);
-			if (objSalida == null) {
-				salida.put("mensaje", "Comprueve que todos los campos esten llenados.");
-			}else {
-				salida.put("mensaje", "Propietario registrado.");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			salida.put("mensaje", "El residente con el ID " + obj.getIdresidente() + " no existe");
-		}
-		return ResponseEntity.ok(salida);
-	}
-	*/
+
 
 }
+
