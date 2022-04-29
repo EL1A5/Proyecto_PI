@@ -18,6 +18,10 @@ insert into roles(user_id, rolname) values(4, 'ROLE_CAJERO');
 
 insert into visitante values
 (null,"juan","Velazquez chavez","1997-05-03",71434952,"user1@gmail.com",980598055,"1997-05-03",1);
+insert into visitante values
+(null,"Luis miguel","Velazquez chavez","1997-05-03",71434952,"user1@gmail.com",980598055,"1997-05-03",1);
+insert into visitante values
+(null,"Raul sanchez","Velazquez chavez","1997-05-03",71434952,"user1@gmail.com",980598055,"1997-05-03",1);
 
 
 SELECT r.user_id, r.rolname FROM roles r inner join users u 
