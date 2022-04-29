@@ -1,4 +1,3 @@
-
 USE `db_proyectointegradorgroup5` ;
 
 
@@ -17,21 +16,49 @@ insert into roles(user_id, rolname) values(3, 'ROLE_GERENTE');
 insert into roles(user_id, rolname) values(3, 'ROLE_USER');
 insert into roles(user_id, rolname) values(4, 'ROLE_CAJERO');
 
-
+insert into visitante values
+(null,"juan","Velazquez chavez","1997-05-03",71434952,"user1@gmail.com",980598055,"1997-05-03",1);
 
 
 SELECT r.user_id, r.rolname FROM roles r inner join users u 
 on r.user_id=u.id where u.username='admin';
 
+insert into propietario values
+(null,"Bryan Alexander","Bernuy Bravo",71434952,"user1@gmail.com",980598055,"1997-05-03","2020-05-05",1);
+insert into propietario  values
+(null,"Marco Alberto","Vicenzi Gianetto",09621521,"user2@gmail.com",990456789,"1999-04-03","2020-05-05",1);
+insert into propietario  values
+(null,"Mariela Morena","Beltran Renitti",09621545,"user3@gmail.com",975456852,"1998-04-03","2020-07-05",1);
+insert into propietario  values
+(null,"Julio Miguel","Benedetti Saldaña",05555444,"user4@gmail.com",982632145,"1997-05-08","2022-05-05",1);
+insert into propietario  values
+(null,"Migue Angel","Quiroga Muñoz",41256635,"user5@gmail.com",963563255,"1982-04-02","2022-03-03",1);
 
 
-insert into residente values
-(null,"Bryan Alexander","Bernuy Bravo",71434952,"user1@gmail.com",1,"Inquilino",980598055,"1997-05-03","2020-05-05",1);
-insert into residente values
-(null,"Marco Alberto","Vicenzi Gianetto",09621521,"user2@gmail.com",1,"Propietario",990456789,"1999-04-03","2020-05-05",1);
-insert into residente values
-(null,"Mariela Morena","Beltran Renitti",09621545,"user3@gmail.com",4,"Inquilino",975456852,"1998-04-03","2020-07-05",1);
-insert into residente values
-(null,"Julio Miguel","Benedetti Saldaña",05555444,"user4@gmail.com",3,"Propietario",982632145,"1997-05-08","2022-05-05",3);
+-- INSERT DEPARTAMENTO
+insert into departamento values
+(null,1,101,3,120,2,"2020-05-12",1);
+insert into departamento values
+(null,2,102,2,90,2,"2021-10-11",1);
+insert into departamento values
+(null,3,201,1,100,1,"2020-01-25",1);
+insert into departamento values
+(null,4,202,2,100,1,"2022-02-28",1);
+insert into departamento values
+(null,5,301,3,240,3,"2021-06-13",1);
 
-select*from residente;
+insert into mascota values(null,"FUFI","1 año","PERRO ","PITBULL","VACUNACION COMPLETA","1997-05-08",1);
+insert into mascota values(null,"BETOBEN","1 año","PERRO ","PITBULL","VACUNACION COMPLETA","1997-05-08",1);
+insert into mascota values(null,"MAIKI","2 años","GATO ","GATO PERSA","VACUNACION INCOMPLETA","1997-05-08",1);
+insert into mascota values(null,"RAMIRO","4 años","GATO ","GATO BENGALA","VACUNACION INCOMPLETA","1997-05-08",1);
+
+SELECT * FROM mascota;
+
+insert into residente values
+(null,1,"Bryan Alexander","Bernuy Bravo",71434952,"user1@gmail.com",1,980598055,"1997-05-03","2020-05-05",1);
+insert into residente values
+(null,2,"Marco Alberto","Vicenzi Gianetto",09621521,"user2@gmail.com",1,990456789,"1999-04-03","2020-05-05",1);
+insert into residente values
+(null,3,"Mariela Morena","Beltran Renitti",09621545,"user3@gmail.com",4,975456852,"1998-04-03","2020-07-05",1);
+insert into residente values
+(null,4,"Julio Miguel","Benedetti Saldaña",05555444,"user4@gmail.com",3,982632145,"1997-05-08","2022-05-05",3);

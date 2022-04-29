@@ -57,6 +57,7 @@ public class VisitanteController {
 
 		return "/views/vistante/registrar";
 	}
+	
 
 	@Secured("ROLE_USER")
 	@PostMapping("/save")
@@ -84,10 +85,11 @@ public class VisitanteController {
 	
 	@Secured("ROLE_ADMIN")
 	@GetMapping("/delete/{id}")
-	public String eliminar(@PathVariable ("id") int id) {
+	public String eliminar(@PathVariable ("id") Integer id) {
 		
-		service.eliminar(id);
-		
+		visitante visit=service.buscarPorId(id);
+		visit.setActivo(0);
+		service.insertaActualizaVistante(visit);
 		return "redirect:/views/vistante/";
 	}
 
