@@ -31,11 +31,10 @@
 					<th scope="col">dni</th>
 					<th scope="col">Correo</th>
 					<th scope="col">ID Mascota</th>
-					<th scope="col">estado</th>
 					<th scope="col">Telefono</th>
 					<th scope="col">Fecha de Nacimiento</th>
 					<th scope="col">fechaReg</th>
-					<th scope="col">Activo</th>
+					<th scope="col">estado</th>
 					<th scope="col">Editar </th>
 					<th scope="col">Eliminar</th>
 					
@@ -51,11 +50,10 @@
 					<td th:text="${cl.dni}"></td>
 					<td th:text="${cl.correo}"></td>
 					<td th:text="${cl.idmascota}"></td>
-					<td th:text="${cl.estado}"></td>
 					<td th:text="${cl.telefono}"></td>
 					<td th:text="${cl.fechaNac}"></td>
 					<td th:text="${cl.fechaReg}"></td>
-					<td th:text="${cl.activo}"></td>
+					<td th:text="${cl.estado}"></td>
 						
 					<td>
 						<a class="btn btn-success btn-sm" th:href="@{/views/Residente/edit/} + ${cl.idResidente}"
