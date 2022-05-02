@@ -26,13 +26,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.departamento.entity.Residente;
 import com.departamento.service.ResidenteService;
 
-
-
 @Controller
 @RequestMapping("/views/Residente/")
-
-
-
 public class ResidenteController {
 	@Autowired
 	private ResidenteService residenteService;

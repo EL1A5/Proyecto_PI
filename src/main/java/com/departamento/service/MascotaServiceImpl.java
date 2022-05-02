@@ -14,31 +14,30 @@ import com.departamento.repository.MascotaRepository;
 public class MascotaServiceImpl implements MascotaService {
 
 	@Autowired
-	private MascotaRepository repositorio;
-
-	@Override
-	public Mascota insertaActualizaMascota(Mascota obj) {
-		// TODO Auto-generated method stub
-		return repositorio.save(obj);
-	}
+	private MascotaRepository repository;
 
 	@Override
 	public List<Mascota> listarMascota() {
-		// TODO Auto-generated method stub
-		return repositorio.findAll();
+		return repository.findAll();
 	}
 
 	@Override
-	public Mascota buscarPorId(int id) {
-		// TODO Auto-generated method stub
-		return repositorio.findById(id).orElse(null);
+	public Mascota insertaActualizaMascota(Mascota obj) {
+		return repository.save(obj);
+	}
+
+
+	@Override
+	public Mascota buscarPorIdMascota(Integer id) {
+		return repository.findById(id).orElse(null);
 	}
 
 	@Override
-	public void eliminar(int id) {
-		 repositorio.deleteById(id);
-		
-	}
+	public void eliminar(Integer id) {
+		repository.deleteById(id);	
+	}	
+
+
 	
 
 }

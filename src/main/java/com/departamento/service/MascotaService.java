@@ -3,14 +3,16 @@ package com.departamento.service;
 import java.util.List;
 
 import com.departamento.entity.Mascota;
+import com.departamento.entity.Propietario;
 
 
 public interface MascotaService {
 	
-	public abstract Mascota insertaActualizaMascota(Mascota obj);
-	public abstract List<Mascota> listarMascota();
-	public  Mascota buscarPorId(int id);
-	public  void eliminar (int id);
+	public List<Mascota> listarMascota();
+    public abstract Mascota insertaActualizaMascota(Mascota obj);
+	public Mascota buscarPorIdMascota(Integer id);
+	public void eliminar (Integer id);
+	
 	
 
 }

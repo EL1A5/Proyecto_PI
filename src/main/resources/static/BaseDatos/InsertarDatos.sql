@@ -1,3 +1,4 @@
+
 USE `db_proyectointegradorgroup5` ;
 
 
@@ -15,13 +16,6 @@ insert into roles(user_id, rolname) values(2, 'ROLE_USER');
 insert into roles(user_id, rolname) values(3, 'ROLE_GERENTE');
 insert into roles(user_id, rolname) values(3, 'ROLE_USER');
 insert into roles(user_id, rolname) values(4, 'ROLE_CAJERO');
-
-insert into visitante values
-(null,"juan","Velazquez chavez","1997-05-03",71434952,"user1@gmail.com",980598055,"1997-05-03",1);
-insert into visitante values
-(null,"Luis miguel","Velazquez chavez","1997-05-03",71434952,"user1@gmail.com",980598055,"1997-05-03",1);
-insert into visitante values
-(null,"Raul sanchez","Velazquez chavez","1997-05-03",71434952,"user1@gmail.com",980598055,"1997-05-03",1);
 
 
 SELECT r.user_id, r.rolname FROM roles r inner join users u 
@@ -51,10 +45,10 @@ insert into departamento values
 insert into departamento values
 (null,5,301,3,240,3,"2021-06-13",1);
 
-insert into mascota values(null,"FUFI","1 año","PERRO ","PITBULL","VACUNACION COMPLETA","1997-05-08",1);
-insert into mascota values(null,"BETOBEN","1 año","PERRO ","PITBULL","VACUNACION COMPLETA","1997-05-08",1);
-insert into mascota values(null,"MAIKI","2 años","GATO ","GATO PERSA","VACUNACION INCOMPLETA","1997-05-08",1);
-insert into mascota values(null,"RAMIRO","4 años","GATO ","GATO BENGALA","VACUNACION INCOMPLETA","1997-05-08",1);
+insert into mascota values(null,"FUFI","1 año","PERRO ","PITBULL","Vacunacion-InCompleta","1997-05-08",1);
+insert into mascota values(null,"BETOBEN","1 año","PERRO ","PITBULL","Vacunacion-Completa","1997-05-08",1);
+insert into mascota values(null,"MAIKI","2 años","GATO ","GATO PERSA","Vacunacion-InCompleta","1997-05-08",1);
+insert into mascota values(null,"RAMIRO","4 años","GATO ","GATO BENGALA","Vacunacion-Completa","1997-05-08",1);
 
 SELECT * FROM mascota;
 
@@ -66,3 +60,5 @@ insert into residente values
 (null,3,"Mariela Morena","Beltran Renitti",09621545,"user3@gmail.com",4,975456852,"1998-04-03","2020-07-05",1);
 insert into residente values
 (null,4,"Julio Miguel","Benedetti Saldaña",05555444,"user4@gmail.com",3,982632145,"1997-05-08","2022-05-05",3);
+
+select*from propietario ;

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/plantilla :: head">
+</head>
+<body>
+	<header th:replace="plantilla/plantilla :: header"></header>
+	<div class="container">
+		
+		</div>
+	<div class="container">		
+		<h1 th:text="${titulo}"></h1>	
+	</div>
+	
+	<div class="container">
+		
+		
+		<a class="btn btn-primary btn-sm" th:href="@{/views/Mascota/registrar}"
+			th:text="'Nueva Mascota'" title="Crear Nueva Mascota">
+			
+		</a>
+		
+		
+		
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">ID Mascota</th>
+					<th scope="col">Nombre Mascota</th>
+					<th scope="col">Edad Mascota</th>
+					<th scope="col">Tipo de Mascota</th>
+					<th scope="col">Raza Animal</th>
+					<th scope="col">Vacunacion</th>
+					<th scope="col">fecha Registro</th>
+					<th scope="col">estado de Mascota</th>
+					<th scope="col">Editar </th>
+					<th scope="col">Eliminar</th>
+					
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cl:${mascota}">
+					<td th:text="${cl.idMascota}"></td>
+					<td th:text="${cl.nombre}"></td>
+					<td th:text="${cl.edad}"></td>
+					<td th:text="${cl.tipo}"></td>
+					<td th:text="${cl.raza}"></td>
+					<td th:text="${cl.vacunacion}"></td>
+					<td th:text="${cl.fechareg}"></td>
+					<td th:text="${cl.estado}"></td>
+						
+					<td>
+						<a class="btn btn-success btn-sm" th:href="@{/views/Mascota/edit/} + ${cl.idMascota}"
+							th:text="'Editar'" title="Editar Visita">
+						</a>
+					</td>	
+					<td>
+						<a class="btn btn-danger btn-sm" th:href="@{/views/Mascota/delete/} + ${cl.idMascota}"
+							th:text="'Eliminar'" title="Eliminar Mascota"
+							onclick="return confirm('Esta seguro de eliminar el registro?');">
+						</a>
+					</td>					
+				</tr>
+			</tbody>
+		</table>
+
+
+	</div>
+
+	<footer th:replace="plantilla/plantilla :: footer"></footer>
+
+</body>
+</html>
