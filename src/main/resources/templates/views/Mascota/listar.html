@@ -32,8 +32,8 @@
 					<th scope="col">Vacunacion</th>
 					<th scope="col">fecha Registro</th>
 					<th scope="col">estado de Mascota</th>
-					<th scope="col">Editar </th>
-					<th scope="col">Eliminar</th>
+					<th scope="col" sec:authorize="hasRole('ROLE_GERENTE')">Editar</th>
+					<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
 					
 					
 				</tr>
@@ -49,12 +49,12 @@
 					<td th:text="${cl.fechareg}"></td>
 					<td th:text="${cl.estado}"></td>
 						
-					<td>
+					<td sec:authorize="hasRole('ROLE_GERENTE')">
 						<a class="btn btn-success btn-sm" th:href="@{/views/Mascota/edit/} + ${cl.idMascota}"
 							th:text="'Editar'" title="Editar Visita">
 						</a>
 					</td>	
-					<td>
+					<td sec:authorize="hasRole('ROLE_ADMIN')">
 						<a class="btn btn-danger btn-sm" th:href="@{/views/Mascota/delete/} + ${cl.idMascota}"
 							th:text="'Eliminar'" title="Eliminar Mascota"
 							onclick="return confirm('Esta seguro de eliminar el registro?');">

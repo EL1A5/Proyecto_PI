@@ -10,6 +10,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,6 +33,8 @@ public class MascotaContoller {
 
 	@Autowired
 	private MascotaService mascotaservice;
+	
+	@Secured("ROLE_GERENTE")
 	@GetMapping("/")
 	public String listamacotas(Model model) {
 		List<Mascota> lstmascotas = mascotaservice.listarMascota();
@@ -40,6 +43,7 @@ public class MascotaContoller {
 		model.addAttribute("mascota",lstmascotas );
 		return "/views/Mascota/listar";
 	}
+	@Secured("ROLE_GERENTE")
 	@GetMapping("/registrar")
 	public String registrar(Model model) {
 		
@@ -48,7 +52,7 @@ public class MascotaContoller {
 		
 		return "/views/Mascota/registrar";
 	}
-	
+	@Secured("ROLE_GERENTE")
 	@PostMapping("/save")
 	public String guardar(@ModelAttribute Mascota mascota) {
 		DateTimeFormatter dtf4 = DateTimeFormatter.ofPattern("yyyy/MM/dd");
@@ -61,6 +65,7 @@ public class MascotaContoller {
 		System.out.println("Mascota guardado Exitosamente");
 		return "redirect:/views/Mascota/";
 	}
+	@Secured("ROLE_GERENTE")
 	@GetMapping("/edit/{id}")
 	public String editar(@PathVariable ("id") Integer idMascota ,Model model) {
 		
@@ -70,6 +75,7 @@ public class MascotaContoller {
 		
 		return "/views/Mascota/registrar";
 	}
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/delete/{id}")
 	public String eliminar(@PathVariable ("id") Integer idMascota) {
 		mascotaservice.eliminar(idMascota);

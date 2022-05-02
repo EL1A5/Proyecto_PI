@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +31,7 @@ import com.departamento.service.ResidenteService;
 public class PropietarioController {
 	@Autowired
 	private PropietarioService propietarioService;
-	
+	@Secured("ROLE_GERENTE")
 	@GetMapping("/")
 	public String listarpropietarios(Model model) {
 		List<Propietario> lstprop = propietarioService.listarPropietarios();
@@ -39,7 +40,7 @@ public class PropietarioController {
 		model.addAttribute("propietario",lstprop );
 		return "/views/Propietario/listar";
 	}
-
+	@Secured("ROLE_GERENTE")
 	@GetMapping("/registrar")
 	public String registrar(Model model) {
 		
@@ -48,7 +49,7 @@ public class PropietarioController {
 		
 		return "/views/Propietario/registrar";
 	}
-	
+	@Secured("ROLE_GERENTE")
 	@PostMapping("/save")
 	public String guardar(@ModelAttribute Propietario propietario) {
 		
@@ -64,7 +65,7 @@ public class PropietarioController {
 		System.out.println("Propietario guardado Exitosamente");
 		return "redirect:/views/Propietario/";
 	}
-	
+	@Secured("ROLE_GERENTE")
 	@GetMapping("/edit/{id}")
 	public String editar(@PathVariable ("id") Integer idPropietario ,Model model) {
 		
@@ -74,7 +75,7 @@ public class PropietarioController {
 		
 		return "/views/propietario/registrar";
 	}
-
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/delete/{id}")
 	public String eliminar(@PathVariable ("id") Integer idPropietario) {
 		

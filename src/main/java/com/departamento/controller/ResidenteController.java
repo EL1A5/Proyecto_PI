@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -32,7 +33,7 @@ public class ResidenteController {
 	@Autowired
 	private ResidenteService residenteService;
 	
-	
+	@Secured("ROLE_GERENTE")
 	@GetMapping("/")
 	public String listarresidentes(Model model) {
 		List<Residente> lstresidentes = residenteService.listarResidentes();
@@ -42,7 +43,7 @@ public class ResidenteController {
 		return "/views/Residente/listar";
 	}
 
-	
+	@Secured("ROLE_GERENTE")
 	@GetMapping("/registrar")
 	public String registrar(Model model) {
 		
@@ -51,7 +52,7 @@ public class ResidenteController {
 		
 		return "/views/Residente/registrar";
 	}
-	
+	@Secured("ROLE_GERENTE")
 	@PostMapping("/save")
 	public String guardar(@ModelAttribute Residente residente) {
 		
@@ -67,7 +68,7 @@ public class ResidenteController {
 		System.out.println("Residente guardado Exitosamente");
 		return "redirect:/views/Residente/";
 	}
-	
+	@Secured("ROLE_GERENTE")
 	@GetMapping("/edit/{id}")
 	public String editar(@PathVariable ("id") Integer idResidente ,Model model) {
 		
@@ -78,6 +79,7 @@ public class ResidenteController {
 		return "/views/residente/registrar";
 	}
 
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/delete/{id}")
 	public String eliminar(@PathVariable ("id") Integer idResidente) {
 		
