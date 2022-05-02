@@ -7,11 +7,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -61,10 +65,14 @@ public class VisitanteController {
 
 	@Secured("ROLE_USER")
 	@PostMapping("/save")
-	public String Guardar(@ModelAttribute visitante obj) {
+	public String Guardar(@Valid @ModelAttribute visitante obj,BindingResult resul, Model model) {
 		
-
-		
+		if (resul.hasErrors()) 
+		{
+			model.addAttribute("visitante", obj);
+			System.out.println("Ingresar datos correctos");
+			return "/views/vistante/registrar";
+		}
 		obj.setActivo(1);
 		obj.setFechareg(new Date());
 		service.insertaActualizaVistante(obj);
