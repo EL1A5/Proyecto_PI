@@ -51,9 +51,6 @@ public class MascotaContoller {
 	
 	@PostMapping("/save")
 	public String guardar(@ModelAttribute Mascota mascota) {
-		
-		
-		
 		DateTimeFormatter dtf4 = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 		Date fecha = new Date(dtf4.format(LocalDateTime.now()));
 		
@@ -73,13 +70,10 @@ public class MascotaContoller {
 		
 		return "/views/Mascota/registrar";
 	}
-
 	@GetMapping("/delete/{id}")
 	public String eliminar(@PathVariable ("id") Integer idMascota) {
-		
 		mascotaservice.eliminar(idMascota);
 		System.out.println("Mascota eliminado exitosamente");
-		
 		return "redirect:/views/Mascota/";
 	}
 

@@ -7,7 +7,6 @@ import com.departamento.entity.Propietario;
 
 
 public interface MascotaService {
-	
 	public List<Mascota> listarMascota();
     public abstract Mascota insertaActualizaMascota(Mascota obj);
 	public Mascota buscarPorIdMascota(Integer id);
