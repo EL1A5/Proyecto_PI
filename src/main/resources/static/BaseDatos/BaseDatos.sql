@@ -67,12 +67,12 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`departamento` (
  `iddepartamento` INT NOT NULL AUTO_INCREMENT,
-  `idpropietario` INT NULL DEFAULT NULL,
+  `idpropietario` INT NULL  NOT NULL,
   `numdepartamento` char(3) NULL DEFAULT NULL,
   `habitaciones` INT NULL DEFAULT NULL,
   `area` double NULL DEFAULT NULL,
   `banos` INT NULL DEFAULT NULL,
-  `fechareg` DATE NULL DEFAULT NULL,
+  `fechareg` DATETime NULL DEFAULT NULL,
   `estado` VARCHAR(30) NULL DEFAULT NULL,
   PRIMARY KEY (`iddepartamento`),
   FOREIGN KEY (`idpropietario`)
