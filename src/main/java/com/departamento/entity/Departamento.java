@@ -29,8 +29,6 @@ import lombok.ToString;
 @NoArgsConstructor
 public class Departamento {
 	
-	
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int iddepartamento;

@@ -59,7 +59,7 @@ public class PropietarioController {
 		Date fecha = new Date(dtf4.format(LocalDateTime.now()));
 		
 		propietario.setFechaReg(fecha);
-		propietario.setEstado(1);
+		
 		
 		propietarioService.insertaActualizaPropietario(propietario);
 		System.out.println("Propietario guardado Exitosamente");
@@ -70,6 +70,7 @@ public class PropietarioController {
 	public String editar(@PathVariable ("id") Integer idPropietario ,Model model) {
 		
 		Propietario propietario = propietarioService.buscarPorIdPropietario(idPropietario);
+		
 		
 		model.addAttribute("propietario", propietario);
 		

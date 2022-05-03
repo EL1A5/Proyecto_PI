@@ -31,7 +31,8 @@ insert into propietario  values
 (null,"Julio Miguel","Benedetti Saldaña",05555444,"user4@gmail.com",982632145,"1997-05-08","2022-05-05",1);
 insert into propietario  values
 (null,"Migue Angel","Quiroga Muñoz",41256635,"user5@gmail.com",963563255,"1982-04-02","2022-03-03",1);
-
+insert into propietario  values
+(null,"Migue Angel","Quiroga Muñoz",41256635,"user5@gmail.com",963563255,"1982-04-02","2022-03-03",0);
 
 -- INSERT DEPARTAMENTO
 insert into departamento values
@@ -47,18 +48,20 @@ insert into departamento values
 
 insert into mascota values(null,"FUFI","1 año","PERRO ","PITBULL","Vacunacion-InCompleta","1997-05-08",1);
 insert into mascota values(null,"BETOBEN","1 año","PERRO ","PITBULL","Vacunacion-Completa","1997-05-08",1);
-insert into mascota values(null,"MAIKI","2 años","GATO ","GATO PERSA","Vacunacion-InCompleta","1997-05-08",1);
-insert into mascota values(null,"RAMIRO","4 años","GATO ","GATO BENGALA","Vacunacion-Completa","1997-05-08",1);
+insert into mascota values(null,"MAIKI","2 años","GATO ","PERSA","Vacunacion-InCompleta","1997-05-08",1);
+insert into mascota values(null,"RAMIRO","4 años","GATO ","SIAMES","Vacunacion-Completa","1997-05-08",1);
+insert into mascota values(null,"MAIKI","2 años","GATO ","SFINGE","Vacunacion-InCompleta","1997-05-08",1);
+insert into mascota values(null,"RAMIRO","4 años","GATO ","ESCOSES","Vacunacion-Completa","1997-05-08",1);
 
 SELECT * FROM mascota;
 
 insert into residente values
 (null,1,"Bryan Alexander","Bernuy Bravo",71434952,"user1@gmail.com",1,980598055,"1997-05-03","2020-05-05",1);
 insert into residente values
-(null,2,"Marco Alberto","Vicenzi Gianetto",09621521,"user2@gmail.com",1,990456789,"1999-04-03","2020-05-05",1);
+(null,2,"Marco Alberto","Vicenzi Gianetto",09621521,"user2@gmail.com",2,990456789,"1999-04-03","2020-05-05",1);
 insert into residente values
-(null,3,"Mariela Morena","Beltran Renitti",09621545,"user3@gmail.com",4,975456852,"1998-04-03","2020-07-05",1);
+(null,3,"Mariela Morena","Beltran Renitti",09621545,"user3@gmail.com",3,975456852,"1998-04-03","2020-07-05",1);
 insert into residente values
-(null,4,"Julio Miguel","Benedetti Saldaña",05555444,"user4@gmail.com",3,982632145,"1997-05-08","2022-05-05",3);
+(null,4,"Julio Miguel","Benedetti Saldaña",05555444,"user4@gmail.com",4,982632145,"1997-05-08","2022-05-05",3);
 
-select*from propietario ;
+select*from departamento ;

@@ -24,7 +24,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.departamento.entity.Departamento;
+import com.departamento.entity.Propietario;
 import com.departamento.entity.Residente;
+import com.departamento.service.DepartamentoService;
 import com.departamento.service.ResidenteService;
 
 @Controller
@@ -32,6 +35,9 @@ import com.departamento.service.ResidenteService;
 public class ResidenteController {
 	@Autowired
 	private ResidenteService residenteService;
+	
+	@Autowired
+	private DepartamentoService departamentoService;
 	
 	@Secured("ROLE_GERENTE")
 	@GetMapping("/")
@@ -48,7 +54,10 @@ public class ResidenteController {
 	public String registrar(Model model) {
 		
 		Residente residente = new Residente();
+		
+		List<Departamento> departamento = departamentoService.listarDptos();
 		model.addAttribute("residente", residente);
+		model.addAttribute("departamentos", departamento);
 		
 		return "/views/Residente/registrar";
 	}
@@ -73,9 +82,9 @@ public class ResidenteController {
 	public String editar(@PathVariable ("id") Integer idResidente ,Model model) {
 		
 		Residente residente = residenteService.buscarPorIdResidente(idResidente);
-		
+		List<Departamento> departamento = departamentoService.listarDptos();
 		model.addAttribute("residente", residente);
-		
+		model.addAttribute("departamentos", departamento);
 		return "/views/residente/registrar";
 	}
 

@@ -25,7 +25,7 @@
 			<thead class="thead-dark">
 				<tr>
 					<th scope="col">ID Residente</th>
-					<th scope="col">ID departamento</th>
+					<th scope="col">Departamento</th>
 					<th scope="col">nombre</th>
 					<th scope="col">apellidos</th>
 					<th scope="col">dni</th>
@@ -44,7 +44,7 @@
 			<tbody>
 				<tr th:each="cl:${residente}">
 					<td th:text="${cl.idResidente}"></td>
-					<td th:text="${cl.iddepartamento}"></td>
+					<td th:text="${cl.departamento.numdepartamento}"></td>
 					<td th:text="${cl.nombre}"></td>
 					<td th:text="${cl.apellidos}"></td>
 					<td th:text="${cl.dni}"></td>
