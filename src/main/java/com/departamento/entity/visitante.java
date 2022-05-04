@@ -53,11 +53,10 @@ public class visitante implements Serializable{
 	
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	private Date fechanac;
 	
 	@NotNull
-	
 	private int dni; 
 	@NotEmpty
 	@Email

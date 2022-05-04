@@ -7,24 +7,26 @@
 
 	<div class="container w-25 p-3">
 
-		<form class="was-validated"th:action="@{/views/Residente/save}" 
+		<form class="was-validated" th:action="@{/views/Residente/save}"
 			th:object="${residente}" method="POST">
 			<div class="form-row">
 
 				<input type="hidden" th:field="*{idResidente}" class="form-control"
 					id="idResidente">
 
-					<div class="form-group">
+				<div class="form-group">
 					<label for="inputState" class="form-label">Departamento</label> <br>
-					<select id="inputState" th:field="*{departamento}" class="form-select">
-						<option th:each="departamento:${departamentos}" th:value="${departamento.iddepartamento}" th:text="${departamento.numdepartamento}">
-						
+					<select id="inputState" th:field="*{departamento}"
+						class="form-select">
+						<option th:each="departamento:${departamentos}"
+							th:value="${departamento.iddepartamento}"
+							th:text="${departamento.numdepartamento}">
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="validationText" class="form-label">Nombres</label>
-					<input type="text" th:field="*{nombre}" class="form-control"
-						id="nombre validationText" placeholder="ingresar nombres" required >
+					<label for="validationText" class="form-label">Nombres</label> <input
+						type="text" th:field="*{nombre}" class="form-control"
+						id="nombre validationText" placeholder="ingresar nombres" required>
 					<small class="form-text text-danger"
 						th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
 				</div>
@@ -33,56 +35,53 @@
 				<div class="form-group">
 					<label for="validationText" class="form-label">Apellidos</label> <input
 						type="text" th:field="*{apellidos}" class="form-control"
-						id="apellidos validationText" placeholder="ingresar apellidos" required>
-						<small class="form-text text-danger"
+						id="apellidos validationText" placeholder="ingresar apellidos"
+						required> <small class="form-text text-danger"
 						th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}"></small>
 				</div>
 
 				<div class="form-group">
 					<label for="validationNumber" class="form-label">Dni</label> <input
-						type="number"  min="20000000" max="99999999" th:field="*{dni}" class="form-control" id="dni validationNumber"
-						placeholder="Nuemro de identidad" data-bind="value:replyNumber" required>
-						<small class="form-text text-danger"
+						type="number" min="20000000" max="99999999" th:field="*{dni}"
+						class="form-control" id="dni validationNumber"
+						placeholder="Nuemro de identidad" data-bind="value:replyNumber"
+						required> <small class="form-text text-danger"
 						th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></small>
 				</div>
 				<div class="form-group">
 					<label for="validationEmail" class="form-label">Correo</label> <input
-						type="email" th:field="*{correo}" class="form-control" id="correo validationEmail"
-						placeholder="Correo Electronico" required>
-						<small class="form-text text-danger"
+						type="email" th:field="*{correo}" class="form-control"
+						id="correo validationEmail" placeholder="Correo Electronico"
+						required> <small class="form-text text-danger"
 						th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}"></small>
 				</div>
-				<div class="form-group">
-					<label for="inputState" class="form-label">Mascota</label> <br>
-					<select id="inputState" th:field="*{mascota}" class="form-select">
-						<option th:each="mascota:${mascotas}" th:value="${mascota.idMascota}" th:text="${mascota.nombre}">
-						
-					</select>
-				</div>
 				
+
 				<div class="form-group">
 					<label for="validationText" class="form-label">Telefono</label> <input
-						type="number" min="900000000" max="999999999" th:field="*{telefono}" class="form-control"
-						id="telefono validationText" placeholder="Nuemero de telefono" required>
-						<!-- <small class="form-text text-danger"
+						type="number" min="900000000" max="999999999"
+						th:field="*{telefono}" class="form-control"
+						id="telefono validationText" placeholder="Nuemero de telefono"
+						required>
+					<!-- <small class="form-text text-danger"
 						th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></small> -->
 				</div>
-				
+
 				<div class="form-group">
 					<label for="validationDate" class="form-label">Fecha
 						Nacimiento</label> <input type="date" th:field="*{fechaNac}"
 						class="form-control" id="fechaNac validationDate"
-						placeholder="ingresar fecha de nacimiento" required>
-						<small class="form-text text-danger"
+						placeholder="ingresar fecha de nacimiento" required> <small
+						class="form-text text-danger"
 						th:if="${#fields.hasErrors('fechaNac')}" th:errors="*{fechaNac}"></small>
 				</div>
 
-					
+
 
 			</div>
-<br>
+			<br>
 
-		
+
 
 			<button type="submit" class="btn btn-primary">Registrar</button>
 

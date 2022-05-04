@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue; 
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,6 +36,9 @@ public class Mascota implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idMascota;
+	@ManyToOne
+	@JoinColumn(name="idResidente")
+	private Residente residente;
 	
 	@NotEmpty
 	@Pattern(regexp="[A-Za-z]+([ '-][a-zA-Z]+)*")
@@ -43,8 +48,8 @@ public class Mascota implements Serializable {
 	@Pattern(regexp="[A-Za-z]+([ '-][a-zA-Z]+)*")
 	private String raza;
 	private String vacunacion;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Temporal(TemporalType.DATE)
+	
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechareg;
 	private int estado;
 	

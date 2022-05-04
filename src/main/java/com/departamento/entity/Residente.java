@@ -49,15 +49,13 @@ public class Residente {
 	@Email
 	@Pattern(regexp="^[\\w-]+(\\.[\\w-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
 	private String correo;
-	@ManyToOne
-	@JoinColumn(name="idMascota")
-	private Mascota mascota;
+	
 	private int telefono;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date fechaNac;
 	
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaReg;
 	private int estado;
 	

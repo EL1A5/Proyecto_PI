@@ -47,22 +47,23 @@ insert into departamento values
 insert into departamento values
 (null,5,301,3,240,3,"2021-06-13",1);
 
-insert into mascota values(null,"FUFI","1 año","PERRO ","PITBULL","Vacunacion-InCompleta","1997-05-08",1);
-insert into mascota values(null,"BETOBEN","1 año","PERRO ","PITBULL","Vacunacion-Completa","1997-05-08",1);
-insert into mascota values(null,"MAIKI","2 años","GATO ","PERSA","Vacunacion-InCompleta","1997-05-08",1);
-insert into mascota values(null,"RAMIRO","4 años","GATO ","SIAMES","Vacunacion-Completa","1997-05-08",1);
-insert into mascota values(null,"MAIKI","2 años","GATO ","SFINGE","Vacunacion-InCompleta","1997-05-08",1);
-insert into mascota values(null,"RAMIRO","4 años","GATO ","ESCOSES","Vacunacion-Completa","1997-05-08",1);
 
 SELECT * FROM mascota;
 
 insert into residente values
-(null,1,"Bryan Alexander","Bernuy Bravo",71434952,"user1@gmail.com",1,980598055,"1997-05-03","2020-05-05",1);
+(null,1,"Bryan Alexander","Bernuy Bravo",71434952,"user1@gmail.com",980598055,"1997-05-03","2020-05-05",1);
 insert into residente values
-(null,2,"Marco Alberto","Vicenzi Gianetto",09621521,"user2@gmail.com",2,990456789,"1999-04-03","2020-05-05",1);
+(null,2,"Marco Alberto","Vicenzi Gianetto",09621521,"user2@gmail.com",990456789,"1999-04-03","2020-05-05",1);
 insert into residente values
-(null,3,"Mariela Morena","Beltran Renitti",09621545,"user3@gmail.com",3,975456852,"1998-04-03","2020-07-05",1);
+(null,3,"Mariela Morena","Beltran Renitti",09621545,"user3@gmail.com",975456852,"1998-04-03","2020-07-05",1);
 insert into residente values
-(null,4,"Julio Miguel","Benedetti Saldaña",05555444,"user4@gmail.com",4,982632145,"1997-05-08","2022-05-05",3);
+(null,4,"Julio Miguel","Benedetti Saldaña",05555444,"user4@gmail.com",982632145,"1997-05-08","2022-05-05",3);
 
 select*from departamento ;
+
+insert into mascota values(null,1,"FUFI","1","PERRO ","PITBULL","Completa","1997-05-08",1);
+insert into mascota values(null,2,"BETOBEN","1","PERRO ","PITBULL","Completa","1997-05-08",1);
+insert into mascota values(null,3,"MAIKI","2","GATO ","PERSA","Completa","1997-05-08",1);
+insert into mascota values(null,1,"RAMIRO","4","GATO ","SIAMES","Completa","1997-05-08",1);
+insert into mascota values(null,2,"MAIKI","2","GATO ","SFINGE","Completa","1997-05-08",1);
+insert into mascota values(null,4,"RAMIRO","4","GATO ","ESCOSES","Completa","1997-05-08",1);

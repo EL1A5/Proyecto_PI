@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.departamento.entity.Mascota;
 import com.departamento.entity.Residente;
 import com.departamento.service.MascotaService;
+import com.departamento.service.ResidenteService;
 
 
 @Controller
@@ -35,6 +36,10 @@ public class MascotaContoller {
 
 	@Autowired
 	private MascotaService mascotaservice;
+	
+	@Autowired
+	private ResidenteService residenteservice;
+	
 	
 	@Secured("ROLE_GERENTE")
 	@GetMapping("/")
@@ -48,18 +53,23 @@ public class MascotaContoller {
 	@Secured("ROLE_GERENTE")
 	@GetMapping("/registrar")
 	public String registrar(Model model) {
+		List<Residente> lstresidentes = residenteservice.listarResidentes();
 		
 		Mascota mascota = new Mascota();
 		model.addAttribute("mascota", mascota);
-		
+		model.addAttribute("residentes", lstresidentes);
 		return "/views/Mascota/registrar";
 	}
 	@Secured("ROLE_GERENTE")
 	@PostMapping("/save")
 	public String guardar(@Valid @ModelAttribute Mascota masoc,BindingResult resul, Model model) {
+		
+		List<Residente> lstresidentes = residenteservice.listarResidentes();
+		
 		if (resul.hasErrors()) 
 		{
 			model.addAttribute("mascota", masoc);
+			model.addAttribute("residente", lstresidentes);
 			System.out.println("Ingresar datos correctos");
 			return "/views/Mascota/registrar";
 		}
@@ -75,11 +85,14 @@ public class MascotaContoller {
 	public String editar(@PathVariable ("id") Integer idMascota ,Model model) {
 		
 		Mascota mascota = mascotaservice.buscarPorIdMascota(idMascota);
+		List<Residente> lstresidentes = residenteservice.listarResidentes();
 		
 		model.addAttribute("mascota", mascota);
-		
+		model.addAttribute("residentes", lstresidentes);
 		return "/views/Mascota/registrar";
 	}
+	
+	
 	@Secured("ROLE_ADMIN")
 	@GetMapping("/delete/{id}")
 	public String eliminar(@PathVariable ("id") Integer idMascota) {

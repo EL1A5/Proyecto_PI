@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`residente` (
   `apellidos` VARCHAR(45) NOT NULL,
   `dni` INT NULL DEFAULT NULL,
   `correo` VARCHAR(45) NOT NULL,
-`idmascota` INT NOT NULL ,
+
   `telefono` INT NOT NULL ,
    `fechaNac` DATE NULL DEFAULT NULL,
   `fechaReg` DATETIME NULL DEFAULT NULL,
@@ -34,9 +34,7 @@ CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`residente` (
   PRIMARY KEY (`idresidente`),
 
     FOREIGN KEY (`iddepartamento`)
-    REFERENCES `db_proyectointegradorgroup5`.`departamento` (`iddepartamento`),
-     FOREIGN KEY (`idmascota`)
-    REFERENCES `db_proyectointegradorgroup5`.`mascota` (`idmascota`))
+    REFERENCES `db_proyectointegradorgroup5`.`departamento` (`iddepartamento`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -174,7 +172,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`mascota` (
   `idmascota` INT NOT NULL AUTO_INCREMENT,
-  
+   `idresidente` INT NOT NULL,
   `nombre` VARCHAR(35) NULL DEFAULT NULL,
    `edad` varchar(10) not null,
   `tipo` VARCHAR(40) not  null ,
@@ -182,7 +180,10 @@ CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`mascota` (
   `vacunacion` VARCHAR(25) not NULL,
   `fechareg` DATETIME NULL DEFAULT NULL,
   `estado` TINYINT(1) NULL DEFAULT 1,
-  PRIMARY KEY (`idmascota`))
+  PRIMARY KEY (`idmascota`),
+  CONSTRAINT `residente_fk_2`
+    FOREIGN KEY (`idresidente`)
+    REFERENCES `db_proyectointegradorgroup5`.`residente` (`idresidente`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
