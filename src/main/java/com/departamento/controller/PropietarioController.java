@@ -7,11 +7,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -51,18 +54,22 @@ public class PropietarioController {
 	}
 	@Secured("ROLE_GERENTE")
 	@PostMapping("/save")
-	public String guardar(@ModelAttribute Propietario propietario) {
+	public String guardar(@Valid @ModelAttribute Propietario propietario,BindingResult resul, Model model) {
 		
 		
+		if (resul.hasErrors()) 
+		{
+			model.addAttribute("propietario", propietario);
+			System.out.println("Ingresar datos correctos");
+			return "/views/Propietario/registrar";
+		}
 		
-		DateTimeFormatter dtf4 = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-		Date fecha = new Date(dtf4.format(LocalDateTime.now()));
 		
-		propietario.setFechaReg(fecha);
-		
+		propietario.setEstado(1);
+		propietario.setFechaReg(new Date());
 		
 		propietarioService.insertaActualizaPropietario(propietario);
-		System.out.println("Propietario guardado Exitosamente");
+		
 		return "redirect:/views/Propietario/";
 	}
 	@Secured("ROLE_GERENTE")
@@ -80,8 +87,9 @@ public class PropietarioController {
 	@GetMapping("/delete/{id}")
 	public String eliminar(@PathVariable ("id") Integer idPropietario) {
 		
-		propietarioService.eliminar(idPropietario);
-		System.out.println("Propietario eliminado exitosamente");
+		Propietario propietario=propietarioService.buscarPorIdPropietario(idPropietario);
+		propietario.setEstado(0);
+		propietarioService.insertaActualizaPropietario(propietario);
 		
 		return "redirect:/views/Propietario/";
 	}

@@ -34,6 +34,7 @@ insert into propietario  values
 insert into propietario  values
 (null,"Migue Angel","Quiroga Muñoz",41256635,"user5@gmail.com",963563255,"1982-04-02","2022-03-03",0);
 
+
 -- INSERT DEPARTAMENTO
 insert into departamento values
 (null,1,101,3,120,2,"2020-05-12",1);

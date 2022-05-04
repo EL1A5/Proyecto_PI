@@ -42,9 +42,7 @@ public class VisitanteController {
 	@GetMapping("/")
 	public String ListarVisitantes(Model model) {
 		List<visitante> lista = service.listarVisitante();
-		
-		
-		
+
 		model.addAttribute("titulo", "visitante");
 		model.addAttribute("visitante", lista);
 		return "/views/vistante/listar";
@@ -56,7 +54,6 @@ public class VisitanteController {
 	public String RegistrarVisitantes(Model model) {
 
 		visitante visitante = new visitante();
-		
 		model.addAttribute("visitante", visitante);
 
 		return "/views/vistante/registrar";

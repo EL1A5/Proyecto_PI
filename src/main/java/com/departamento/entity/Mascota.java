@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -32,9 +34,13 @@ public class Mascota implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idMascota;
+	
+	@NotEmpty
+	@Pattern(regexp="[A-Za-z]+([ '-][a-zA-Z]+)*")
 	private String nombre;
 	private String edad;
 	private String tipo;
+	@Pattern(regexp="[A-Za-z]+([ '-][a-zA-Z]+)*")
 	private String raza;
 	private String vacunacion;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")

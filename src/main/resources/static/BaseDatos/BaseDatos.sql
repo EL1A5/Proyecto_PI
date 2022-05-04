@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`residente` (
 `idmascota` INT NOT NULL ,
   `telefono` INT NOT NULL ,
    `fechaNac` DATE NULL DEFAULT NULL,
-  `fechaReg` DATE NULL DEFAULT NULL,
+  `fechaReg` DATETIME NULL DEFAULT NULL,
   `estado` TINYINT(1) NULL DEFAULT NULL,
   PRIMARY KEY (`idresidente`),
 
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`departamento` (
   `habitaciones` INT NULL DEFAULT NULL,
   `area` double NULL DEFAULT NULL,
   `banos` INT NULL DEFAULT NULL,
-  `fechareg` DATETime NULL DEFAULT NULL,
+  `fechareg` DATETIME NULL DEFAULT NULL,
   `estado` VARCHAR(30) NULL DEFAULT NULL,
   PRIMARY KEY (`iddepartamento`),
   FOREIGN KEY (`idpropietario`)
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`servicio` (
   `iddepartamento` INT NULL DEFAULT NULL,
   `nombreserv` VARCHAR(35) NOT NULL,
   `precioserv` DOUBLE NOT NULL,
-  `fechareg` DATE NULL DEFAULT NULL,
+  `fechareg` DATETIME NULL DEFAULT NULL,
   `estado` TINYINT(1) NOT NULL,
   PRIMARY KEY (`idservicio`),
   INDEX `iddepartamento` (`iddepartamento` ASC) ,
@@ -153,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`insidencia` (
   `tipo` VARCHAR(35) NOT NULL,
   `descripcion` VARCHAR(80) NOT NULL,
   `estado` TINYINT(1) NOT NULL,
-  `fechareg` DATE NULL DEFAULT NULL,
+  `fechareg` DATETIME NULL DEFAULT NULL,
   `fechaatencion` DATE NULL DEFAULT NULL,
   PRIMARY KEY (`idincidencia`),
   INDEX `iduser` (`iduser` ASC) VISIBLE,
@@ -180,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`mascota` (
   `tipo` VARCHAR(40) not  null ,
   `raza` VARCHAR(40) not NULL,
   `vacunacion` VARCHAR(25) not NULL,
-  `fechareg` DATE NULL DEFAULT NULL,
+  `fechareg` DATETIME NULL DEFAULT NULL,
   `estado` TINYINT(1) NULL DEFAULT 1,
   PRIMARY KEY (`idmascota`))
 ENGINE = InnoDB
@@ -303,7 +303,7 @@ CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`historial` (
   `iddepartamento` INT not NULL,
   `descripcion` VARCHAR(45) not NULL,
   `estado` BIGINT(1) NULL,
-  `fechareg` DATE NULL,
+  `fechareg` DATETIME NULL,
   PRIMARY KEY (`idhistorial`),
   INDEX `fk_idx` (`idusuario` ASC) VISIBLE,
   INDEX `fk2_idx` (`iddepartamento` ASC) VISIBLE,
@@ -321,6 +321,7 @@ CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`historial` (
     FOREIGN KEY (`idincidencia`)
     REFERENCES `db_proyectointegradorgroup5`.`incidencia` (`idincidencia`))
 ENGINE = InnoDB;
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

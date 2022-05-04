@@ -4,9 +4,7 @@
 </head>
 <body>
 	<header th:replace="plantilla/plantilla :: header"></header>
-	<div class="container">
-		<h1>Registro de Mascota</h1>
-	</div>
+
 
 
 	<div class="container w-25 p-3">
@@ -42,7 +40,7 @@
 
 		           <div class="form-group">
 					<label for="validationText" class="form-label">Edad Mascota </label> <input
-						type="text" th:field="*{edad}" class="form-control"
+						type="number" min="0" max="10" th:field="*{edad}" class="form-control"
 						id="tipo validationText" placeholder="ingresar edad mascota" required>
 						<small class="form-text text-danger"
 						th:if="${#fields.hasErrors('edad')}" th:errors="*{edad}"></small>
@@ -61,8 +59,8 @@
 					<label for="validationText" class="form-label">Vacunacion</label> 
 					<select id="inputState" th:field="*{vacunacion}" class="form-select"required>
 					    <option selected disabled value="">Seleccione...</option>
-						<option th:value="Perro">Vacunacion Completa</option>
-						<option th:value="Gato">Vacunacion InCompleta</option>
+						<option th:value="Completa">Vacunacion Completa</option>
+						<option th:value="InCompleta">Vacunacion InCompleta</option>
 						 	</select>   
 				</div>
 				

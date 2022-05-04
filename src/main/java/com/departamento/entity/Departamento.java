@@ -36,7 +36,9 @@ public class Departamento {
 	@ManyToOne
 	@JoinColumn(name="idpropietario")
 	private Propietario propietario;
+	
 	private String numdepartamento;
+	
 	private int habitaciones;
 	private double area;
 	private int banos;
