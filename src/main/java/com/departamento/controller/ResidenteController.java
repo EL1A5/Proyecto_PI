@@ -40,8 +40,7 @@ public class ResidenteController {
 
 	@Autowired
 	private DepartamentoService departamentoService;
-	@Autowired
-	private MascotaService mascotaservice;
+	
 
 	@Secured("ROLE_GERENTE")
 	@GetMapping("/")
@@ -60,11 +59,11 @@ public class ResidenteController {
 		Residente residente = new Residente();
 
 		List<Departamento> departamento = departamentoService.listarDptos();
-		List<Mascota> mascota = mascotaservice.listarMascota();
+		
 
 		model.addAttribute("residente", residente);
 		model.addAttribute("departamentos", departamento);
-		model.addAttribute("mascotas", mascota);
+		
 
 		return "/views/Residente/registrar";
 	}
@@ -73,11 +72,11 @@ public class ResidenteController {
 	@PostMapping("/save")
 	public String guardar(@Valid @ModelAttribute Residente residente, BindingResult resul, Model model) {
 		List<Departamento> departamento = departamentoService.listarDptos();
-		List<Mascota> mascota = mascotaservice.listarMascota();
+		
 		if (resul.hasErrors()) {
 			model.addAttribute("residente", residente);
 			model.addAttribute("departamentos", departamento);
-			model.addAttribute("mascotas", mascota);
+			
 			System.out.println("Ingresar datos correctos");
 			return "/views/Residente/registrar";
 		}
@@ -96,11 +95,11 @@ public class ResidenteController {
 
 		Residente residente = residenteService.buscarPorIdResidente(idResidente);
 		List<Departamento> departamento = departamentoService.listarDptos();
-		List<Mascota> mascota = mascotaservice.listarMascota();
+		
 
 		model.addAttribute("residente", residente);
 		model.addAttribute("departamentos", departamento);
-		model.addAttribute("mascotas", mascota);
+		
 		return "/views/residente/registrar";
 	}
 
