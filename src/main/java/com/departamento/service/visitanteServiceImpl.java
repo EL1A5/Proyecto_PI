@@ -37,6 +37,12 @@ public class visitanteServiceImpl implements visitanteService {
 		 repositorio.deleteById(id);
 		
 	}
+
+	@Override
+	public visitante buscarPorDni(int dni) {
+		// TODO Auto-generated method stub
+		return repositorio.findByDni(dni);
+	}
 	
 
 }

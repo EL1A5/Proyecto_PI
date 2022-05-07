@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -65,9 +67,14 @@ public class visitante implements Serializable{
 	@NotEmpty
 	
 	private String telefono;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date  fechareg  ;
 	private int activo;
+	
+	@ManyToOne
+	@JoinColumn(name="idusuario")
+	private Usuario usuario;
 
 	
 

@@ -1,31 +1,27 @@
 package com.departamento.controller;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
 
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
+import com.departamento.entity.Usuario;
 import com.departamento.entity.visitante;
+import com.departamento.service.UsuarioService;
 import com.departamento.service.visitanteService;
 
 @Controller
@@ -35,7 +31,8 @@ public class VisitanteController {
 	@Autowired
 	private visitanteService service;
 
-	
+	@Autowired
+	private UsuarioService serviceusu;
 
 	
 	@Secured("ROLE_USER")
@@ -64,6 +61,14 @@ public class VisitanteController {
 	@PostMapping("/save")
 	public String Guardar(@Valid @ModelAttribute visitante obj,BindingResult resul, Model model) {
 		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+		if (principal instanceof UserDetails) {
+		  userDetails = (UserDetails) principal;
+		}
+		String userName = userDetails.getUsername();
+	    Usuario usuario=serviceusu.BuscarPorNombre(userName);
+	    
 		if (resul.hasErrors()) 
 		{
 			model.addAttribute("visitante", obj);
@@ -72,6 +77,7 @@ public class VisitanteController {
 		}
 		obj.setActivo(1);
 		obj.setFechareg(new Date());
+		obj.setUsuario(usuario);
 		service.insertaActualizaVistante(obj);
 		return "redirect:/views/vistante/";
 	}

@@ -4,51 +4,89 @@
 </head>
 <body>
 	<header th:replace="plantilla/plantilla :: header"></header>
+
 	<div class="container">
-			<h1>NO COLOCAR NADA</h1>
-		</div>
-	<div class="container">		
-		<h1 th:text="${titulo}"></h1>	
+		<h1 th:text="${titulo}"></h1>
 	</div>
-	
+
 	<div class="container">
-		
-		
-		<a class="btn btn-primary btn-sm" th:href="@{/views/visita/registrar}"
-			th:text="'Nueva Visita'" title="Crear Nueva Visita">
-		</a>
-		
+
+
+
+
+
+		<form class="form-inline" th:action="@{/views/visita/}">
+			<div class="d-inline p-2">
+				<label>Filtrar:</label> 
+				
+				<input type="text" name="filtro"
+					class="w-25 p-1" id="filtro" value=""
+					placeholder="Digite nombre, numero o usuario para filtrar" required>
+				&nbsp;&nbsp; 
+				
+				<input type="submit" class="btn btn-info mb-2"
+					value="Buscar"> &nbsp;&nbsp; 
+					
+				<input type="button"
+					class="btn btn-secondary mb-2" value="Limpiar" onclick="limpiar()">
+				&nbsp;&nbsp; 
+				
+				<input type="button" class="btn btn-primary mb-2"
+					onclick="registrar()" th:value="'Nuevo Visita'"
+					title="Crear Nuevo Registro">
+
+				<div class="d-inline p-2 text-right">
+				   <label>Filtrar Por Estado:</label> 
+					<select name="estado" id="estado" class="form-select d-inline w-25" aria-label="Default select example" onchange="this.form.submit()">
+						<option selected value=" ">Selecciona el Estado</option>
+						<option class="text-primary"  value="Salio">Salio</option>
+						<option class="text-danger" value="NoSalio">No salio</option>
+					</select>
+				</div>
+
+			</div>
+
+
+		</form>
+
 		<table class="table">
 			<thead class="thead-dark">
 				<tr>
-				<th scope="col">ID Visita</th>
+					<th scope="col">ID Visita</th>
 					<th scope="col">Visitante</th>
 					<th scope="col">Residente</th>
+					<th scope="col">Departamento</th>
 					<th scope="col">Entrada</th>
 					<th scope="col">Salida</th>
-					<th scope="col" sec:authorize="hasRole('ROLE_GERENTE')">Editar</th>
-					<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
+					<th scope="col">Observacion</th>
+					<th scope="col">Estado</th>
+					<th scope="col">Usuario</th>
+					<th scope="col" sec:authorize="hasRole('ROLE_USER')">Registrar Salida</th>
+
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="cl:${visita}">
 					<th scope="row" th:text="${cl.idvisita}"></th>
-					<td th:text="${cl.idvisitante.apellidos}" ></td>
-					<td th:text="${cl.idresidente}"></td>
+					<td><label><span th:text="${cl.idvisitante.nombre}">
+						</span>&nbsp;<span th:text="${cl.idvisitante.apellidos}"></span></label></td>
+					<td><label><span th:text="${cl.residente.nombre}">
+						</span>&nbsp;<span th:text="${cl.residente.apellidos}"></span></label></td>
+
+					<td th:text="${cl.departamento.numdepartamento}"></td>
 					<td th:text="${cl.horaentrada}"></td>
 					<td th:text="${cl.horasalida}"></td>
-						
-					<td sec:authorize="hasRole('ROLE_GERENTE')">
-						<a class="btn btn-success btn-sm" th:href="@{/views/visita/edit/} + ${cl.idvisita}"
-							th:text="'Editar'" title="Editar Visita">
-						</a>
-					</td>	
-					<td sec:authorize="hasRole('ROLE_ADMIN')">
-						<a class="btn btn-danger btn-sm" th:href="@{/views/visita/delete/} + ${cl.idvisita}"
-							th:text="'Eliminar'" title="Eliminar Visita"
-							onclick="return confirm('Esta seguro de eliminar el registro?');">
-						</a>
-					</td>					
+					<td th:text="${cl.observacion}"></td>
+					<td th:switch="${cl.estado}"><span class="text-primary"
+						th:case="'Salio'" th:text="${cl.estado}"></span> <span
+						class="text-danger" th:case="'NoSalio'" th:text="${cl.estado}"></span>
+					</td>
+					<td th:text="${cl.usuario.username}"></td>
+					<td sec:authorize="hasRole('ROLE_USER')"><a
+						class="btn btn-success btn-sm"
+						th:href="@{/views/visita/edit/} + ${cl.idvisita}"
+						th:text="'Salida'" title="Editar Visita"> </a></td>
+
 				</tr>
 			</tbody>
 		</table>
@@ -57,6 +95,14 @@
 	</div>
 
 	<footer th:replace="plantilla/plantilla :: footer"></footer>
-
+	<script type="text/javascript">
+		function limpiar(){
+		window.location='/views/visita/'
+		}
+		
+		function registrar(){
+		window.location='/views/visita/registrar'
+		}
+	</script>
 </body>
 </html>
