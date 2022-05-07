@@ -6,17 +6,19 @@ insert into users(id,username, password, enable) values(1,'admin','$2a$10$C/kXzI
 insert into users(id,username, password, enable) values(2,'user','$2a$10$BZDSDkLnA3/U0vH9Lkjmg.fXvypyAGU.mUAvUDeA1CsiZ9QUZLyX2',1);
 insert into users(id,username, password, enable) values(3,'gerente','$2a$10$BZDSDkLnA3/U0vH9Lkjmg.fXvypyAGU.mUAvUDeA1CsiZ9QUZLyX2',1);
 insert into users(id,username, password, enable) values(4,'cajero','$2a$10$BZDSDkLnA3/U0vH9Lkjmg.fXvypyAGU.mUAvUDeA1CsiZ9QUZLyX2',1);
+insert into users(id,username, password, enable) values(5,'counter','$2a$10$BZDSDkLnA3/U0vH9Lkjmg.fXvypyAGU.mUAvUDeA1CsiZ9QUZLyX2',1);
 
 
 insert into roles(user_id, rolname) values(1, 'ROLE_USER');
 insert into roles(user_id, rolname) values(1, 'ROLE_ADMIN');
 insert into roles(user_id, rolname) values(1, 'ROLE_GERENTE');
 insert into roles(user_id, rolname) values(1, 'ROLE_CAJERO');
+insert into roles(user_id, rolname) values(1, 'ROLE_COUNTER');
 insert into roles(user_id, rolname) values(2, 'ROLE_USER');
 insert into roles(user_id, rolname) values(3, 'ROLE_GERENTE');
 insert into roles(user_id, rolname) values(3, 'ROLE_USER');
 insert into roles(user_id, rolname) values(4, 'ROLE_CAJERO');
-
+insert into roles(user_id, rolname) values(5, 'ROLE_COUNTER');
 
 SELECT r.user_id, r.rolname FROM roles r inner join users u 
 on r.user_id=u.id where u.username='admin';
@@ -67,3 +69,28 @@ insert into mascota values(null,3,"MAIKI","2","GATO ","PERSA","Completa","1997-0
 insert into mascota values(null,1,"RAMIRO","4","GATO ","SIAMES","Completa","1997-05-08",1);
 insert into mascota values(null,2,"MAIKI","2","GATO ","SFINGE","Completa","1997-05-08",1);
 insert into mascota values(null,4,"RAMIRO","4","GATO ","ESCOSES","Completa","1997-05-08",1);
+
+
+-- REGISTRO VISITA
+
+
+insert into visita values
+(null,1,1,1,"2020-07-05","2020-07-05","Se observo salir a la persona con moretones","Salio",2);
+
+insert into visita values
+(null,2,2,2,"2020-07-05","2020-07-05","Se observo salir a la persona con moretones","NoSalio",1);
+
+insert into visita values
+(null,2,3,3,"2020-07-05","2020-07-05","Se observo salir a la persona con moretones","NoSalio",3);
+
+
+-- FILTRO DE VISITAS
+select  v.idvisita,vi.nombre, r.nombre,d.numdepartamento,v.horaentrada,v.horasalida,v.observacion,v.estado,u.username from visita v 
+inner join visitante vi on vi.idvisitante=v.idvisitante
+inner join residente r on r.idresidente=v.idresidente
+inner join departamento d on d.iddepartamento=v.iddepartamento
+inner join users u on u.id=v.idusuario WHERE concat(vi.nombre, r.nombre,d.numdepartamento,u.username) like '%Bryan%';
+
+
+
+

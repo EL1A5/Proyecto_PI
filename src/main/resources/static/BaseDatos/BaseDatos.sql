@@ -222,7 +222,11 @@ CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`visitante` (
     `telefono` VARCHAR(45) NOT NULL,
   `fechareg` DATETIME NULL DEFAULT NULL,
   `activo` TINYINT(1) NULL DEFAULT NULL,
-  PRIMARY KEY (`idvisitante`))
+   `idusuario` INT NOT NULL,
+  PRIMARY KEY (`idvisitante`),
+  CONSTRAINT `fk_usuario`
+    FOREIGN KEY (`idusuario`)
+    REFERENCES `db_proyectointegradorgroup5`.`users` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -234,20 +238,24 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`visita` (
   `idvisita` INT NOT NULL AUTO_INCREMENT,
   `idvisitante` INT NULL DEFAULT NULL,
-  `iddepartamento` INT NULL DEFAULT NULL,
   `idresidente` INT NULL DEFAULT NULL,
+  `iddepartamento` int  not null,
   `horaentrada` DATETIME NULL DEFAULT NULL,
   `horasalida` DATETIME NULL,
+  `observacion` varchar(50)  NULL,
+  `estado` varchar(7) not NULL,
+   `idusuario` INT not null,
   PRIMARY KEY (`idvisita`),
-  INDEX `idresidente` (`idresidente` ASC) VISIBLE,
-  INDEX `idvisitante` (`idvisitante` ASC) VISIBLE,
   CONSTRAINT `visita_ibfk_1`
     FOREIGN KEY (`idresidente`)
     REFERENCES `db_proyectointegradorgroup5`.`residente` (`idresidente`),
   CONSTRAINT `visita_ibfk_2`
     FOREIGN KEY (`idvisitante`)
     REFERENCES `db_proyectointegradorgroup5`.`visitante` (`idvisitante`),
-    CONSTRAINT `visita_ibfk_3`
+     CONSTRAINT `visita_ibfk_4`
+    FOREIGN KEY (`idusuario`)
+    REFERENCES `db_proyectointegradorgroup5`.`users` (`id`),
+     CONSTRAINT `visita_ibfk_7`
     FOREIGN KEY (`iddepartamento`)
     REFERENCES `db_proyectointegradorgroup5`.`departamento` (`iddepartamento`))
 ENGINE = InnoDB

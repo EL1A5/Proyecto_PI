@@ -50,6 +50,8 @@ public class MascotaContoller {
 		model.addAttribute("mascota",lstmascotas );
 		return "/views/Mascota/listar";
 	}
+	
+	
 	@Secured("ROLE_GERENTE")
 	@GetMapping("/registrar")
 	public String registrar(Model model) {

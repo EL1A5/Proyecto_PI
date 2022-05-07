@@ -8,6 +8,7 @@ public interface visitanteService {
 	public abstract visitante insertaActualizaVistante(visitante obj);
 	public abstract List<visitante> listarVisitante();
 	public abstract visitante buscarPorId(int id);
+	public abstract visitante buscarPorDni(int dni);
 	public abstract void eliminar (int id);
 
 }
