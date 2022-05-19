@@ -1,8 +1,9 @@
 package com.departamento.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
+import java.util.Date;
+import java.sql.Time;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -63,6 +64,8 @@ public class visita implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "idusuario")
 	private Usuario usuario;
+	
+	
 	 
 	 
 }
