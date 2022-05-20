@@ -84,7 +84,7 @@
 					<td th:text="${cl.usuario.username}"></td>
 					<td sec:authorize="hasRole('ROLE_USER')"><a
 						class="btn btn-success btn-sm"
-						th:href="@{/views/visita/edit/} + ${cl.idvisita}"
+						th:href="@{/views/visita/salir/} + ${cl.idvisita}"
 						th:text="'Salida'" title="Editar Visita"> </a></td>
 
 				</tr>

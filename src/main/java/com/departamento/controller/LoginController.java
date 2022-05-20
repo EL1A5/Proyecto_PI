@@ -24,7 +24,7 @@ public class LoginController {
 		}
 		if (principal != null) {
 			atribute.addFlashAttribute("warning", "Ya inicio sesion previamente");
-			return "redirect:/";
+			return "redirect:/views/visita/";
 		}
 		
 		if (logout != null) {
