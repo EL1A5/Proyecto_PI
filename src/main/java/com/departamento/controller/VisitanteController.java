@@ -69,12 +69,18 @@ public class VisitanteController {
 		String userName = userDetails.getUsername();
 	    Usuario usuario=serviceusu.BuscarPorNombre(userName);
 	    
-		if (resul.hasErrors()) 
+	    
+	    visitante dniyaexiste=service.buscarPorDni(obj.getDni());
+	    visitante vistitantenuevo = service.buscarPorId(obj.getIdvisitante());
+	    
+		if (vistitantenuevo==null && dniyaexiste!=null ) 
 		{
 			model.addAttribute("visitante", obj);
-			System.out.println("Ingresar datos correctos");
+			model.addAttribute("error", "VISITANTE YA EXISTE");
 			return "/views/vistante/registrar";
 		}
+		
+		
 		obj.setActivo(1);
 		obj.setFechareg(new Date());
 		obj.setUsuario(usuario);
