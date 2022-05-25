@@ -9,5 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 import com.departamento.entity.*;
 
 public interface PropietarioRepository extends JpaRepository<Propietario, Integer>  {
+	  public Propietario findByDni(String dni);
 	
 }

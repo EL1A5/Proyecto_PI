@@ -28,6 +28,7 @@ import com.departamento.entity.Departamento;
 import com.departamento.entity.Mascota;
 import com.departamento.entity.Propietario;
 import com.departamento.entity.Residente;
+import com.departamento.entity.visitante;
 import com.departamento.service.DepartamentoService;
 import com.departamento.service.MascotaService;
 import com.departamento.service.ResidenteService;
@@ -71,10 +72,14 @@ public class ResidenteController {
 	@Secured("ROLE_GERENTE")
 	@PostMapping("/save")
 	public String guardar(@Valid @ModelAttribute Residente residente, BindingResult resul, Model model) {
+		Residente dniyaexiste=residenteService.buscarPorDni(residente.getDni());
 		List<Departamento> departamento = departamentoService.listarDptos();
 		
-		if (resul.hasErrors()) {
+		
+		if (dniyaexiste!=null ) 
+		{
 			model.addAttribute("residente", residente);
+			model.addAttribute("error", "Residente ya existe ,ingrese un numero de dni distinto al registrado en el sistema");
 			model.addAttribute("departamentos", departamento);
 			
 			System.out.println("Ingresar datos correctos");

@@ -55,11 +55,12 @@ public class PropietarioController {
 	@Secured("ROLE_GERENTE")
 	@PostMapping("/save")
 	public String guardar(@Valid @ModelAttribute Propietario propietario,BindingResult resul, Model model) {
+		Propietario dniyaexiste=propietarioService.buscarPorDni(propietario.getDni());
 		
-		
-		if (resul.hasErrors()) 
+		if (dniyaexiste!=null ) 
 		{
 			model.addAttribute("propietario", propietario);
+			model.addAttribute("error", "Propietario ya existe ,ingrese un numero de dni distinto al registrado en el sistema");
 			System.out.println("Ingresar datos correctos");
 			return "/views/Propietario/registrar";
 		}

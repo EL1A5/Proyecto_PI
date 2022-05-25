@@ -6,23 +6,21 @@ insert into users(id,username, password, enable) values(1,'admin','$2a$10$C/kXzI
 insert into users(id,username, password, enable) values(2,'user','$2a$10$BZDSDkLnA3/U0vH9Lkjmg.fXvypyAGU.mUAvUDeA1CsiZ9QUZLyX2',1);
 insert into users(id,username, password, enable) values(3,'gerente','$2a$10$BZDSDkLnA3/U0vH9Lkjmg.fXvypyAGU.mUAvUDeA1CsiZ9QUZLyX2',1);
 insert into users(id,username, password, enable) values(4,'cajero','$2a$10$BZDSDkLnA3/U0vH9Lkjmg.fXvypyAGU.mUAvUDeA1CsiZ9QUZLyX2',1);
-insert into users(id,username, password, enable) values(5,'counter','$2a$10$BZDSDkLnA3/U0vH9Lkjmg.fXvypyAGU.mUAvUDeA1CsiZ9QUZLyX2',1);
 
 
 insert into roles(user_id, rolname) values(1, 'ROLE_USER');
 insert into roles(user_id, rolname) values(1, 'ROLE_ADMIN');
 insert into roles(user_id, rolname) values(1, 'ROLE_GERENTE');
 insert into roles(user_id, rolname) values(1, 'ROLE_CAJERO');
-insert into roles(user_id, rolname) values(1, 'ROLE_COUNTER');
 insert into roles(user_id, rolname) values(2, 'ROLE_USER');
 insert into roles(user_id, rolname) values(3, 'ROLE_GERENTE');
 insert into roles(user_id, rolname) values(3, 'ROLE_USER');
 insert into roles(user_id, rolname) values(4, 'ROLE_CAJERO');
-insert into roles(user_id, rolname) values(5, 'ROLE_COUNTER');
+
 
 SELECT r.user_id, r.rolname FROM roles r inner join users u 
 on r.user_id=u.id where u.username='admin';
-
+-- INSERT propietario
 insert into propietario values
 (null,"Bryan Alexander","Bernuy Bravo",71434952,"user1@gmail.com",980598055,"1997-05-03","2020-05-05",1);
 insert into propietario  values
@@ -34,8 +32,9 @@ insert into propietario  values
 insert into propietario  values
 (null,"Migue Angel","Quiroga Muñoz",41256635,"user5@gmail.com",963563255,"1982-04-02","2022-03-03",1);
 insert into propietario  values
-(null,"Migue Angel","Quiroga Muñoz",41256635,"user5@gmail.com",963563255,"1982-04-02","2022-03-03",0);
+(null,"Manuel Enrique","Gonzales Muñoz",09940227,"user5@gmail.com",963563255,"1982-04-02","2022-03-03",0);
 
+SELECT * FROM propietario;
 
 -- INSERT DEPARTAMENTO
 insert into departamento values
@@ -50,8 +49,8 @@ insert into departamento values
 (null,5,301,3,240,3,"2021-06-13",1);
 
 
-SELECT * FROM mascota;
-
+SELECT * FROM departamento;
+-- INSERT residente
 insert into residente values
 (null,1,"Bryan Alexander","Bernuy Bravo",71434952,"user1@gmail.com",980598055,"1997-05-03","2020-05-05",1);
 insert into residente values
@@ -61,8 +60,8 @@ insert into residente values
 insert into residente values
 (null,4,"Julio Miguel","Benedetti Saldaña",05555444,"user4@gmail.com",982632145,"1997-05-08","2022-05-05",3);
 
-select*from departamento ;
-
+select*from residente ;
+-- INSERT mascota
 insert into mascota values(null,1,"FUFI","1","PERRO ","PITBULL","Completa","1997-05-08",1);
 insert into mascota values(null,2,"BETOBEN","1","PERRO ","PITBULL","Completa","1997-05-08",1);
 insert into mascota values(null,3,"MAIKI","2","GATO ","PERSA","Completa","1997-05-08",1);
@@ -70,27 +69,4 @@ insert into mascota values(null,1,"RAMIRO","4","GATO ","SIAMES","Completa","1997
 insert into mascota values(null,2,"MAIKI","2","GATO ","SFINGE","Completa","1997-05-08",1);
 insert into mascota values(null,4,"RAMIRO","4","GATO ","ESCOSES","Completa","1997-05-08",1);
 
-
--- REGISTRO VISITA
-
-
-insert into visita values
-(null,1,1,1,"2020-07-05","2020-07-05","Se observo salir a la persona con moretones","Salio",2);
-
-insert into visita values
-(null,2,2,2,"2020-07-05","2020-07-05","Se observo salir a la persona con moretones","NoSalio",1);
-
-insert into visita values
-(null,2,3,3,"2020-07-05","2020-07-05","Se observo salir a la persona con moretones","NoSalio",3);
-
-
--- FILTRO DE VISITAS
-select  v.idvisita,vi.nombre, r.nombre,d.numdepartamento,v.horaentrada,v.horasalida,v.observacion,v.estado,u.username from visita v 
-inner join visitante vi on vi.idvisitante=v.idvisitante
-inner join residente r on r.idresidente=v.idresidente
-inner join departamento d on d.iddepartamento=v.iddepartamento
-inner join users u on u.id=v.idusuario WHERE concat(vi.nombre, r.nombre,d.numdepartamento,u.username) like '%Bryan%';
-
-
-
-
+select*from mascota ;

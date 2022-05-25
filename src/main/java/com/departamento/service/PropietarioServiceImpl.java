@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.departamento.entity.Propietario;
 import com.departamento.entity.Residente;
+import com.departamento.entity.visitante;
 import com.departamento.repository.PropietarioRepository;
 
 @Service
@@ -41,9 +42,12 @@ public class PropietarioServiceImpl implements  PropietarioService {
 	public void eliminar(Integer id) {
 		repository.deleteById(id);
 		
-		}	
+		}
 
-
-
+	@Override
+	public Propietario buscarPorDni(String dni) {
+		return repository.findByDni(dni);
+	}
 	
+
 }
