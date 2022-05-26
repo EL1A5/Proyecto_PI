@@ -38,4 +38,9 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 		
 	}
 
+	@Override
+	public Departamento buscarnumdepartamento(String numdepartamento) {
+		return dptoRepository.findBynumdepartamento(numdepartamento);
+	}
+
 }

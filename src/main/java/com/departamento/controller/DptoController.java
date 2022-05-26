@@ -3,6 +3,8 @@ package com.departamento.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -55,10 +57,13 @@ public class DptoController {
 
 	@Secured("ROLE_GERENTE")
 	@PostMapping("/save")
-	public String guardar(@ModelAttribute Departamento departamento, BindingResult resul, Model model) {
-
-		if (resul.hasErrors()) {
-			model.addAttribute("visitante", departamento);
+	public String guardar(@Valid @ModelAttribute Departamento departamento, BindingResult resul, Model model) {
+		Departamento dptoyaexiste=departamentoService.buscarnumdepartamento(departamento.getNumdepartamento());
+		
+		if (dptoyaexiste!=null ) 
+		{
+			model.addAttribute("departamento", departamento);
+			model.addAttribute("error", "dpto ya existe ,ingrese un numero distinto al registrado en el sistema");
 			System.out.println("Ingresar datos correctos");
 			return "redirect:/views/departamentos/";
 		}
