@@ -9,4 +9,7 @@ public interface DepartamentoRepository extends JpaRepository<Departamento, Inte
 	 public Departamento findBynumdepartamento(String numdepartamento);
 	
 
+	 
+	 
+	 
 }

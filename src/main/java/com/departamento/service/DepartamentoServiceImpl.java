@@ -11,6 +11,8 @@ import com.departamento.repository.DepartamentoRepository;
 
 @Service
 public class DepartamentoServiceImpl implements DepartamentoService {
+		
+	
 	
 	@Autowired
 	private DepartamentoRepository dptoRepository;
