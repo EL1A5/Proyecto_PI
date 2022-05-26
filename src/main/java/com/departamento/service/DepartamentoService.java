@@ -7,7 +7,6 @@ import com.departamento.entity.Propietario;
 
 public interface DepartamentoService {
 	
-	
 	public List<Departamento> listarDptos();
 	public void guardar(Departamento dpto);
 	public Departamento buscarPorId(Integer id);

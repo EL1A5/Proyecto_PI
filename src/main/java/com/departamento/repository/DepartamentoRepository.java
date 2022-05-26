@@ -8,6 +8,8 @@ import com.departamento.entity.Propietario;
 public interface DepartamentoRepository extends JpaRepository<Departamento, Integer> {
 	 public Departamento findBynumdepartamento(String numdepartamento);
 	
+	 
+	 
 
 	 
 	 

@@ -58,8 +58,6 @@ public class DptoController {
 		return "/views/departamentos/registrar";
 	}
 
-	
-	
 	@Secured("ROLE_GERENTE")
 	@PostMapping("/save")
 	public String guardar(@Valid @ModelAttribute Departamento departamento, BindingResult resul, Model model) {
