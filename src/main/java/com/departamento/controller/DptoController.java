@@ -63,10 +63,12 @@ public class DptoController {
 	public String guardar(@Valid @ModelAttribute Departamento departamento, BindingResult resul, Model model) {
 		Departamento dptoyaexiste=departamentoService.buscarnumdepartamento(departamento.getNumdepartamento());
 		Departamento id=departamentoService.buscarPorId(departamento.getIddepartamento());
-		
+		List<Propietario> propietario = propietarioservice.listarPropietarios();
 		if (id==null && dptoyaexiste!=null ) 
 		{
 			model.addAttribute("visitante", departamento);
+			
+			model.addAttribute("propietarios", propietario);
 			model.addAttribute("error", "dpto ya existe ,ingrese un numero distinto al registrado en el sistema");
 			System.out.println("Ingresar datos correctos");
 			return "/views/departamentos/registrar";
