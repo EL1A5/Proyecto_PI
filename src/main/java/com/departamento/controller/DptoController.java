@@ -26,9 +26,12 @@ import com.departamento.service.PropietarioService;
 @RequestMapping("/views/departamentos")
 public class DptoController {
 
+	
+	
 	@Autowired
 	private DepartamentoService departamentoService;
 
+	
 	@Autowired
 	private PropietarioService propietarioservice;
 
