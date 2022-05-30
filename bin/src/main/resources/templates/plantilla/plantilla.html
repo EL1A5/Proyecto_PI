@@ -3,15 +3,17 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
 <meta charset="UTF-8">
-<title>CRUD Servicios</title>
+<title></title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 
-<!-- <link rel="stylesheet" th:href="@{/css/signin.css}">
- -->
+
+
+<!-- <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"> -->
+<link rel="stylesheet" th:href="@{/css/signin.css}">
 
 
 </head>
@@ -20,9 +22,9 @@
 	<!-- BARRA DE NAVEGACION -->
 	<header th:fragment="header">
 
-		<nav class="navbar navbar-light bg-light fixed-top">
+		<nav class="navbar navbar-light bg-light">
 			<div class="container-fluid">
-				<a class="navbar-brand" th:href="@{/}">Apartament System </a>
+				<a class="navbar-brand" th:href="@{/}">Control Recidencial </a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
 					aria-controls="offcanvasNavbar">
@@ -36,38 +38,72 @@
 							data-bs-dismiss="offcanvas" aria-label="Close"></button>
 					</div>
 					<div class="offcanvas-body">
-						<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-							<li class="nav-item"><a class="nav-link active"
-								aria-current="page" href="#">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-							<li class="nav-item dropdown"><a
+
+						<div class="d-flex">
+							<a sec:authorize="!isAuthenticated()" class="btn btn-primary"
+								th:href="@{/login}">Iniciar Sesion</a>
+
+
+							<div class="dropdown" sec:authorize="isAuthenticated()">
+								<a class="btn btn-primary dropdown-toggle" href="#"
+									role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+									aria-expanded="false"> <span sec:authentication="name"></span>
+								</a>
+
+								<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+									<li><a class="dropdown-item" href="#">Perfil</a></li>
+									<li><a class="dropdown-item" href="#">Cambiar Password</a></li>
+									<li><hr class="dropdown-divider"></li>
+
+									<form th:action="@{/logout}" method="post">
+										<button class="dropdown-item" type="submit">Cerrar
+											Sesion</button>
+									</form>
+								</ul>
+							</div>
+
+						</div>
+
+						<ul sec:authorize="isAuthenticated()"
+							class="navbar-nav justify-content-end flex-grow-1 pe-3">
+
+
+							<li sec:authorize="hasRole('GERENTE')" class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" href="#"
 								id="offcanvasNavbarDropdown" role="button"
-								data-bs-toggle="dropdown" aria-expanded="false"> Mantenimiento </a>
+								data-bs-toggle="dropdown" aria-expanded="false">
+									Mantenimiento </a>
 								<ul class="dropdown-menu"
 									aria-labelledby="offcanvasNavbarDropdown">
-									<li><a class="dropdown-item" href="#">Propietario</a></li>
 
-									<li><a class="dropdown-item" th:href="@{/views/Residente/}">Residente</a></li>
-									<li><a class="dropdown-item" href="#">Departamento</a></li>
 
-									<li><a class="dropdown-item" href="#">Residente</a></li>
-									<li><a class="dropdown-item" th:href="@{/views/departamentos/}">Departamento</a></li>
+									<li><a class="dropdown-item"
+										th:href="@{/views/Propietario/}">Propietario</a></li>
 
-									<li><a class="dropdown-item" href="#">Mascota</a></li>
-									
+
+
+
+									<li><a class="dropdown-item"
+										th:href="@{/views/Residente/}">Residente</a></li>
+
+									<li><a class="dropdown-item"
+										th:href="@{/views/departamentos/}">Departamento</a></li>
+
+									<li><a class="dropdown-item" th:href="@{/views/Mascota/}">Mascota</a></li>
+
 								</ul></li>
-								<li class="nav-item dropdown"><a
+							<li sec:authorize="hasRole('USER')" class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" href="#"
 								id="offcanvasNavbarDropdown" role="button"
-								data-bs-toggle="dropdown" aria-expanded="false"> Concurrencia </a>
+								data-bs-toggle="dropdown" aria-expanded="false">
+									Concurrencia </a>
 								<ul class="dropdown-menu"
 									aria-labelledby="offcanvasNavbarDropdown">
 									<li><a class="dropdown-item" th:href="@{/views/visita/}">Visita</a></li>
 									<li><a class="dropdown-item" th:href="@{/views/vistante/}">Visitante</a></li>
-									
+
 								</ul></li>
-								<li class="nav-item dropdown"><a
+							<li sec:authorize="hasRole('CAJERO')" class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" href="#"
 								id="offcanvasNavbarDropdown" role="button"
 								data-bs-toggle="dropdown" aria-expanded="false"> Servicios </a>
@@ -75,42 +111,58 @@
 									aria-labelledby="offcanvasNavbarDropdown">
 									<li><a class="dropdown-item" href="#">Boleta</a></li>
 									<li><a class="dropdown-item" href="#">Servicio</a></li>
-									
+
 								</ul></li>
-								<li class="nav-item"><a class="nav-link" href="#">Insidencia</a></li>
+							<li sec:authorize="hasRole('USER')" class="nav-item"><a
+								class="nav-link" href="#">Insidencia</a></li>
 						</ul>
-						<form class="d-flex">
-							<input class="form-control me-2" type="search"
-								placeholder="Search" aria-label="Search">
-							<button class="btn btn-outline-success" type="submit">Search</button>
-						</form>
+
 					</div>
 				</div>
 			</div>
 		</nav>
 
 		<!-- MENSAJES -->
-		<div class="alert alert-success alert-dismissable"
-			th:if="${success != null}">
-			<label th:text="${success}"></label>
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-		</div>
-		<div class="alert alert-danger alert-dismissable"
-			th:if="${error != null}">
-			<label th:text="${error}"></label>
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-		</div>
-		<div class="alert alert-warning alert-dismissable"
-			th:if="${warning != null}">
-			<label th:text="${warning}"></label>
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-		</div>
-		<div class="alert alert-info alert-dismissable"
-			th:if="${info != null}">
-			<label th:text="${info}"></label>
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<div class="container">
+
+			<div class="alert alert-success alert-dismissible"
+				th:if="${success != null}">
+				<label th:text="${success}"></label>
+				
+				<button type="button" class="btn-close text-reset"
+					data-dismiss="alert" data-bs-dismiss="alert" aria-label="Close"></button>
+
+
+			</div>
+
+			
+
 		</div>
 
+		<div class="container">
+			<div class="alert alert-danger alert-dismissible"
+				th:if="${error != null}">
+				<label th:text="${error}"></label>
+				<button type="button" class="btn-close text-reset"
+					data-dismiss="alert" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		</div>
+		<div class="container">
+			<div class="alert alert-warning alert-dismissible"
+				th:if="${warning != null}">
+				<label th:text="${warning}"></label>
+				<button type="button" class="btn-close text-reset"
+					data-dismiss="alert" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		</div>
+		<div class="container">
+			<div class="alert alert-info alert-dismissible"
+				th:if="${info != null}">
+				<label th:text="${info}"></label>
+				<button type="button" class="btn-close text-reset"
+					data-dismiss="alert" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		</div>
 
 	</header>
 
@@ -120,7 +172,7 @@
 
 	<!-- PIE DE PAGINA -->
 	<footer th:fragment="footer"
-		class="bg-dark text-center text-white fixed-bottom">
+		class="text-center text-black fixed-bottom">
 
 		<div class="container">
 			<p>Copyright &copy; - 2022</p>
@@ -131,17 +183,21 @@
 			integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 			crossorigin="anonymous"></script>
 
-		<!-- <script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/jquery-1.12.2.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
 		<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
- -->
+
 	</footer>
 
-	<!-- <script>
-				$(document).ready(function() {
-			    setTimeout(function() {
-			        $(".alert").fadeOut(1500);
-			    },3000);
-			</script> -->
+	<script>
+				$(document).ready(function(){
+    $(".close").click(function(){
+        $("#myAlert").alert("close");
+    });
+});
+
+   </script>
 
 
 </body>
