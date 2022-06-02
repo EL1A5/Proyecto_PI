@@ -11,6 +11,7 @@ public interface visitaService {
 
 	public abstract List<visita> listarVisitasPorEstado(String estado);
 	public abstract visita buscarPorId(int id);
+	public abstract visita buscarPorParametros(int dni,String param);
 	public abstract void eliminar (int id);
 	
 }

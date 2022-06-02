@@ -47,6 +47,12 @@ public class visitaServiceImpl implements visitaService {
 		return repository.findByEstado(estado);
 	}
 
+	@Override
+	public visita buscarPorParametros(int dni,String param) {
+		// TODO Auto-generated method stub
+		return repository.findAllParam(dni,param);
+	}
+
 	
 
 }

@@ -86,6 +86,7 @@ public class visitaController {
 		System.out.println("el visitante : " + visitante);
 		model.addAttribute("titulo", "Registrar Visita");
 		model.addAttribute("visita", visita);
+		
 		model.addAttribute("visitantes", visitante);
 
 		model.addAttribute("residentes", lstresidentes);
@@ -107,17 +108,22 @@ public class visitaController {
 
 		Departamento departamento = departamentoService
 				.buscarPorId(obj.getResidente().getDepartamento().getIddepartamento());
+		List<Residente> lstresidentes = residenteservice.listarResidentes();
+		visita existe=service.buscarPorParametros(obj.getIdvisitante().getDni(),"NoSalio");
+		
+		if ( existe!=null || obj.getIdvisitante()==null) {
+			
+			model.addAttribute("error", "VISITANTE NO SALIO o RESIDENTE VACIO");
+			
+			System.out.println("VISITANTE   :  " + obj.getIdvisitante());
+			model.addAttribute("residentes", lstresidentes);
+			return "/views/visita/registrar";
+		}
 		obj.setDepartamento(departamento);
 		obj.setEstado("NoSalio");
 		obj.setHoraentrada(new Date());
 
 		obj.setUsuario(usuario);
-		System.out.println("EL VISITA:" + obj.getHoraentrada() + " salida " + obj.getHorasalida());
-		if (resul.hasErrors()) {
-			model.addAttribute("visitante", obj);
-			System.out.println("Ingresar datos correctos");
-			return "/views/visita/registrar";
-		}
 		service.insertaActualizaVistas(obj);
 
 		return "redirect:/views/visita/";

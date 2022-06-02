@@ -20,6 +20,15 @@ public interface visitaRepository extends JpaRepository<visita, Integer>{
 	
 	  public List<visita> findAll(String palabra);
 	 
-
+	  @Query("SELECT  v FROM visita v"+ 
+			  "  join v.idvisitante vi " +
+			  "  join v.residente r " +
+			  "  join v.departamento d " +
+			  "  join v.usuario u WHERE  vi.dni=?1 and v.estado=?2"
+			  ) 
+			  
+			
+	  public visita findAllParam(int dni,String estado);
+	  
 	  public List<visita> findByEstado(String estado);
 }
