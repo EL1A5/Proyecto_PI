@@ -71,7 +71,7 @@ public class visitaController {
 	@Secured("ROLE_USER")
 	@GetMapping("/registrar")
 	public String RegistrarVisita(Model model, @Param("dni") String dni) {
-
+		
 		visita visita = new visita();
 
 		visitante visitante = null;
@@ -96,7 +96,6 @@ public class visitaController {
 	@Secured("ROLE_USER")
 	@PostMapping("/save")
 	public String Guardar(@Valid @ModelAttribute visita obj, BindingResult resul, Model model) {
-
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		UserDetails userDetails = null;
 		if (principal instanceof UserDetails) {
@@ -110,11 +109,12 @@ public class visitaController {
 		obj.setDepartamento(departamento);
 		obj.setEstado("NoSalio");
 		obj.setHoraentrada(new Date());
-
+		obj.setHorasalida(null);
 		obj.setUsuario(usuario);
 		System.out.println("EL VISITA:" + obj.getHoraentrada() + " salida " + obj.getHorasalida());
 		if (resul.hasErrors()) {
 			model.addAttribute("visitante", obj);
+			model.addAttribute("error", "DNI ya ingresado");
 			System.out.println("Ingresar datos correctos");
 			return "/views/visita/registrar";
 		}

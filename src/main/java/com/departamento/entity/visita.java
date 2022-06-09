@@ -64,8 +64,5 @@ public class visita implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "idusuario")
 	private Usuario usuario;
-	
-	
-	 
-	 
+ 
 }

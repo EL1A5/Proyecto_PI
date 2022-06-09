@@ -15,8 +15,8 @@
 	<name>pid_202201_miercoles_grupo_05</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>11</java.version>
-	</properties>
+  			<java.version>1.8</java.version>
+		</properties>
 	<dependencies>
 
 
@@ -86,8 +86,12 @@
 		</dependency>
 
 
-
-
+		<dependency>
+   			<groupId>org.postgresql</groupId>
+   			<artifactId>postgresql</artifactId>
+		</dependency>
+		
+		
 
 
 
