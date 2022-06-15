@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/plantilla :: head">
+</head>
+<body>
+	<header th:replace="plantilla/plantilla :: header"></header>
+
+
+	<div class="container w-25 p-3">
+
+		<form class="was-validated" th:action="@{/views/vistante/save}"
+			th:object="${visitante}" method="POST">
+			<div class="form-row">
+
+				<input type="hidden" th:field="*{idvisitante}" class="form-control"
+					id="idvisitante">
+
+				<div class="form-group">
+					<label for="validationText" class="form-label">Nombres</label>
+					<input type="text" th:field="*{nombre}" class="form-control"
+						id="nombre validationText" placeholder="ingresar nombres" required >
+					<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+				</div>
+
+
+				<div class="form-group">
+					<label for="validationText" class="form-label">Apellidos</label> <input
+						type="text" th:field="*{apellidos}" class="form-control"
+						id="apellidos validationText" placeholder="ingresar apellidos" required>
+						<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}"></small>
+				</div>
+				<div class="form-group">
+					<label for="validationDate" class="form-label">Fecha
+						Nacimiento</label> <input type="date" th:field="*{fechanac}"
+						class="form-control" id="fechanac validationDate"
+						placeholder="ingresar fecha de nacimiento" required>
+						<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('fechanac')}" th:errors="*{fechanac}"></small>
+				</div>
+				<div class="form-group">
+					<label for="validationNumber" class="form-label">Dni</label> <input
+						type="number"  min="20000000" max="99999999" th:field="*{dni}" class="form-control" id="dni validationNumber"
+						placeholder="Nuemro de identidad" data-bind="value:replyNumber" required>
+						<!-- <small class="form-text text-danger"
+						th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></small> -->
+				</div>
+				<div class="form-group">
+					<label for="validationEmail" class="form-label">Correo</label> <input
+						type="email" th:field="*{correo}" class="form-control" id="correo validationEmail"
+						placeholder="Correo Electronico" required>
+						<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}"></small>
+				</div>
+				<div class="form-group">
+					<label for="validationText" class="form-label">Telefono</label> <input
+						type="number" min="900000000" max="999999999" th:field="*{telefono}" class="form-control"
+						id="telefono validationText" placeholder="Nuemero de telefono" required>
+						<!-- <small class="form-text text-danger"
+						th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></small> -->
+				</div>
+			</div>
+
+
+			<br>
+
+			<button type="submit" class="btn btn-primary">Registrar</button>
+
+
+		</form>
+
+
+	</div>
+
+	<footer th:replace="plantilla/plantilla :: footer"></footer>
+
+</body>
+
+</html>

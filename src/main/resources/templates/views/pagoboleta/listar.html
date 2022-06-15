@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/plantilla :: head">
+</head>
+<body>
+	<header th:replace="plantilla/plantilla :: header"></header>
+
+	<div class="container">
+		<h1 th:text="${titulo}"></h1>
+	</div>
+
+	<div class="container">
+
+
+
+
+
+		<form class="form-inline" th:action="@{/views/pagoboleta/}">
+			<div class="d-inline p-2">
+				<label>DNI :</label> 
+				
+				<input type="text" name="filtro"
+					class="w-25 p-1" id="filtro" value=""
+					placeholder="Digite DNI para filtrar" required>
+				&nbsp;&nbsp; 
+				
+				
+				<label>Nombre :</label> 
+				
+				<input type="text" name="filtro"
+					class="w-25 p-1" id="filtro" value=""
+					placeholder="Digite nombre para filtrar" required>
+				&nbsp;&nbsp;
+				
+				
+				<div class="d-inline p-2 text-right">
+				   <label>Servicio:</label> 
+					<select name="servicio" id="servicio" class="form-select d-inline w-25" aria-label="Default select example" onchange="this.form.submit()">
+						<option selected value=" ">Selecciona el Servicio</option>
+						<option class="text-primary"  value="Todos">[Todos]</option>
+						<option class="text-danger" value="Agua">Agua</option>
+						<option class="text-danger" value="Luz">Luz</option>
+						<option class="text-danger" value="Internet">Internet</option>
+					</select>
+				</div>
+				
+				
+				<div class="d-inline p-2 text-right">
+				   <label>Estado:</label> 
+					<select name="estado" id="estado" class="form-select d-inline w-25" aria-label="Default select example" onchange="this.form.submit()">
+						<option selected value=" ">Selecciona el Estado</option>
+						<option class="text-primary"  value="Todos">[Todos]</option>
+						<option class="text-danger" value="Pagado">Pagado</option>
+						<option class="text-danger" value="NoPagado">No Pagado</option>
+						
+					</select>
+				</div>
+				
+				<input type="submit" class="btn btn-info mb-2"
+					value="Filtrar"> &nbsp;&nbsp; 
+					
+				<input type="button"
+					class="btn btn-secondary mb-2" value="Limpiar" onclick="limpiar()">
+				&nbsp;&nbsp; 
+				
+			
+
+			</div>
+
+
+		</form>
+
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Boleta</th>
+					<th scope="col">Propietario</th>
+					<th scope="col">Mes</th>
+					<th scope="col">Fecha Pago</th>
+					<th scope="col">Servicio</th>
+					<th scope="col">Estado</th>
+					<th scope="col" sec:authorize="hasRole('ROLE_USER')">Pagar</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cl:${pagoboleta}">
+					<th scope="row" th:text="${cl.idboleta}"></th>
+					<td><label><span th:text="${cl.idpropietario.nombre}">
+						</span>&nbsp;<span th:text="${cl.idpropietario.apellidos}"></span></label></td>
+					
+					<td th:text="${cl.mes}"></td>
+					<td th:text="${cl.fechapago}"></td>
+					<td th:text="${cl.servicio}"></td>
+					<td th:switch="${cl.estado}"><span class="text-primary"
+						th:case="'NoPagado'" th:text="${cl.estado}"></span> <span
+						class="text-danger" th:case="'Pagado'" th:text="${cl.estado}"></span>
+					</td>
+					<td sec:authorize="hasRole('ROLE_USER')"><a
+						class="btn btn-success btn-sm"
+						th:href="@{/views/pagoboleta/salir/} + ${cl.idboleta}"
+						th:text="'Pagar'" title="Editar Pago"> </a></td>
+
+				</tr>
+			</tbody>
+		</table>
+
+
+	</div>
+
+	<footer th:replace="plantilla/plantilla :: footer"></footer>
+	<script type="text/javascript">
+		function limpiar(){
+		window.location='/views/pagoboleta/'
+		}
+		
+		function registrar(){
+		window.location='/views/pagoboleta/registrar'
+		}
+	</script>
+</body>
+</html>
