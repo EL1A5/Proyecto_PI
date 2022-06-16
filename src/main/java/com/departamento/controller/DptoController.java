@@ -66,7 +66,7 @@ public class DptoController {
 		List<Propietario> propietario = propietarioservice.listarPropietarios();
 		if (id==null && dptoyaexiste!=null ) 
 		{
-			model.addAttribute("visitante", departamento);
+			model.addAttribute("departamento", departamento);
 			
 			model.addAttribute("propietarios", propietario);
 			model.addAttribute("error", "dpto ya existe ,ingrese un numero distinto al registrado en el sistema");

@@ -38,11 +38,12 @@ public class Boleta {
 	@ManyToOne
 	@JoinColumn(name = "idpropietario")
 	private Propietario propietario;
-	private double preciototal;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date fechaEmision;
-	private Date fechaVenc;
+	
+	private String anio;
+	
+	//@Temporal(TemporalType.TIMESTAMP)
+	private String fechaVenc;
 	private String estado;
 
 }
