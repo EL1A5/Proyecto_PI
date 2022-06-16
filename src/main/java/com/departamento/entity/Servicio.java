@@ -1,16 +1,12 @@
 package com.departamento.entity;
 
-import java.util.Date;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,10 +29,9 @@ public class Servicio {
 	private int idservicio;
 	
 	private String nombreserv;
-	private double precioserv;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date fechareg;
+	private double precioserv;
+
 	private int estado;
 
 }

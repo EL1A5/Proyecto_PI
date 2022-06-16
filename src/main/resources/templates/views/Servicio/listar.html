@@ -35,7 +35,6 @@
 					<th scope="col">Id</th>
 					<th scope="col">Nombre Servicio</th>
 					<th scope="col">Precio</th>
-					<th scope="col">Fecha Registro</th>
 					<th scope="col">Estado</th>
 					<th scope="col" sec:authorize="hasRole('ROLE_GERENTE')">Editar</th>
 					<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
@@ -48,7 +47,6 @@
 					<!--<td th:text="${d.departamento.numdepartamento}"></td>-->
 					<td th:text="${d.nombreserv}"></td>
 					<td th:text="${d.precioserv}"></td>
-					<td th:text="${d.fechareg}"></td>
 					<td th:text="${d.estado}"></td>
 					
 					<td sec:authorize="hasRole('ROLE_GERENTE')">

@@ -61,7 +61,6 @@ public class ServicioController {
 			
 		
 		servicio.setEstado(1);
-		servicio.setFechareg(new Date());
 
 		servicioservice.guardar(servicio);
 
