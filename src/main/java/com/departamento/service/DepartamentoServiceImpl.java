@@ -11,6 +11,10 @@ import com.departamento.repository.DepartamentoRepository;
 
 @Service
 public class DepartamentoServiceImpl implements DepartamentoService {
+		
+	
+	
+	
 	
 	@Autowired
 	private DepartamentoRepository dptoRepository;
@@ -36,6 +40,11 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 	public void eliminar(Integer id) {
 		dptoRepository.deleteById(id);
 		
+	}
+
+	@Override
+	public Departamento buscarnumdepartamento(String numdepartamento) {
+		return dptoRepository.findBynumdepartamento(numdepartamento);
 	}
 
 }

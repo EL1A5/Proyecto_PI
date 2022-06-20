@@ -10,9 +10,11 @@
 	<body>
 		<header th:replace="plantilla/plantilla :: header"></header>
 
+
      <div class="container">
 		<h1>Registrar Boleta</h1>
 	 </div>
+
 		<div class="container w-25 p-3">
 
 
@@ -68,20 +70,24 @@
 			</div>
 
 			<br>
+
 			<button type="submit" class="btn btn-primary">Registrar</button>&nbsp;&nbsp;&nbsp;
 			<input type="button"
 					class="btn btn-danger" value="Cancelar" onclick="Cancelar()">
 		</a>
 </form>
        
+
 	</div>
 
 
 	<footer th:replace="plantilla/plantilla :: footer"></footer>
+
   <script type="text/javascript">
 		function Cancelar(){
 		window.location='/views/Boleta/'
 		}
 	</script>
+
 </body>
 </html>

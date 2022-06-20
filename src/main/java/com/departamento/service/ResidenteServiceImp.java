@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.departamento.entity.Residente;
+import com.departamento.entity.visitante;
 import com.departamento.repository.ResidenteRepository;
 
 
@@ -30,6 +31,11 @@ public class ResidenteServiceImp implements ResidenteService{
 	public void eliminar(Integer id) {
 		repository.deleteById(id);
 		
+	}
+
+	@Override
+	public Residente buscarPorDni(String dni) {
+		return repository.findByDni(dni);
 	}	
 	
 }

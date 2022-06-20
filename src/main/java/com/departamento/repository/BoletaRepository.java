@@ -4,10 +4,10 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
 import org.springframework.data.jpa.repository.Query;
 
 import com.departamento.entity.Boleta;
-import com.departamento.entity.visita;
 
 public interface BoletaRepository extends JpaRepository<Boleta, Integer> {
 	

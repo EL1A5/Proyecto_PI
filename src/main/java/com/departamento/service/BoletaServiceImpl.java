@@ -29,6 +29,7 @@ public class BoletaServiceImpl implements BoletaService {
 	}
 
 	@Override
+
 	public void eliminar(Integer id) {
 		boletaRepository.deleteById(id);
 	}
@@ -54,6 +55,7 @@ public class BoletaServiceImpl implements BoletaService {
 			return boletaRepository.findAll(filtro);
 		}
 		return boletaRepository.findAll();
+
 	}
 
 	/*

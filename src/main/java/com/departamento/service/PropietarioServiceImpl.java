@@ -14,34 +14,40 @@ import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuer
 import org.springframework.stereotype.Service;
 
 import com.departamento.entity.Propietario;
+import com.departamento.entity.Residente;
+import com.departamento.entity.visitante;
 import com.departamento.repository.PropietarioRepository;
 
 @Service
 public class PropietarioServiceImpl implements  PropietarioService {
-	
 	@Autowired
 	private PropietarioRepository repository;
 
 	@Override
-	public List<Propietario> listaPropietario() {
+	public List<Propietario> listarPropietarios() {
 		return repository.findAll();
 	}
 
 	@Override
-	public Propietario GuardarPropietario(Propietario obj) {
-		obj.setFechaReg(new Date());
-		obj.setActivo(1);
+	public Propietario insertaActualizaPropietario(Propietario obj) {
 		return repository.save(obj);
+		}
+
+
+	@Override
+	public Propietario buscarPorIdPropietario(Integer id) {
+		return repository.findById(id).orElse(null);
+		}
+	@Override
+	public void eliminar(Integer id) {
+		repository.deleteById(id);
+		
+		}
+
+	@Override
+	public Propietario buscarPorDni(String dni) {
+		return repository.findByDni(dni);
 	}
-
-	/*@Override
-	public List<Propietario> listaPropietarioPorId(int id) {
-		return repository.listaPropietarioPorId(id);
-	}*/
-
 	
 
-
-
-	
 }

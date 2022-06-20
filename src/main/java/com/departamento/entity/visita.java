@@ -1,8 +1,9 @@
 package com.departamento.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
+import java.util.Date;
+import java.sql.Time;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,14 +18,18 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 @Entity
 @Table (name="visita")
 @Getter
 @Setter
-@ToString 
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class visita implements Serializable{
 	/**
 	 * 
@@ -33,13 +38,18 @@ public class visita implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idvisita ;
+	private int idvisita ;
 	
 	@ManyToOne
 	@JoinColumn(name = "idvisitante")
 	private visitante idvisitante ; 
+	@ManyToOne
+	@JoinColumn(name = "idResidente")
+	private Residente residente; 
+	@ManyToOne
+	@JoinColumn(name = "iddepartamento")
+	private Departamento departamento;
 	
-	private int idresidente ; 
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date horaentrada ; 
@@ -47,5 +57,15 @@ public class visita implements Serializable{
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date horasalida ;
 	
+	private String observacion;
 	
+	private String estado;
+	
+	@ManyToOne
+	@JoinColumn(name = "idusuario")
+	private Usuario usuario;
+	
+	
+	 
+	 
 }

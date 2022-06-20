@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/plantilla :: head">
+</head>
+<body>
+	<header th:replace="plantilla/plantilla :: header"></header>
+
+
+
+
+	<div class="container w-50 p-1">
+
+
+
+
+
+
+
+
+
+
+		<form class="container w-75 p-1" th:action="@{/views/visita/salir}"
+			th:object="${visita}" method="POST">
+			<input type="hidden" th:field="*{idvisita}">
+
+			
+
+
+
+			
+			<div class="form-group">
+				<label for="exampleFormControlTextarea1">Observacion</label>
+				<textarea class="form-control" th:field="*{observacion}"
+					id="exampleFormControlTextarea1" rows="3"></textarea>
+			</div>
+			<br>
+			<button type="submit" class="btn btn-primary">Guardar</button>
+
+		</form>
+
+
+
+	</div>
+
+	<footer th:replace="plantilla/plantilla :: footer"></footer>
+
+
+	<script type="text/javascript">
+		function limpiar(){
+		window.location='/views/visita/'
+		}
+		
+		function registrar(){
+		window.location='/views/vistante/registrar'
+		}
+	</script>
+</body>
+</html>

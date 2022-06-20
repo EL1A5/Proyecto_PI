@@ -7,12 +7,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,73 +30,72 @@ import com.departamento.service.PropietarioService;
 import com.departamento.service.ResidenteService;
 
 @Controller
-@RequestMapping("/views/propietario")
+@RequestMapping("/views/Propietario/")
 public class PropietarioController {
-	
 	@Autowired
-	private PropietarioService service;
-	
-	@Autowired
-	private ResidenteService residenteService;
-
-
-	
-	@GetMapping("/listar")
-	public String listarPropietarios(Model model) {
-		List<Propietario> lista = service.listaPropietario();
-		
-		model.addAttribute("titulo", "Lista de propietarios");
-		model.addAttribute("propietario", lista);
-	
-		return "/views/propietario/listar";
-	}
-	
+	private PropietarioService propietarioService;
+	@Secured("ROLE_GERENTE")
 	@GetMapping("/")
-	public String RegistrarPropietario(Model model) {
-
-		Propietario propietario = new Propietario();
-		List<Residente> listaResidentes = residenteService.listarResidentes();
+	public String listarpropietarios(Model model) {
+		List<Propietario> lstprop = propietarioService.listarPropietarios();
 		
-		model.addAttribute("titulo", "Registrar Propietario");
+		model.addAttribute("titulo","Lista de propietarios");
+		model.addAttribute("propietario",lstprop );
+		return "/views/Propietario/listar";
+	}
+	@Secured("ROLE_GERENTE")
+	@GetMapping("/registrar")
+	public String registrar(Model model) {
+		
+		Propietario propietario = new Propietario();
 		model.addAttribute("propietario", propietario);
-		model.addAttribute("residentes", listaResidentes);
-
+		
+		return "/views/Propietario/registrar";
+	}
+	@Secured("ROLE_GERENTE")
+	@PostMapping("/save")
+	public String guardar(@Valid @ModelAttribute Propietario propietario,BindingResult resul, Model model) {
+		Propietario dniyaexiste=propietarioService.buscarPorDni(propietario.getDni());
+		Propietario nuevo = propietarioService.buscarPorIdPropietario(propietario.getIdPropietario());
+		  
+		if (nuevo==null &&dniyaexiste!=null ) 
+		{
+			model.addAttribute("propietario", propietario);
+			model.addAttribute("error", "Propietario ya existe ,ingrese un numero de dni distinto al registrado en el sistema");
+			System.out.println("Ingresar datos correctos");
+			return "/views/Propietario/registrar";
+		}
+		
+		
+		propietario.setEstado(1);
+		propietario.setFechaReg(new Date());
+		
+		propietarioService.insertaActualizaPropietario(propietario);
+		
+		return "redirect:/views/Propietario/";
+	}
+	@Secured("ROLE_GERENTE")
+	@GetMapping("/edit/{id}")
+	public String editar(@PathVariable ("id") Integer idPropietario ,Model model) {
+		
+		Propietario propietario = propietarioService.buscarPorIdPropietario(idPropietario);
+		
+		
+		model.addAttribute("propietario", propietario);
+		
 		return "/views/propietario/registrar";
 	}
+	@Secured("ROLE_ADMIN")
+	@GetMapping("/delete/{id}")
+	public String eliminar(@PathVariable ("id") Integer idPropietario) {
+		
+		Propietario propietario=propietarioService.buscarPorIdPropietario(idPropietario);
+		propietario.setEstado(0);
+		propietarioService.insertaActualizaPropietario(propietario);
+		
+		return "redirect:/views/Propietario/";
+	}
 
-	@PostMapping("/save")
-	public String Guardar(@ModelAttribute Propietario obj) {
-		obj.getIdresidente();
-		service.GuardarPropietario(obj);
-		return "redirect:/views/propietario/";
-	}
-	
-	/*
-	@GetMapping
-	@ResponseBody
-	public ResponseEntity<List<Propietario>> listaPropietario(){
-		List<Propietario> lista = service.listaPropietario();
-		return ResponseEntity.ok(lista);
-	}
-	
-	//@GetMapping("/CrearPropietario")
-	@PostMapping
-	@ResponseBody
-	public  ResponseEntity<Map<String, Object>> GuardarPropietario(@RequestBody Propietario obj){
-		Map<String, Object> salida = new HashMap<>();
-		try {
-			Propietario objSalida = service.GuardarPropietario(obj);
-			if (objSalida == null) {
-				salida.put("mensaje", "Comprueve que todos los campos esten llenados.");
-			}else {
-				salida.put("mensaje", "Propietario registrado.");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			salida.put("mensaje", "El residente con el ID " + obj.getIdresidente() + " no existe");
-		}
-		return ResponseEntity.ok(salida);
-	}
-	*/
 
 }
+

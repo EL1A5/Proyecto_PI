@@ -33,36 +33,35 @@
 			<thead class="thead-dark">
 				<tr>
 					<th scope="col">Id</th>
-					<th scope="col">IdPropietario</th>
-					<th scope="col">Piso</th>
+					<th scope="col">Propietario</th>
+					<th scope="col">Numero Departamento</th>
 					<th scope="col">Habitaciones</th>
-					<th scope="col">Cocinas</th>
-					<th scope="col">Baños</th>
+					<th scope="col">Area</th>
+					<th scope="col">Ba�os</th>
 					<th scope="col">Fecha Registro</th>
 					<th scope="col">Estado</th>
-					<th scope="col">Activo</th>
-					<th scope="col">Editar</th>
-					<th scope="col">Eliminar</th>
+					<th scope="col" sec:authorize="hasRole('ROLE_GERENTE')">Editar</th>
+					<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="d:${departamentos}">
 					
 					<td th:text="${d.iddepartamento}"></td>
-					<td th:text="${d.idpropietario}"></td>
-					<td th:text="${d.numpiso}"></td>
+					<td th:text="${d.propietario.nombre}"></td>
+					<td th:text="${d.numdepartamento}"></td>
 					<td th:text="${d.habitaciones}"></td>
-					<td th:text="${d.cocinas}"></td>
+					<td th:text="${d.area}"></td>
 					<td th:text="${d.banos}"></td>
 					<td th:text="${d.fechareg}"></td>
 					<td th:text="${d.estado}"></td>
-					<td th:text="${d.activo}"></td>
-					<td>
+					
+					<td sec:authorize="hasRole('ROLE_GERENTE')">
 						<a class="btn btn-success btn-sm" th:href="@{/views/departamentos/edit/} + ${d.iddepartamento}"
 							th:text="'Editar'" title="Editar Registro">
 						</a>
 					</td>
-					<td>
+					<td sec:authorize="hasRole('ROLE_ADMIN')">
 						<a class="btn btn-danger btn-sm" th:href="@{/views/departamentos/delete/} + ${d.iddepartamento}"
 							th:text="'Eliminar'" title="Eliminar Registro"
 							onclick="return confirm('¿Esta seguro de eliminar el registro?');">

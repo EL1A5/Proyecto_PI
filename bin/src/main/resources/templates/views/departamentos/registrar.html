@@ -3,77 +3,73 @@
 <head th:replace="plantilla/plantilla :: head">
 </head>
 <body>
-	<header th:replace="plantilla/plantilla :: header"></header>
-	<div class="container">
-		<h1>NO COLOCAR NADA</h1>
-	</div>
-
-	<!-- <div class="container"> -->
-
-		<div class="card bg-light">
-			<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
-			<div class="card-body">
-
-				<form th:action="@{/views/vista/save}" th:object="${visita}"
-					method="post">
 
 
-					<div class="form-group row">
-						<input type="hidden" th:field="*{idvisita}"> <label
-							class="col-md-2" for="ciudad">Visitante:</label> <select
-							th:field="*{ciudad}"
-							class="form-control form-control-sm col-md-6" id="ciudad">
-							<option th:each="visitantes:${visitante}" th:value="${visitantes.idvisitante}"
-								th:text="${visitantes.nombre}" />
-						</select>
-					</div>
-					<div class="form-group row">
-						<label class="col-md-2" for="apellidos">Residente:</label> <input
-							type="text" th:field="*{apellidos}"
-							class="form-control form-control-sm col-md-6" id="apellidos"
-							placeholder="Apellidos del visitante"> <small
-							class="form-text text-danger"
-							th:if="${#fields.hasErrors('apellidos')}"
-							th:errors="*{apellidos}"> </small>
-					</div>
-<!--
-					<div class="form-group row">
-						<label class="col-md-2" for="dni">Dni</label> <input type="text"
-							th:field="*{dni}" class="form-control form-control-sm col-md-6"
-							id="dni" placeholder="dni del visitante"> <small
-							class="form-text text-danger" th:if="${#fields.hasErrors('dni')}"
-							th:errors="*{dni}"> </small>
-					</div>
+<body>
+<header th:replace="plantilla/plantilla :: header"></header>
+	
+	
+	<div class="container w-25 p-3">
+		
 
-					 <div class="form-group row">
-						<label class="col-md-2" for="fechareg">Fecha Registro:</label> <input
-							type="text" th:field="*{fechareg}"
-							class="form-control form-control-sm col-md-6" id="fechareg"
-							placeholder="fechareg del cliente"> <small
-							class="form-text text-danger"
-							th:if="${#fields.hasErrors('fechareg')}" th:errors="*{fechareg}">
-						</small>
-					</div>
- -->
-					<!-- <div class="form-group row">
-						<label class="col-md-2" for="ciudad">Ciudad:</label> <select
-							th:field="*{ciudad}"
-							class="form-control form-control-sm col-md-6" id="ciudad">
-							<option th:each="ciudad:${ciudades}" th:value="${ciudad.id}"
-								th:text="${ciudad.ciudad}" />
-						</select>
-					</div> -->
+		<br>
+		<form class="was-validated" th:action="@{/views/departamentos/save}"
+			th:object="${departamento}" method="POST">
+			<div class="form-row">
 
-					<div class="card-footer bg-dark">
-						<input type="submit" class="btn btn-primary btn-sm"
-							value="Guardar">
-					</div>
+				<input type="hidden" th:field="*{iddepartamento}"
+					class="form-control" id="codigoDepartamento">
 
-				</form>
+				<div class="form-group">
+					<label for="inputState" class="form-label">Propietario</label> <br>
+					<select id="inputState" th:field="*{propietario}" class="form-select">
+						<option th:each="propietario:${propietarios}" th:value="${propietario.idPropietario}" th:text="${propietario.nombre}">
+						
+					</select>
+				</div>
+				
+				<div class="form-group">
+					<label for="validationText" class="form-label">Numero</label>
+					<input type="number" min="100" max="999"  th:field="*{numdepartamento}" class="form-control"
+						id="numdepartamento validationText" placeholder="ingresar numero departamentos" required >
+					<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('numdepartamento')}" th:errors="*{numdepartamento}"></small>
+				</div>
+				
+				<div class="form-group">
+					<label for="validationText" class="form-label">Habitaciones</label>
+					<input type="number" min="1" max="5" th:field="*{habitaciones}" class="form-control"
+						id="habitaciones validationText" placeholder="ingresar numero de habitaciones" required >
+					<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('habitaciones')}" th:errors="*{habitaciones}"></small>
+				</div>
+			
+			   <div class="form-group">
+					<label for="validationText" class="form-label">Area</label>
+					<input type="number" min="50" max="150" th:field="*{area}" class="form-control"
+						id="area validationText" placeholder="ingresar numero del area cuadrada" required >
+					<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('area')}" th:errors="*{area}"></small>
+				</div>
+				
+				
+				 <div class="form-group">
+					<label for="validationText" class="form-label">Baños</label>
+					<input type="number" min="1" max="9" th:field="*{banos}" class="form-control"
+						id="banos validationText" placeholder="ingresar numero de baños" required >
+					<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('banos')}" th:errors="*{banos}"></small>
+				</div>
+	
+				
 			</div>
-		</div>
+
+			<br>
+			<button type="submit" class="btn btn-primary">Registrar</button>
+</form>
 
 	</div>
+
 
 	<footer th:replace="plantilla/plantilla :: footer"></footer>
 
