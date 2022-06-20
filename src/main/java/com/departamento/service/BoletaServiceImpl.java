@@ -29,13 +29,33 @@ public class BoletaServiceImpl implements BoletaService {
 	}
 
 	@Override
-	public Boleta buscarPorId(Integer id) {
-		return boletaRepository.findById(id).orElse(null);
+
+	public void eliminar(Integer id) {
+		boletaRepository.deleteById(id);
 	}
 
 	@Override
-	public void eliminar(Integer id) {
-		boletaRepository.deleteById(id);
+	public List<Boleta> listarBoletaPorEstado(String estado) {
+		return boletaRepository.findByEstado(estado);
+	}
+
+	@Override
+	public Boleta buscarPorId(int id) {
+		return boletaRepository.findById(id).get();
+	}
+
+	@Override
+	public Boleta buscarPorParametros(int dni, String param) {
+		return boletaRepository.findAllParam(dni,param);
+	}
+
+	@Override
+	public List<Boleta> listarBoletasFiltro(String filtro) {
+		if (filtro!=null) {
+			return boletaRepository.findAll(filtro);
+		}
+		return boletaRepository.findAll();
+
 	}
 
 	/*

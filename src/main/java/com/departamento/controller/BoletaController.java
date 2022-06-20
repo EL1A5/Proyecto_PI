@@ -7,6 +7,9 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.data.repository.query.Param;
+
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,11 +44,22 @@ public class BoletaController {
 
 	@Secured("ROLE_GERENTE")
 	@GetMapping("/")
-	public String listarBoletas(Model model) {
-		List<Boleta> listadoBoletas = boletaservice.listarBoletas();
+
+	public String listarBoletas(Model model, @Param("filtro") String filtro, @Param("estado") String estado) {
+		
+		List<Boleta> listadoBoletas;
+		
+		if ( filtro == "" && estado == "Pendiente" || estado == "Cancelado") {
+			listadoBoletas = boletaservice.listarBoletaPorEstado(estado);
+		} else {
+			listadoBoletas = boletaservice.listarBoletasFiltro(filtro);
+		}
 
 		model.addAttribute("titulo", "Lista de Boletas");
 		model.addAttribute("boletas", listadoBoletas);
+		model.addAttribute("filtro", filtro);
+		model.addAttribute("estado", estado);
+
 		return "/views/Boleta/listar";
 	}
 
