@@ -14,7 +14,7 @@ public interface BoletaRepository extends JpaRepository<Boleta, Integer> {
 	@Query("SELECT  b FROM Boleta b"+ 
 			  "  join b.servicio se " +
 			  "  join b.propietario pr " +
-			  " WHERE concat(se.nombreserv, pr.nombre,pr.apellidos,b.estado) like %?1%"
+			  " WHERE concat(se.nombreserv, pr.nombre,pr.dni,b.estado) like %?1%"
 			  ) 
 			  
 			
