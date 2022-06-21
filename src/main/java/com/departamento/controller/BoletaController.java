@@ -49,7 +49,7 @@ public class BoletaController {
 		
 		List<Boleta> listadoBoletas;
 		
-		if ( filtro == "" && estado == "Pendiente" || estado == "Cancelado") {
+		if ( filtro == "" || estado == "Pendiente" || estado == "Cancelado") {
 			listadoBoletas = boletaservice.listarBoletaPorEstado(estado);
 		} else {
 			listadoBoletas = boletaservice.listarBoletasFiltro(filtro);
