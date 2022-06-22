@@ -30,13 +30,13 @@
 	<div class="container">
 
 	
-	<form class="form-inline" th:action="@{/views/Boleta/}">
+	<form class="form-inline" th:action="@{/views/Boleta/pago}">
 			
 				<label>Filtrar: </label> 
 				<input type="text" name="filtro"
 					class="w-25 p-1" id="filtro" value=""
 					placeholder="Escriba un nombre o dni" required>
-				&nbsp;&nbsp;
+				
 				<div class="d-inline p-2 text-right">
 				   <label>Estado: </label> 
 					<select name="estado" id="estado" class="form-select d-inline w-25" aria-label="Default select example" onchange="this.form.submit()">
@@ -45,17 +45,18 @@
 						<option class="text-danger" value="Pendiente">Pendiente</option>
 					</select>
 				</div>
-				&nbsp;&nbsp;
+				
 				<div class="d-inline p-2 text-right">
 						<label>Servicio: </label>
-						<select id="inputState" th:field="*{servicio}" class="form-select">
-							<option th:each="servicio:${servicios}" th:value="${servicio.idservicio}"
-								th:text="${servicio.nombreserv}">
+						<select id="inputState" th:field="*{servicioPago}" class="form-select">
+							<option th:each="servicioPago:${servicios}" th:value="${servicioPago.idservicio}"
+								th:text="${servicioPago.nombreserv}">
 
 						</select>
 					</div>
+				
 				<input type="submit" class="btn btn-info mb-2"
-					value="Filtrar"> &nbsp;&nbsp; 
+					value="Filtrar"> 
 					
 				
 			</div>
@@ -95,7 +96,7 @@
 
 					
 					<td sec:authorize="hasRole('ROLE_ADMIN')">
-						<a class="btn btn-danger btn-sm" th:href="@{/views/Boleta/delete/} + ${d.idboleta}"
+						<a class="btn btn-danger btn-sm" th:href="@{/views/Boleta/pago/delete/} + ${d.idboleta}"
 							th:text="'Pagar'" title="Pagar boleta"
 							onclick="return confirm('Boleta cancelada satisfactoriamente');">
 						</a>
@@ -108,8 +109,8 @@
 	<footer th:replace="plantilla/plantilla :: footer"></footer>
 
     <script type="text/javascript">
-		function limpiar(){
-		window.location='/views/Boleta/'
+		function pago(){
+		window.location='/views/Boleta/pago'
 		}
 		
 	</script>

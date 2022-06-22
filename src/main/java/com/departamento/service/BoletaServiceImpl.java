@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.departamento.entity.Boleta;
+import com.departamento.entity.Servicio;
 import com.departamento.repository.BoletaRepository;
 
 @Service
@@ -57,7 +58,61 @@ public class BoletaServiceImpl implements BoletaService {
 		return boletaRepository.findAll();
 
 	}
+	
+	
+ ////pago
+	
+	@Override
+	public List<Boleta> listarBoletasPago() {
+		return boletaRepository.findAll();
+		
+	}
 
+	@Override
+	public Boleta guardarPago(Boleta boleta) {
+		return boletaRepository.save(boleta);
+	}
+
+	@Override
+	public void eliminarPago(Integer id) {
+		boletaRepository.deleteById(id);
+		
+	}
+	
+	@Override
+	public List<Boleta> listarBoletaPorEstadoPago(String estado) {
+		return boletaRepository.findByEstado(estado);
+	}
+
+	@Override
+	public Boleta buscarPorIdPago(int id) {
+		return boletaRepository.findById(id).get();
+	}
+
+	@Override
+	public Boleta buscarPorParametrosPago(int dni, String param) {
+		return boletaRepository.findAllParam(dni,param);
+	}
+
+	@Override
+	public List<Boleta> listarBoletasFiltroPago(String filtro) {
+		if (filtro!=null) {
+			return boletaRepository.findAll(filtro);
+		}
+		return boletaRepository.findAll();
+	}
+	@Override
+	public List<Boleta> listarBoletasServicioPago(List<Servicio> servicioPago) {
+		return boletaRepository.listarBoletasServicioPago(servicioPago);
+	}
+///////
+
+	
+
+
+	
+	
+	
 	/*
 	 * @Override public List<Date> listaFechaPago(int anio) { int[] ultimoDiasMes ={
 	 * 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
