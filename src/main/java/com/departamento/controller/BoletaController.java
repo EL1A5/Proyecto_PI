@@ -107,52 +107,15 @@ public class BoletaController {
 	}
 
 	@Secured("ROLE_ADMIN")
-	@GetMapping("/delete/{id}")
+	@GetMapping("/pago/{id}")
 	public String eliminar(@PathVariable("id") Integer idBoleta) {
 
 		Boleta boleta = boletaservice.buscarPorId(idBoleta);
-		// boleta.setEstado("0");
-		boletaservice.eliminar(idBoleta);
+		boleta.setEstado("Cancelado");
+		boletaservice.guardar(boleta);
 
 		return "redirect:/views/Boleta/";
 	}
 
-	///////////PAGO
 	
-public String listarBoletasPago(Model model, @Param("filtro") String filtro, @Param("estado") String estado, @Param("servicio") String servicio) {
-		
-		List<Boleta> listadoBoletasPago;
-		List<Servicio> servicioPago = servicioservice.listarServicios();
-		if ( filtro == "" || estado == "Pendiente" || estado == "Cancelado") {
-			listadoBoletasPago = boletaservice.listarBoletaPorEstadoPago(estado);
-			
-		} else if(estado == "Pendiente" || estado == "Cancelado"){
-			listadoBoletasPago = boletaservice.listarBoletasFiltroPago(filtro);
-		} else {
-			listadoBoletasPago = boletaservice.listarBoletasServicioPago(servicioPago);
-		}
-
-		model.addAttribute("titulo", "Pago de boletas");
-		model.addAttribute("boletas", listadoBoletasPago);
-		model.addAttribute("filtro", filtro);
-		model.addAttribute("estado", estado);
-		model.addAttribute("servicios", servicioPago);
-		return "/views/Boleta/pago";
-		///
-	}
-
-	
-
-	@Secured("ROLE_ADMIN")
-	@GetMapping("/pago/delete/{id}")
-	public String eliminarPago(@PathVariable("id") Integer idBoleta) {
-
-		Boleta boleta = boletaservice.buscarPorIdPago(idBoleta);
-		// boleta.setEstado("0");
-		boletaservice.eliminarPago(idBoleta);
-
-		return "redirect:/views/Boleta/pago";
-	}
-	
-	//////////////////
 }

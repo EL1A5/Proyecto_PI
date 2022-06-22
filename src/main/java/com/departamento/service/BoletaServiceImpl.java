@@ -62,16 +62,7 @@ public class BoletaServiceImpl implements BoletaService {
 	
  ////pago
 	
-	@Override
-	public List<Boleta> listarBoletasPago() {
-		return boletaRepository.findAll();
-		
-	}
-
-	@Override
-	public Boleta guardarPago(Boleta boleta) {
-		return boletaRepository.save(boleta);
-	}
+	
 
 	@Override
 	public void eliminarPago(Integer id) {
@@ -101,10 +92,7 @@ public class BoletaServiceImpl implements BoletaService {
 		}
 		return boletaRepository.findAll();
 	}
-	@Override
-	public List<Boleta> listarBoletasServicioPago(List<Servicio> servicioPago) {
-		return boletaRepository.listarBoletasServicioPago(servicioPago);
-	}
+	
 ///////
 
 	

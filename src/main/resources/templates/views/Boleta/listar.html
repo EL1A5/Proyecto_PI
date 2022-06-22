@@ -56,9 +56,6 @@
 					onclick="registrar()" th:value="'Nuevo Boleta'"
 					title="Crear Boleta">
 					
-				<input type="button" class="btn btn-primary mb-2"
-					onclick="pago()" th:value="'Pagar Boleta'"
-					title="Pagar Boleta">
 
 			</div>
 
@@ -75,8 +72,7 @@
 					<th scope="col">Año</th>
 					<th scope="col">Fecha Vencimiento</th>
 					<th scope="col">Estado</th>
-					<th scope="col" sec:authorize="hasRole('ROLE_GERENTE')">Editar</th>
-					<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
+					<th scope="col" sec:authorize="hasRole('ROLE_GERENTE')">Pagar</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -96,16 +92,12 @@
 
 
 					<td sec:authorize="hasRole('ROLE_GERENTE')">
-						<a class="btn btn-success btn-sm" th:href="@{/views/Boleta/edit/} + ${d.idboleta}"
-							th:text="'Editar'" title="Editar Registro">
+						<a class="btn btn-success btn-sm" th:href="@{/views/Boleta/pago/} + ${d.idboleta}"
+							th:text="'Pagar'" title="Editar Registro"
+						onclick="return confirm('¿Esta seguro que desea pagar esta boleta?');">
 						</a>
 					</td>
-					<td sec:authorize="hasRole('ROLE_ADMIN')">
-						<a class="btn btn-danger btn-sm" th:href="@{/views/Boleta/delete/} + ${d.idboleta}"
-							th:text="'Eliminar'" title="Eliminar Registro"
-							onclick="return confirm('¿Esta seguro de eliminar el registro?');">
-						</a>
-					</td>
+					
 				</tr>
 
 			</tbody>

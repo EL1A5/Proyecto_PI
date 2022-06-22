@@ -31,6 +31,6 @@ public interface BoletaRepository extends JpaRepository<Boleta, Integer> {
 			  public Boleta findAllParam(int dni,String estado);
 			  
 			  public List<Boleta> findByEstado(String estado);
-			  public List<Boleta> listarBoletasServicioPago(List<Servicio> servicioPago);
+			 
 
 }

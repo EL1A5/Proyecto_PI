@@ -22,8 +22,7 @@ public interface BoletaService {
 	
 	//Pago
 	
-	public List<Boleta> listarBoletasPago();
-	public Boleta  guardarPago(Boleta boleta);
+	
 
 	public void eliminarPago (Integer id);
 	
@@ -31,7 +30,7 @@ public interface BoletaService {
 	public abstract Boleta buscarPorIdPago(int id);
 	public abstract Boleta buscarPorParametrosPago(int dni,String param);
 	public abstract List<Boleta> listarBoletasFiltroPago(String filtro);
-	public abstract List<Boleta> listarBoletasServicioPago(List<Servicio> servicioPago);
+	
 /////
 	
 	
