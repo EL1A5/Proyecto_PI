@@ -3,6 +3,8 @@ package com.departamento.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -24,9 +26,12 @@ import com.departamento.service.PropietarioService;
 @RequestMapping("/views/departamentos")
 public class DptoController {
 
+	
+	
 	@Autowired
 	private DepartamentoService departamentoService;
 
+	
 	@Autowired
 	private PropietarioService propietarioservice;
 
@@ -55,12 +60,18 @@ public class DptoController {
 
 	@Secured("ROLE_GERENTE")
 	@PostMapping("/save")
-	public String guardar(@ModelAttribute Departamento departamento, BindingResult resul, Model model) {
-
-		if (resul.hasErrors()) {
-			model.addAttribute("visitante", departamento);
+	public String guardar(@Valid @ModelAttribute Departamento departamento, BindingResult resul, Model model) {
+		Departamento dptoyaexiste=departamentoService.buscarnumdepartamento(departamento.getNumdepartamento());
+		Departamento id=departamentoService.buscarPorId(departamento.getIddepartamento());
+		List<Propietario> propietario = propietarioservice.listarPropietarios();
+		if (id==null && dptoyaexiste!=null ) 
+		{
+			model.addAttribute("departamento", departamento);
+			
+			model.addAttribute("propietarios", propietario);
+			model.addAttribute("error", "dpto ya existe ,ingrese un numero distinto al registrado en el sistema");
 			System.out.println("Ingresar datos correctos");
-			return "redirect:/views/departamentos/";
+			return "/views/departamentos/registrar";
 		}
 		departamento.setEstado("1");
 		departamento.setFechareg(new Date());

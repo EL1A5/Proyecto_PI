@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/plantilla :: head">
+</head>
+<body>
+	<header th:replace="plantilla/plantilla :: header"></header>
+
+
+
+	<div class="container w-25 p-3">
+
+		<form class="was-validated" th:action="@{/views/Mascota/save}"
+			th:object="${mascota}" method="POST">
+			<div class="form-row">
+
+				<input type="hidden" th:field="*{idMascota}" class="form-control"
+					id="idMascota">
+
+				<div class="form-group">
+					<label for="inputState" class="form-label">Due�o</label> <br>
+					<select id="inputState" th:field="*{residente}"
+						class="form-select">
+						<option th:each="residente:${residentes}"
+							th:value="${residente.idResidente}"
+							th:text="${residente.nombre}">
+					</select>
+				</div>
+				
+				
+				<div class="form-group">
+					<label for="validationText" class="form-label">Nombres</label> <input
+						type="text" th:field="*{nombre}" class="form-control"
+						id="nombre validationText" placeholder="ingresar nombres" required>
+					<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+				</div>
+
+
+
+				<div class="form-group">
+					<label for="validationText" class="form-label">Tipo de
+						Mascota</label> <select id="inputState" th:field="*{tipo}"
+						class="form-select" required>
+						<option selected disabled value="">Seleccione...</option>
+						<option th:value="Perro">Perro</option>
+						<option th:value="Gato">Gato</option>
+						<option th:value="Conejo">Conejo</option>
+						<option th:value="Loro">Loro</option>
+						<option th:value="Hamster">Hamster</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="validationText" class="form-label">Edad Mascota
+					</label> <input type="number" min="0" max="10" th:field="*{edad}"
+						class="form-control" id="tipo validationText"
+						placeholder="ingresar edad mascota" required> <small
+						class="form-text text-danger" th:if="${#fields.hasErrors('edad')}"
+						th:errors="*{edad}"></small>
+				</div>
+
+
+				<div class="form-group">
+					<label for="validationText" class="form-label">Raza de
+						Mascota </label> <input type="text" th:field="*{raza}"
+						class="form-control" id="tipo validationText"
+						placeholder="ingresar tipo de mascota" required> <small
+						class="form-text text-danger" th:if="${#fields.hasErrors('raza')}"
+						th:errors="*{raza}"></small>
+				</div>
+
+				<div class="form-group">
+					<label for="validationText" class="form-label">Vacunacion</label> <select
+						id="inputState" th:field="*{vacunacion}" class="form-select"
+						required>
+						<option selected disabled value="">Seleccione...</option>
+						<option th:value="Completa">Vacunacion Completa</option>
+						<option th:value="InCompleta">Vacunacion InCompleta</option>
+					</select>
+				</div>
+
+
+
+			</div>
+
+
+			<br>
+
+			<button type="submit" class="btn btn-primary">Registrar</button>
+
+
+		</form>
+
+
+	</div>
+
+	<footer th:replace="plantilla/plantilla :: footer"></footer>
+
+</body>
+
+</html>

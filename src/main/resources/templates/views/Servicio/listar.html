@@ -3,7 +3,7 @@
 <head th:replace="plantilla/plantilla :: head">
 <head>
 	<meta>
-	<title>Listado Mascotas</title>
+	<title>Listado Servicios</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 
@@ -25,39 +25,37 @@
 
 	<div class="container">
 		
-		<a class="btn btn-primary btn-sm" th:href="@{/views/mascota/registrar}"
-			th:text="'Nueva Mascota'" title="Crear Nuevo Registro">
+		<a class="btn btn-primary btn-sm" th:href="@{/views/Servicio/registrar}"
+			th:text="'Nuevo Servicio'" title="Crear Nuevo Registro">
 		</a>
 		
 		<table class="table">
 			<thead class="thead-dark">
 				<tr>
-					<th scope="col">Id Mascota</th>
-					<th scope="col">Id Residente</th>
-					<th scope="col">Nombre Mascota</th>
-					<th scope="col">Tipo</th>
-					<th scope="col">Fecha Registro</th>
-					<th scope="col">Activo</th>
-					<th scope="col">Editar</th>
-					<th scope="col">Eliminar</th>
+					<th scope="col">Id</th>
+					<th scope="col">Nombre Servicio</th>
+					<th scope="col">Precio</th>
+					<th scope="col">Estado</th>
+					<th scope="col" sec:authorize="hasRole('ROLE_GERENTE')">Editar</th>
+					<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="d:${mascota}">
+				<tr th:each="d:${servicios}">
 					
-					<td th:text="${d.idmascota}"></td>
-					<td th:text="${d.idresidente}"></td>
-					<td th:text="${d.nombre}"></td>
-					<td th:text="${d.tipo}"></td>
-					<td th:text="${d.fechareg}"></td>
-					<td th:text="${d.activo}"></td>
-					<td>
-						<a class="btn btn-success btn-sm" th:href="@{/views/mascota/edit/} + ${d.idmascota}"
+					<td th:text="${d.idservicio}"></td>
+					<!--<td th:text="${d.departamento.numdepartamento}"></td>-->
+					<td th:text="${d.nombreserv}"></td>
+					<td th:text="${d.precioserv}"></td>
+					<td th:text="${d.estado}"></td>
+					
+					<td sec:authorize="hasRole('ROLE_GERENTE')">
+						<a class="btn btn-success btn-sm" th:href="@{/views/servicios/edit/} + ${d.idservicio}"
 							th:text="'Editar'" title="Editar Registro">
 						</a>
 					</td>
-					<td>
-						<a class="btn btn-danger btn-sm" th:href="@{/views/mascota/delete/} + ${d.idmascota}"
+					<td sec:authorize="hasRole('ROLE_ADMIN')">
+						<a class="btn btn-danger btn-sm" th:href="@{/views/servicios/delete/} + ${d.idservicio}"
 							th:text="'Eliminar'" title="Eliminar Registro"
 							onclick="return confirm('¿Esta seguro de eliminar el registro?');">
 						</a>
