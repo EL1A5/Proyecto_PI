@@ -77,6 +77,15 @@ public class BoletaController {
 
 		return "/views/Boleta/registrar";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	@Secured("ROLE_GERENTE")
 	@PostMapping("/save")
