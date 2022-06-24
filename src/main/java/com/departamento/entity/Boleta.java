@@ -46,34 +46,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Boleta implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idboleta ;
-	
-	@ManyToOne
-	@JoinColumn(name = "idPropietario")
-	private visitante idPropietario ; 
-	
-	private String mes;
-	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date fechapago ;
-	
-
-	private String servicio;
-	
-
-	
-
- 
-}
-
 public class Boleta {
 
 	@Id
