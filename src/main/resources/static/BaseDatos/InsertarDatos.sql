@@ -1,6 +1,6 @@
 
 USE `db_proyectointegradorgroup5` ;
-
+ALTER TABLE historial MODIFY idhistorial int NOT NULL AUTO_INCREMENT;
 
 insert into users(id,username, password, enable) values(1,'admin','$2a$10$C/kXzIeCg7CIUMpgDL5P/OjHhS3XTZsCYd5aqYdTwdjMIgfleBQoG',1);
 insert into users(id,username, password, enable) values(2,'user','$2a$10$BZDSDkLnA3/U0vH9Lkjmg.fXvypyAGU.mUAvUDeA1CsiZ9QUZLyX2',1);

@@ -296,7 +296,7 @@ CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`historial` (
    `idincidencia` INT NOT NULL,
   `idusuario` INT not NULL,
   `iddepartamento` INT not NULL,
-  `descripcion` VARCHAR(45) not NULL,
+  `descripcion` VARCHAR(100) not NULL,
   `estado` BIGINT(1) NULL,
   `fechareg` DATETIME NULL,
   PRIMARY KEY (`idhistorial`),
