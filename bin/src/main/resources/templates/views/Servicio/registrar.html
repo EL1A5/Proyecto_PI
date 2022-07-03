@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/plantilla :: head">
+</head>
+<body>
+
+
+<body>
+<header th:replace="plantilla/plantilla :: header"></header>
+	
+	
+	<div class="container w-25 p-3">
+		
+
+		<br>
+		<form class="was-validated" th:action="@{/views/Servicio/save}"
+			th:object="${servicio}" method="POST">
+			<div class="form-row">
+
+				<input type="hidden" th:field="*{idservicio}"
+					class="form-control" id="codigoServicio">
+
+				<!--<div class="form-group">
+					<label for="inputState" class="form-label">numero departamento</label> <br>
+					<select id="inputState" th:field="*{departamento}" class="form-select">
+						<option th:each="departamento:${departamentos}" th:value="${departamento.iddepartamento}" th:text="${departamento.numdepartamento}">
+						
+					</select>
+				</div>
+				
+				<div class="form-group">
+					<label for="validationText" class="form-label">Numero</label>
+					<input type="number" min="100" max="999"  th:field="*{numdepartamento}" class="form-control"
+						id="numdepartamento validationText" placeholder="ingresar numero departamentos" required >
+					<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('numdepartamento')}" th:errors="*{numdepartamento}"></small>
+				</div>-->
+				
+				<div class="form-group">
+					<label for="validationText" class="form-label">Nombre Servicio</label>
+					<input type="text" th:field="*{nombreserv}" class="form-control"
+						id="habitaciones validationText" placeholder="ingresar nombre servicio" required >
+					<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('nombreserv')}" th:errors="*{nombreserv}"></small>
+				</div>
+			
+			   <div class="form-group">
+					<label for="validationText" class="form-label">precio</label>
+					<input type="number" min="50" max="150" th:field="*{precioserv}" class="form-control"
+						id="area validationText" placeholder="ingresar precio" required >
+					<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('precioserv')}" th:errors="*{precioserv}"></small>
+				</div>
+				
+			<!--	<div class="form-group">
+					<label for="validationDate" class="form-label">Fecha registro
+						</label> <input type="date" th:field="*{fechareg}"
+						class="form-control" id="fechaNac validationDate"
+						placeholder="ingresar fecha de regisatro" required>
+						<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('fechareg')}" th:errors="*{fechareg}"></small>
+				</div>-->
+				
+				
+				 <!--<div class="form-group">
+					<label for="validationText" class="form-label">estado</label>
+					<input type="number" min="1" max="9" th:field="*{estado}" class="form-control"
+						id="banos validationText" placeholder="ingresar estado" required >
+					<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('banos')}" th:errors="*{banos}"></small>
+				</div>-->
+	
+				
+			</div>
+
+			<br>
+			<button type="submit" class="btn btn-primary">Registrar</button>
+</form>
+
+	</div>
+
+
+	<footer th:replace="plantilla/plantilla :: footer"></footer>
+
+</body>
+</html>

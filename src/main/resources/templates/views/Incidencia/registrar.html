@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/plantilla :: head">
+</head>
+<body>
+	<header th:replace="plantilla/plantilla :: header"></header>
+
+
+
+
+	<div class="container w-50 p-1">
+
+
+		<!--<form class="container was-validated w-75 p-1" th:action="@{/views/Incidencia/registrar}"
+			th:object="${insidencias}">
+
+
+			<div class="form-group row">
+				<label class="col-md-2" for="ciudad">Incidencia:</label>
+
+				<div class="form-inline">
+					<div class="d-inline p-2">
+						<label>Dni:</label> 
+						<input type="text" name="dni"
+							class="p-1" id="dni" value="" placeholder="Digite Dni"
+							required> &nbsp;&nbsp;
+							
+							 <input type="submit"
+							class="btn btn-info mb-2" value="Buscar">&nbsp;&nbsp;
+							<input type="button"
+							class="btn btn-primary mb-2" value="Registrar Incidencia" onclick="registrar()">
+							
+							 
+					</div>
+
+
+				</div>
+			</div>
+
+
+
+		</form>-->
+		
+		<!-- registrar visita-->
+
+		<form  class="container w-75 p-1" th:action="@{/views/Incidencia/save}" th:object="${insidencias}" method="POST">
+			<input type="hidden" th:field="*{idincidencia}">
+			
+			<!--<div class="form-group">
+				<label for="inputState" class="form-label">Nombre</label> <br> <select
+					id="inputState" th:field="*{idvisitante}" class="form-select">
+					<option th:each="visitante:${visitantes}"
+						th:value="${visitante.idvisitante}" th:text="${visitante.nombre}">
+				</select>
+			</div>-->
+			<div class="form-group">
+				<label for="inputState" class="form-label">Residente</label> <br> <select
+					id="inputState" th:field="*{residente}" class="form-select">
+					<option th:each="residente:${residentes}"
+						th:value="${residente.idResidente}" th:text="${residente.nombre}">
+				</select>
+			</div>
+			
+			<div class="form-group">
+					<label for="validationText" class="form-label">Tipo Incidencia</label>
+					<input type="text" th:field="*{tipo}" class="form-control"
+						id="tipo validationText" placeholder="Tipo Incidencia" required >
+					<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"></small>
+			</div>
+			
+			<div class="form-group">
+					<label for="validationText" class="form-label">Descripcion</label>
+					<input type="text" th:field="*{descripcion}" class="form-control"
+						id="descripcion validationText" placeholder="descripcion" required >
+					<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></small>
+			</div>
+			
+			<div class="form-group">
+					<label for="validationDate" class="form-label">Fecha
+						Atencion</label> <input type="date" th:field="*{fechareg}"
+						class="form-control" id="fechanac validationDate"
+						placeholder="ingresar Fecha de Incidente" required>
+						<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('fechareg')}" th:errors="*{fechareg}"></small>
+				</div>
+			
+						<br>
+			<button type="submit" class="btn btn-primary">Registrar</button>
+			
+		</form>
+
+
+
+	</div>
+
+	<footer th:replace="plantilla/plantilla :: footer"></footer>
+
+
+<script type="text/javascript">
+		function limpiar(){
+		window.location='/views/Incidencia/'
+		}
+		
+		function registrar(){
+		window.location='/views/vistante/registrar'
+		}
+	</script>
+</body>
+</html>
