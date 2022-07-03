@@ -25,7 +25,7 @@ public class InsidenciaServiceImpl implements InsidenciaService{
 	}
 
 	@Override
-	public List<Insidencia> listarInsidenciaPorEstado(int estado) {
+	public List<Insidencia> listarInsidenciaPorEstado(String estado) {
 		// TODO Auto-generated method stub
 		return repository.findByEstado(estado);
 	}
@@ -37,7 +37,7 @@ public class InsidenciaServiceImpl implements InsidenciaService{
 	}
 
 	@Override
-	public Insidencia buscarNumyEstado(String numdepa, int estado) {
+	public Insidencia buscarNumyEstado(String numdepa, String estado) {
 		// TODO Auto-generated method stub
 		return repository.findAllParam(numdepa, estado);
 	}

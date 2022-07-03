@@ -9,9 +9,9 @@ public interface InsidenciaService {
 	public abstract Insidencia insertaActualizaInsidencias(Insidencia obj);
 	public abstract List<Insidencia> listarInsidencia(String filtro);
 
-	public abstract List<Insidencia> listarInsidenciaPorEstado(int estado);
+	public abstract List<Insidencia> listarInsidenciaPorEstado(String estado);
 	
 	public abstract Insidencia buscarPorId(int id);
-	public abstract Insidencia buscarNumyEstado(String numdepa,int estado);
+	public abstract Insidencia buscarNumyEstado(String numdepa,String estado);
 
 }
