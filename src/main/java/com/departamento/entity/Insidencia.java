@@ -49,7 +49,7 @@ public class Insidencia {
 	
 	@Column(length = 1200)
 	private String descripcion ;
-	private String estado;
+	private int estado;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechareg ;
