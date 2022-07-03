@@ -55,15 +55,19 @@ public class InsidenciaController {
 	
 	@Secured("ROLE_USER")
 	@GetMapping("/")
-	public String ListarInsidencia(Model model, @Param("filtro") String filtro, @Param("estado") String estado) {
+	public String ListarInsidencia(Model model, @Param("filtro") String filtro) {
 
 		List<Insidencia> lista;
-		if ( filtro == "" || estado == "NoAtendido" || estado == "Atendido") {
+		int estado;
+		if (filtro == "atendido" ) {
+			 estado=0;
 			lista = service.listarInsidenciaPorEstado(estado);
-		} else {
+		} else if(filtro == "no atendido" ){
+			estado=1;
+			lista = service.listarInsidenciaPorEstado(estado);
+		}else {
 			lista = service.listarInsidencia(filtro);
 		}
-
 
 		model.addAttribute("titulo", "Gestion de Insidencias");
 		model.addAttribute("insidencia", lista);
@@ -103,24 +107,25 @@ public class InsidenciaController {
 
 		//REGISTRAR INSIDENCIA
 		List<Residente> lstresidentes = residenteservice.listarResidentes();
-
-		Insidencia existe=service.buscarNumyEstado(obj.getDepartamento().getNumdepartamento(),"NoAtendido");
-
-		if ( existe!=null ) {
-
-			model.addAttribute("error", "departamento ya registrado");
-
-			
-			model.addAttribute("residentes", lstresidentes);
-			return "/views/visita/registrar";
-		}
-
+		/*
+		 * Insidencia
+		 * existe=service.buscarNumyEstado(obj.getDepartamento().getNumdepartamento(),0)
+		 * ;
+		 * 
+		 * if ( existe!=null ) {
+		 * 
+		 * model.addAttribute("error", "departamento ya registrado");
+		 * 
+		 * 
+		 * model.addAttribute("residentes", lstresidentes); return
+		 * "/views/visita/registrar"; }
+		 */
 		
 		Departamento departamento = departamentoService
 				.buscarPorId(obj.getResidente().getDepartamento().getIddepartamento());
 		
 		obj.setDepartamento(departamento);
-		obj.setEstado("NoAtendido");
+		obj.setEstado(0);
 		obj.setFechareg(new Date());
 
 		obj.setUsuario(usuario);
