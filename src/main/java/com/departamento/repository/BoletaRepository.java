@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.departamento.entity.Boleta;
+import com.departamento.entity.Servicio;
 
 public interface BoletaRepository extends JpaRepository<Boleta, Integer> {
 	
@@ -30,5 +31,6 @@ public interface BoletaRepository extends JpaRepository<Boleta, Integer> {
 			  public Boleta findAllParam(int dni,String estado);
 			  
 			  public List<Boleta> findByEstado(String estado);
+			 
 
 }

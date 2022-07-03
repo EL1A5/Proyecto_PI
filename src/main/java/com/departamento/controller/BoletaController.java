@@ -59,7 +59,7 @@ public class BoletaController {
 		model.addAttribute("boletas", listadoBoletas);
 		model.addAttribute("filtro", filtro);
 		model.addAttribute("estado", estado);
-
+		
 		return "/views/Boleta/listar";
 	}
 
@@ -77,6 +77,8 @@ public class BoletaController {
 
 		return "/views/Boleta/registrar";
 	}
+	
+	
 
 	@Secured("ROLE_GERENTE")
 	@PostMapping("/save")
@@ -105,14 +107,15 @@ public class BoletaController {
 	}
 
 	@Secured("ROLE_ADMIN")
-	@GetMapping("/delete/{id}")
+	@GetMapping("/pago/{id}")
 	public String eliminar(@PathVariable("id") Integer idBoleta) {
 
 		Boleta boleta = boletaservice.buscarPorId(idBoleta);
-		// boleta.setEstado("0");
-		boletaservice.eliminar(idBoleta);
+		boleta.setEstado("Cancelado");
+		boletaservice.guardar(boleta);
 
 		return "redirect:/views/Boleta/";
 	}
 
+	
 }

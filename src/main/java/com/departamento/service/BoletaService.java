@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.departamento.entity.Boleta;
+import com.departamento.entity.Servicio;
 
 
 public interface BoletaService {
@@ -18,7 +19,22 @@ public interface BoletaService {
 	public abstract Boleta buscarPorParametros(int dni,String param);
 	public abstract List<Boleta> listarBoletasFiltro(String filtro);
 	
+	
+	//Pago
+	
+	
 
+	public void eliminarPago (Integer id);
+	
+	public abstract List<Boleta> listarBoletaPorEstadoPago(String estado);
+	public abstract Boleta buscarPorIdPago(int id);
+	public abstract Boleta buscarPorParametrosPago(int dni,String param);
+	public abstract List<Boleta> listarBoletasFiltroPago(String filtro);
+	
+/////
+	
+	
+	
 	//public List<Date> listaFechaPago(int anio);
 
 }

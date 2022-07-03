@@ -36,7 +36,7 @@ import com.departamento.service.visitaService;
 import com.departamento.service.visitanteService;
 
 @Controller
-@RequestMapping("/views/insidencia")
+@RequestMapping("/views/Incidencia")
 public class InsidenciaController {
 
 	
@@ -69,7 +69,7 @@ public class InsidenciaController {
 		model.addAttribute("insidencia", lista);
 		model.addAttribute("filtro", filtro);
 		
-		return "/views/insidencia/listar";
+		return "/views/Incidencia/listar";
 	}
 
 	@Secured("ROLE_USER")
@@ -83,7 +83,7 @@ public class InsidenciaController {
 		
 		model.addAttribute("insidencias", insidencia);
 		model.addAttribute("residentes", lstresidentes);
-		return "/views/insidencia/registrar";
+		return "/views/Incidencia/registrar";
 		
 	}
 	
@@ -103,6 +103,7 @@ public class InsidenciaController {
 
 		//REGISTRAR INSIDENCIA
 		List<Residente> lstresidentes = residenteservice.listarResidentes();
+
 		Insidencia existe=service.buscarNumyEstado(obj.getDepartamento().getNumdepartamento(),"NoAtendido");
 
 		if ( existe!=null ) {
@@ -113,6 +114,7 @@ public class InsidenciaController {
 			model.addAttribute("residentes", lstresidentes);
 			return "/views/visita/registrar";
 		}
+
 		
 		Departamento departamento = departamentoService
 				.buscarPorId(obj.getResidente().getDepartamento().getIddepartamento());
@@ -125,19 +127,18 @@ public class InsidenciaController {
 		
 		
 		//REGISTRAR HISTORIAL
-		
-		Historial objhis=new Historial();
-		objhis.setInsidencia(obj);
-		objhis.setUsuario(usuario);
-		objhis.setDepartamento(departamento);
-		objhis.setDescripcion("Nueva Insidencia de: "+obj.getResidente().getNombre()+" - " +obj.getResidente().getApellidos());
-		objhis.setEstado(0);
-		objhis.setFechareg(new Date());
-		
-		servicehis.insertaHistorial(objhis);
+		/*
+		 * Historial objhis=new Historial(); objhis.setInsidencia(obj);
+		 * objhis.setUsuario(usuario); objhis.setDepartamento(departamento);
+		 * objhis.setDescripcion("Nueva Insidencia de: "+obj.getResidente().getNombre()
+		 * +" - " +obj.getResidente().getApellidos()); objhis.setEstado(0);
+		 * objhis.setFechareg(new Date());
+		 * 
+		 * servicehis.insertaHistorial(objhis);
+		 */
 		service.insertaActualizaInsidencias(obj);
 
-		return "redirect:/views/insidencia/";
+		return "redirect:/views/Incidencia/";
 	}
 	
 	
@@ -145,17 +146,17 @@ public class InsidenciaController {
 	
 	
 	@Secured("ROLE_USER")
-	@GetMapping("/actializar/{id}")
+	@GetMapping("/actualizar/{id}")
 	public String editar(@PathVariable("id") Integer id, Model model) {
 
 		Insidencia insidencia = service.buscarPorId(id);
 
 		
-		model.addAttribute("insidencias", insidencia);
+		model.addAttribute("insidencia", insidencia);
 		
 		System.out.println("EL VISITA QUE SALIR: "+insidencia);
 
-		return "/views/visita/actualizar";
+		return "/views/Incidencia/actualizar";
 	}
 	
 	
@@ -171,28 +172,29 @@ public class InsidenciaController {
 		}
 		String userName = userDetails.getUsername();
 		Usuario usuario = serviceusu.BuscarPorNombre(userName);
+		
 
 		Insidencia insidenciaResuelto=service.buscarPorId(obj.getIdincidencia());
-		insidenciaResuelto.setFechaatencion(new Date());
-		insidenciaResuelto.setEstado(obj.getEstado());
+		insidenciaResuelto.setFechareg(new Date());
+		insidenciaResuelto.setEstado(1);
 		insidenciaResuelto.setUsuario(usuario);
 		
 		System.out.println("EL VISITANTE QUE SALIO!!!!!!!!: "+ insidenciaResuelto);
 		
 		
 		//REGISTRAR HISTORIAL
-		
-				Historial objhis=new Historial();
-				objhis.setInsidencia(obj);
-				objhis.setUsuario(usuario);
-				objhis.setDepartamento(insidenciaResuelto.getDepartamento());
-				objhis.setDescripcion("Resuelto la Insidencia de: "+obj.getResidente().getNombre()+" - " +obj.getResidente().getApellidos());
-				objhis.setEstado(0);
-				objhis.setFechareg(new Date());
-				
-				servicehis.insertaHistorial(objhis);
+		/*
+		 * Historial objhis=new Historial(); objhis.setInsidencia(obj);
+		 * objhis.setUsuario(usuario);
+		 * objhis.setDepartamento(insidenciaResuelto.getDepartamento());
+		 * objhis.setDescripcion("Resuelto la Insidencia de: "+obj.getResidente().
+		 * getNombre()+" - " +obj.getResidente().getApellidos()); objhis.setEstado(0);
+		 * objhis.setFechareg(new Date());
+		 * 
+		 * servicehis.insertaHistorial(objhis);
+		 */
 		service.insertaActualizaInsidencias(insidenciaResuelto);
 		
-		return "redirect:/views/insidencia/";
+		return "redirect:/views/Incidencia/";
 	}
 }

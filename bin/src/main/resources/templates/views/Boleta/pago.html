@@ -5,7 +5,7 @@
 
 	<head>
 		<meta>
-		<title>Listado Boletas</title>
+		<title>Pago de boleta</title>
 
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -30,33 +30,35 @@
 	<div class="container">
 
 	
-	<form class="form-inline" th:action="@{/views/Boleta/}">
+	<form class="form-inline" th:action="@{/views/Boleta/pago}">
 			
-				<label>Filtrar:</label> 
+				<label>Filtrar: </label> 
 				<input type="text" name="filtro"
 					class="w-25 p-1" id="filtro" value=""
-					placeholder="Digite nombre o DNI del propietario para buscar" required>
-				&nbsp;&nbsp;
+					placeholder="Escriba un nombre o dni" required>
+				
 				<div class="d-inline p-2 text-right">
-				   <label>Estado:</label> 
+				   <label>Estado: </label> 
 					<select name="estado" id="estado" class="form-select d-inline w-25" aria-label="Default select example" onchange="this.form.submit()">
-						<option selected value=" ">Selecciona el Estado</option>
+						<option selected value=" ">Selecciona el estado de la boleta</option>
 						<option class="text-primary"  value="Cancelado">Cancelado</option>
 						<option class="text-danger" value="Pendiente">Pendiente</option>
 					</select>
 				</div>
-				<input type="submit" class="btn btn-info mb-2"
-					value="Buscar"> &nbsp;&nbsp; 
-					
-				<input type="button"
-					class="btn btn-secondary mb-2" value="Limpiar" onclick="limpiar()">
-				&nbsp;&nbsp; 
 				
-				<input type="button" class="btn btn-primary mb-2"
-					onclick="registrar()" th:value="'Nuevo Boleta'"
-					title="Crear Boleta">
-					
+				<div class="d-inline p-2 text-right">
+						<label>Servicio: </label>
+						<select id="inputState" th:field="*{servicioPago}" class="form-select">
+							<option th:each="servicioPago:${servicios}" th:value="${servicioPago.idservicio}"
+								th:text="${servicioPago.nombreserv}">
 
+						</select>
+					</div>
+				
+				<input type="submit" class="btn btn-info mb-2"
+					value="Filtrar"> 
+					
+				
 			</div>
 
 
@@ -66,38 +68,39 @@
 		<table class="table">
 			<thead class="thead-dark">
 				<tr>
-					<th scope="col">Id</th>
-					<th scope="col">Nombre Servicio</th>
+					<th scope="col">Id boleta</th>
 					<th scope="col">Nombre Propietario</th>
 					<th scope="col">Año</th>
-					<th scope="col">Fecha Vencimiento</th>
+					<th scope="col">Fecha Pago</th>
+					<th scope="col">Servicio</th>
 					<th scope="col">Estado</th>
 					<th scope="col" sec:authorize="hasRole('ROLE_GERENTE')">Pagar</th>
+					
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="d:${boletas}">
 
 					<td th:text="${d.idboleta}"></td>
-					<td th:text="${d.servicio.nombreserv}"></td>
-
 					<td><label><span th:text="${d.propietario.nombre}">
 						</span>&nbsp;<span th:text="${d.propietario.apellidos}"></span></label></td>
 					<td th:text="${d.anio}"></td>
 					<td th:text="${d.fechaVenc}"></td>
+					<td th:text="${d.servicio.nombreserv}"></td>
+
 					<td th:switch="${d.estado}"><span class="text-primary"
 						th:case="'Cancelado'" th:text="${d.estado}"></span> <span
 						class="text-danger" th:case="'Pendiente'" th:text="${d.estado}"></span>
 					</td>
 
 
-					<td sec:authorize="hasRole('ROLE_GERENTE')">
-						<a class="btn btn-success btn-sm" th:href="@{/views/Boleta/pago/} + ${d.idboleta}"
-							th:text="'Pagar'" title="Editar Registro"
-						onclick="return confirm('¿Esta seguro que desea pagar esta boleta?');">
+					
+					<td sec:authorize="hasRole('ROLE_ADMIN')">
+						<a class="btn btn-danger btn-sm" th:href="@{/views/Boleta/pago/delete/} + ${d.idboleta}"
+							th:text="'Pagar'" title="Pagar boleta"
+							onclick="return confirm('Boleta cancelada satisfactoriamente');">
 						</a>
 					</td>
-					
 				</tr>
 
 			</tbody>
@@ -106,17 +109,10 @@
 	<footer th:replace="plantilla/plantilla :: footer"></footer>
 
     <script type="text/javascript">
-		function limpiar(){
-		window.location='/views/Boleta/'
-		}
-		
-		function registrar(){
-		window.location='/views/Boleta/registrar'
-		}
-		
 		function pago(){
 		window.location='/views/Boleta/pago'
 		}
+		
 	</script>
 
 </body>
