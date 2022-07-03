@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/plantilla :: head">
+</head>
+<body>
+	<header th:replace="plantilla/plantilla :: header"></header>
+
+	<div class="container">
+		<h1 th:text="${titulo}"></h1>
+	</div>
+
+	<div class="container">
+
+
+
+
+
+		<form class="form-inline" th:action="@{/views/Incidencia/}">
+			<div class="d-inline p-2">
+				<label>Filtrar:</label> 
+				
+				<input type="text" name="filtro"
+					class="w-25 p-1" id="filtro" value=""
+					placeholder="Digite nombre, numero o usuario para filtrar" required>
+				&nbsp;&nbsp; 
+				
+				<input type="submit" class="btn btn-info mb-2"
+					value="Buscar"> &nbsp;&nbsp; 
+					
+				<input type="button"
+					class="btn btn-secondary mb-2" value="Limpiar" onclick="limpiar()">
+				&nbsp;&nbsp; 
+				
+				<input type="button" class="btn btn-primary mb-2"
+					onclick="registrar()" th:value="'Nueva Incidencia'"
+					title="Crear Nuevo Registro">
+
+				<div class="d-inline p-2 text-right">
+				   <label>Filtrar Por Estado:</label> 
+					<select name="estado" id="estado" class="form-select d-inline w-25" aria-label="Default select example" onchange="this.form.submit()">
+						<option selected value=" ">Selecciona el Estado</option>
+						<option class="text-primary"  value="atendido">Atendido</option>
+						<option class="text-danger" value='no atendido'>No Atendido</option>
+					</select>
+				</div>
+
+			</div>
+
+
+		</form>
+
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">ID Insidencia</th>
+					<th scope="col">Usuario</th>
+					<th scope="col">Residente</th>
+					<th scope="col">Departamento</th>
+					<th scope="col">Tipo</th>
+					<th scope="col">Descripcion</th>
+					<th scope="col">Estado</th>
+					<th scope="col">Fecha registro</th>
+					
+					<th scope="col" sec:authorize="hasRole('ROLE_USER')">Historial Insidencia</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cl:${insidencia}">
+					<th scope="row" th:text="${cl.idincidencia}"></th>
+					<td th:text="${cl.usuario.username}"></td>
+					<td><label><span th:text="${cl.residente.nombre}">		
+					<td th:text="${cl.departamento.numdepartamento}"></td>
+					<td th:text="${cl.tipo}"></td>
+					<td th:text="${cl.descripcion}"></td>
+					<td th:switch="${cl.estado}"><span class="text-primary"
+						th:case=0 th:text="${cl.estado}"></span> <span
+						class="text-danger" th:case=1 th:text="${cl.estado}"></span>
+					</td>
+					<td th:text="${cl.fechareg}"></td>
+					
+					<td sec:authorize="hasRole('ROLE_USER')"><a
+						class="btn btn-success btn-sm"
+						th:href="@{/views/Incidencia/actualizar/} + ${cl.idincidencia}"
+						th:text="'Actualizar'" title="Editar Incidente"> </a></td>
+
+				</tr>
+			</tbody>
+		</table>
+
+
+	</div>
+
+	<footer th:replace="plantilla/plantilla :: footer"></footer>
+	<script type="text/javascript">
+		function limpiar(){
+		window.location='/views/Incidencia/'
+		}
+		
+		function registrar(){
+		window.location='/views/Incidencia/registrar'
+		}
+	</script>
+</body>
+</html>
