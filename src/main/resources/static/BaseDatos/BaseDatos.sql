@@ -79,28 +79,6 @@ CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`departamento` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `db_proyectointegradorgroup5`.`servicio`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`servicio` (
-  `idservicio` INT NOT NULL AUTO_INCREMENT,
-  `iddepartamento` INT NULL DEFAULT NULL,
-  `nombreserv` VARCHAR(35) NOT NULL,
-  `precioserv` DOUBLE NOT NULL,
-  `fechareg` DATETIME NULL DEFAULT NULL,
-  `estado` TINYINT(1) NOT NULL,
-  PRIMARY KEY (`idservicio`),
-  INDEX `iddepartamento` (`iddepartamento` ASC) ,
-  CONSTRAINT `servicio_ibfk_1`
-    FOREIGN KEY (`iddepartamento`)
-    REFERENCES `db_proyectointegradorgroup5`.`departamento` (`iddepartamento`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
 -- -----------------------------------------------------
 -- Table `db_proyectointegradorgroup5`.`boleta`
 -- -----------------------------------------------------
@@ -108,8 +86,7 @@ CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`boleta` (
   `idboleta` INT NOT NULL AUTO_INCREMENT,
   `idservicio` INT NULL DEFAULT NULL,
   `idpropietario` INT NULL DEFAULT NULL,
-  `preciototal` DOUBLE NULL DEFAULT NULL,
-  `fechaEmision` DATE NULL DEFAULT NULL,
+  `anio` char(4)  NULL DEFAULT NULL,
   `fechaVenc` DATE NULL DEFAULT NULL,
   `estado` varchar(15) not NULL DEFAULT 'Pendiente',
   PRIMARY KEY (`idboleta`),
@@ -121,10 +98,18 @@ CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`boleta` (
     FOREIGN KEY (`idpropietario`)
     REFERENCES `db_proyectointegradorgroup5`.`propietario` (`idpropietario`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
+DEFAULT CHARACTER SET = utf8mb4;
+-- -----------------------------------------------------
+-- Table `db_proyectointegradorgroup5`.`servicio`
+-- -----------------------------------------------------
+ CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`servicio` (
+  `idservicio` INT NOT NULL AUTO_INCREMENT,
+  `nombreserv` VARCHAR(35) NOT NULL,
+  `precioserv` DOUBLE NOT NULL,
+  `estado` TINYINT(1) NOT NULL,
+  PRIMARY KEY (`idservicio`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
 -- -----------------------------------------------------
 -- Table `db_proyectointegradorgroup5`.`users`
 -- -----------------------------------------------------
@@ -144,34 +129,28 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 -- Table `db_proyectointegradorgroup5`.`insidencia`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`insidencia` (
+CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`incidencia` (
   `idincidencia` INT NOT NULL AUTO_INCREMENT,
   `iduser` INT NULL DEFAULT NULL,
   `idresidente` INT NULL DEFAULT NULL,
   `iddepartamento` INT NULL DEFAULT NULL,
-  `tipo` VARCHAR(35) NOT NULL,
+   `tipo` VARCHAR(80) NOT NULL,
   `descripcion` VARCHAR(80) NOT NULL,
-  `estado` TINYINT(1) NOT NULL,
+  `estado` INT NOT NULL,
+  `observacion` varchar(50)  NULL,
   `fechareg` DATETIME NULL DEFAULT NULL,
-  `fechaatencion` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`idincidencia`),
-  INDEX `iduser` (`iduser` ASC) VISIBLE,
-  INDEX `idresidente` (`idresidente` ASC) VISIBLE,
-  CONSTRAINT `insidencia_ibfk_1`
+    CONSTRAINT `insidencia_ibfk_3`
+    FOREIGN KEY (`iddepartamento`)
+    REFERENCES `db_proyectointegradorgroup5`.`departamento` (`iddepartamento`),
+     CONSTRAINT `insidencia_ibfk_4`
     FOREIGN KEY (`iduser`)
     REFERENCES `db_proyectointegradorgroup5`.`users` (`id`),
-  CONSTRAINT `insidencia_ibfk_2`
+     CONSTRAINT `insidencia_ibfk_5`
     FOREIGN KEY (`idresidente`)
-    REFERENCES `db_proyectointegradorgroup5`.`residente` (`idresidente`),
-     CONSTRAINT `departamento_ibfk_2`
-    FOREIGN KEY (`iddepartamento`)
-    REFERENCES `db_proyectointegradorgroup5`.`departamento` (`iddepartamento`)
-    
-    
-    )
+    REFERENCES `db_proyectointegradorgroup5`.`residente` (`idresidente`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+DEFAULT CHARACTER SET = utf8mb4;
 
 
 -- -----------------------------------------------------
@@ -335,7 +314,7 @@ CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`historial` (
     ON UPDATE NO ACTION,
  CONSTRAINT `fk_insidencia`
     FOREIGN KEY (`idincidencia`)
-    REFERENCES `db_proyectointegradorgroup5`.`insidencia` (`idincidencia`))
+    REFERENCES `db_proyectointegradorgroup5`.`incidencia` (`idincidencia`))
 ENGINE = InnoDB;
 
 
@@ -344,24 +323,8 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-
 ALTER TABLE propietario
 ADD UNIQUE (dni);
 
 ALTER TABLE residente
 ADD UNIQUE (dni);
-
-
-ALTER TABLE residente
-ADD UNIQUE (dni);
-
-
-
-
-
-
-
-
-
-
-
