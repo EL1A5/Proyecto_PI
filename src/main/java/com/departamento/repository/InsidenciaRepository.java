@@ -27,9 +27,9 @@ public interface InsidenciaRepository extends JpaRepository<Insidencia, Integer>
 					  ) 
 
 
-			  public Insidencia findAllParam(String numdepa,int estado);
+			  public Insidencia findAllParam(String numdepa,String estado);
 
-			  public List<Insidencia> findByEstado(int estado);
+			  public List<Insidencia> findByEstado(String estado);
 			  
 			  
 }

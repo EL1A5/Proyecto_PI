@@ -55,19 +55,15 @@ public class InsidenciaController {
 	
 	@Secured("ROLE_USER")
 	@GetMapping("/")
-	public String ListarInsidencia(Model model, @Param("filtro") String filtro) {
+	public String ListarInsidencia(Model model, @Param("filtro") String filtro, @Param("estado") String estado) {
 
 		List<Insidencia> lista;
-		int estado;
-		if (filtro == "atendido" ) {
-			 estado=0;
+		if ( filtro == "" || estado == "NoAtendido" || estado == "Atendido") {
 			lista = service.listarInsidenciaPorEstado(estado);
-		} else if(filtro == "no atendido" ){
-			estado=1;
-			lista = service.listarInsidenciaPorEstado(estado);
-		}else {
+		} else {
 			lista = service.listarInsidencia(filtro);
 		}
+
 
 		model.addAttribute("titulo", "Gestion de Insidencias");
 		model.addAttribute("insidencia", lista);
@@ -107,7 +103,7 @@ public class InsidenciaController {
 
 		//REGISTRAR INSIDENCIA
 		List<Residente> lstresidentes = residenteservice.listarResidentes();
-		Insidencia existe=service.buscarNumyEstado(obj.getDepartamento().getNumdepartamento(),0);
+		Insidencia existe=service.buscarNumyEstado(obj.getDepartamento().getNumdepartamento(),"NoAtendido");
 
 		if ( existe!=null ) {
 
@@ -122,7 +118,7 @@ public class InsidenciaController {
 				.buscarPorId(obj.getResidente().getDepartamento().getIddepartamento());
 		
 		obj.setDepartamento(departamento);
-		obj.setEstado(0);
+		obj.setEstado("NoAtendido");
 		obj.setFechareg(new Date());
 
 		obj.setUsuario(usuario);

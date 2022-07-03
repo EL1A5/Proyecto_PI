@@ -46,7 +46,7 @@ public class Insidencia {
 	
 	private String tipo ; 
 	private String descripcion ;
-	private int estado;
+	private String estado;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechareg ;
