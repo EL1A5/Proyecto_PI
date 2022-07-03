@@ -291,31 +291,28 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_proyectointegradorgroup5`.`historial`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`historial` (
-  `idhistorial` INT NOT NULL,
-   `idincidencia` INT NOT NULL,
-  `idusuario` INT not NULL,
-  `iddepartamento` INT not NULL,
-  `descripcion` VARCHAR(100) not NULL,
-  `estado` BIGINT(1) NULL,
-  `fechareg` DATETIME NULL,
-  PRIMARY KEY (`idhistorial`),
-  INDEX `fk_idx` (`idusuario` ASC) VISIBLE,
-  INDEX `fk2_idx` (`iddepartamento` ASC) VISIBLE,
-  CONSTRAINT `fk`
-    FOREIGN KEY (`idusuario`)
-    REFERENCES `db_proyectointegradorgroup5`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_depart`
+CREATE TABLE IF NOT EXISTS `db_proyectointegradorgroup5`.`incidencia` (
+  `idincidencia` INT NOT NULL AUTO_INCREMENT,
+  `iduser` INT NULL DEFAULT NULL,
+  `idresidente` INT NULL DEFAULT NULL,
+  `iddepartamento` INT NULL DEFAULT NULL,
+   `tipo` VARCHAR(80) NOT NULL,
+  `descripcion` VARCHAR(80) NOT NULL,
+  `estado` INT NOT NULL,
+  `observacion` varchar(50)  NULL,
+  `fechareg` DATETIME NULL DEFAULT NULL,
+  PRIMARY KEY (`idincidencia`),
+    CONSTRAINT `insidencia_ibfk_3`
     FOREIGN KEY (`iddepartamento`)
-    REFERENCES `db_proyectointegradorgroup5`.`departamento` (`iddepartamento`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
- CONSTRAINT `fk_insidencia`
-    FOREIGN KEY (`idincidencia`)
-    REFERENCES `db_proyectointegradorgroup5`.`incidencia` (`idincidencia`))
-ENGINE = InnoDB;
+    REFERENCES `db_proyectointegradorgroup5`.`departamento` (`iddepartamento`),
+     CONSTRAINT `insidencia_ibfk_4`
+    FOREIGN KEY (`iduser`)
+    REFERENCES `db_proyectointegradorgroup5`.`users` (`id`),
+     CONSTRAINT `insidencia_ibfk_5`
+    FOREIGN KEY (`idresidente`)
+    REFERENCES `db_proyectointegradorgroup5`.`residente` (`idresidente`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
 
 
 

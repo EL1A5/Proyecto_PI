@@ -59,6 +59,7 @@
 					<th scope="col">Tipo</th>
 					<th scope="col">Descripcion</th>
 					<th scope="col">Estado</th>
+					<th scope="col">Observacion</th>
 					<th scope="col">Fecha registro</th>
 					
 					<th scope="col" sec:authorize="hasRole('ROLE_USER')">Historial Insidencia</th>
@@ -77,6 +78,7 @@
 						th:case=0 th:text="${cl.estado}"></span> <span
 						class="text-danger" th:case=1 th:text="${cl.estado}"></span>
 					</td>
+					<td th:text="${cl.observacion}"></td>
 					<td th:text="${cl.fechareg}"></td>
 					
 					<td sec:authorize="hasRole('ROLE_USER')"><a

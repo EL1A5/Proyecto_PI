@@ -178,7 +178,7 @@ public class InsidenciaController {
 		insidenciaResuelto.setFechareg(new Date());
 		insidenciaResuelto.setEstado(1);
 		insidenciaResuelto.setUsuario(usuario);
-
+		insidenciaResuelto.setObservacion(obj.getObservacion());
 		System.out.println("EL VISITANTE QUE SALIO!!!!!!!!: " + insidenciaResuelto.getObservacion());
 
 		// REGISTRAR HISTORIAL
